@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="UtilizationKontrakView"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  OrderBy='"KONTRAK_NO"'
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="app.mkp.model.view.ttf.utilisasi.UtilizationKontrakView_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="noKontrak"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <ViewAccessor
+    Name="LovUnitCompany1"
+    ViewObjectName="app.mkp.model.view.lov.LovUnitCompany"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="LovDepartment1"
+    ViewObjectName="app.mkp.model.view.lov.LovDepartment"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="LovSupplierVendor1"
+    ViewObjectName="app.mkp.model.view.lov.LovSupplierVendor"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="LovCurrency1"
+    ViewObjectName="app.mkp.model.view.lov.LovCurrency"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_UnitcompanyId"
+    ListVOName="LovUnitCompany1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="UnitcompanyId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_DepartmentId"
+    ListVOName="LovDepartment1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DepartmentId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_SupplierId"
+    ListVOName="LovSupplierVendor1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="SupplierId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_CurrencyId"
+    ListVOName="LovCurrency1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CurrencyId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT UZ.UNITCOMPANY_ID, UZ.DEPARTMENT_ID, UZ.SUPPLIER_ID, UZ.KONTRAK_NO, UZ.PO_NO, UZ.CURRENCY_ID, UZ.NIL_MAX_TRAN, UZ.UTIL, (UZ.UTIL / UZ.NIL_MAX_TRAN) * 100 AS UTIL_PERCENTAGE
+FROM (
+SELECT MT.UNITCOMPANY_ID, MT.DEPARTMENT_ID, MT.SUPPLIER_ID, MT.KONTRAK_NO, MT.PO_NO, MT.CURRENCY_ID, 
+(SELECT MK.NILAI_KONTRAK FROM MKN_KONTRAK MK WHERE MK.JNS_MATA_UANG = MT.CURRENCY_ID AND MK.NO_KONTRAK = MT.KONTRAK_NO 
+UNION ALL
+SELECT MK.NILAI_KONTRAK_2 FROM MKN_KONTRAK MK WHERE MK.JNS_MATA_UANG_2 = MT.CURRENCY_ID AND MK.NO_KONTRAK=MT.KONTRAK_NO
+UNION ALL
+SELECT MK.NILAI_KONTRAK_3 FROM MKN_KONTRAK MK WHERE MK.JNS_MATA_UANG_3 = MT.CURRENCY_ID AND MK.NO_KONTRAK=MT.KONTRAK_NO
+UNION ALL
+SELECT MK.NILAI_KONTRAK_4 FROM MKN_KONTRAK MK WHERE MK.JNS_MATA_UANG_4 = MT.CURRENCY_ID AND MK.NO_KONTRAK=MT.KONTRAK_NO
+) AS NIL_MAX_TRAN,
+(SELECT SUM(MT2.AMOUNT) FROM MKN_TTF MT2 WHERE MT2.KONTRAK_NO = MT.KONTRAK_NO AND MT2.CURRENCY_ID = MT.CURRENCY_ID) AS UTIL
+FROM MKN_TTF MT WHERE MT.KONTRAK_NO IS NOT NULL
+GROUP BY MT.UNITCOMPANY_ID, MT.DEPARTMENT_ID, MT.SUPPLIER_ID, MT.KONTRAK_NO, MT.PO_NO, MT.CURRENCY_ID
+) UZ]]>
+  </SQLQuery>
+  <ViewAttribute
+    Name="UnitcompanyId"
+    IsUpdateable="false"
+    LOVName="LOV_UnitcompanyId"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="UNITCOMPANY_ID"
+    Expression="UNITCOMPANY_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="32"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="PT_ANAK_PERUSAHAAN"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DepartmentId"
+    IsUpdateable="false"
+    LOVName="LOV_DepartmentId"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="32"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DEPARTMENT_ID"
+    Expression="DEPARTMENT_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="32"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="DEPARTEMEN"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SupplierId"
+    IsUpdateable="false"
+    LOVName="LOV_SupplierId"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="32"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SUPPLIER_ID"
+    Expression="SUPPLIER_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="32"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="VENDOR"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="KontrakNo"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="32"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="KONTRAK_NO"
+    Expression="KONTRAK_NO"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="32"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="KONTRAK_NO"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PoNo"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="32"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PO_NO"
+    Expression="PO_NO"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="32"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="NO_PURCHASE_ORDER"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CurrencyId"
+    IsUpdateable="false"
+    LOVName="LOV_CurrencyId"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="16"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CURRENCY_ID"
+    Expression="CURRENCY_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="16"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="MATA_UANG"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NilMaxTran"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="NIL_MAX_TRAN"
+    Expression="NIL_MAX_TRAN"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="NILAI_MAKSIMUM_TRANSAKSI"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Util"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="UTIL"
+    Expression="UTIL"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="UTILISASI"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="UtilPercentage"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="UTIL_PERCENTAGE"
+    Expression="UTIL_PERCENTAGE"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER
+          ResId="app.mkp.model.view.ttf.utilisasi.UtilizationKontrakView.UtilPercentage_FMT_FORMATTER"/>
+        <FMT_FORMAT
+          ResId="app.mkp.model.view.ttf.utilisasi.UtilizationKontrakView.UtilPercentage_FMT_FORMAT"/>
+        <LABEL
+          ResId="PERSENTASE_UTILISASI"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="UtilizationKontrakViewCriteria"
+    ViewObjectName="app.mkp.model.view.ttf.utilisasi.UtilizationKontrakView"
+    Conjunction="AND"
+    Mode="3">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="false"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow9"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="KontrakNo"
+        ViewAttribute="KontrakNo"
+        Operator="CONTAINS"
+        Conjunction="AND"
+        Value=":noKontrak"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="KontrakNo"/>
+    <Item Value="CurrencyId"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="app.mkp.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

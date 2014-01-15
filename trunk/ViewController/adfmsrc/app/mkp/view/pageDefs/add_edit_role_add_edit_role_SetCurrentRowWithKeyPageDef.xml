@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.61.92"
+                id="add_edit_role_add_edit_role_SetCurrentRowWithKeyPageDef"
+                Package="app.mkp.view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="RolesView1" RangeSize="25" DataControl="AdminAMDataControl"
+              id="RolesView1Iterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="RolesView1Iterator" id="setCurrentRowWithKey"
+            RequiresUpdateModel="false" Action="setCurrentRowWithKey">
+      <NamedData NDName="rowKey" NDType="java.lang.String"/>
+    </action>
+  </bindings>
+</pageDefinition>

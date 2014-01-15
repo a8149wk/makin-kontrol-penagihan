@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['app.mkp.view.ViewControllerBundle']}"/>
+  <af:panelStretchLayout id="psl1" startWidth="10px" endWidth="7px"
+                         topHeight="10px" bottomHeight="7px">
+    <f:facet name="center">
+      <af:decorativeBox id="db1">
+        <f:facet name="center">
+          <af:panelHeader text="Server Setting" id="ph1"
+                          icon="/Images/icon/mail_server_setting.png">
+            <f:facet name="context"/>
+            <f:facet name="menuBar"/>
+            <f:facet name="toolbar"/>
+            <f:facet name="legend"/>
+            <f:facet name="info"/>
+          </af:panelHeader>
+        </f:facet>
+      </af:decorativeBox>
+    </f:facet>
+  </af:panelStretchLayout>
+</jsp:root>

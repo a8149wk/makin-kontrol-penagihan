@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='windows-1252' ?>
+<!DOCTYPE JboPackage SYSTEM "jbo_03_01.dtd">
+<!---->
+
+<JboPackage
+   xmlns="http://xmlns.oracle.com/bc4j"
+   Name="menu"
+   Version="11.1.1.61.92"
+   SeparateXMLFiles="true"
+   PackageName="app.mkp.model.entity.menu">
+   <Containee
+      Name="UserAccess"
+      FullName="app.mkp.model.entity.menu.UserAccess"
+      ObjectType="Entity"/>
+   <Containee
+      Name="UserAccessRoles"
+      FullName="app.mkp.model.entity.menu.UserAccessRoles"
+      ObjectType="Entity"/>
+</JboPackage>

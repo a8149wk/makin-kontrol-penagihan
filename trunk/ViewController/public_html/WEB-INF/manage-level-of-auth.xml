@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="manage-level-of-auth">
+    <default-activity id="__1">LevelOfAuthMain</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__2">levelOfAuthorityBackingBean</managed-bean-name>
+      <managed-bean-class id="__5">app.mkp.backing.LevelOfAuthorityBackingBean</managed-bean-class>
+      <managed-bean-scope id="__3">backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="LevelOfAuthMain">
+      <page>/Pages/LevelOfAuth/LevelOfAuthMain.jsff</page>
+    </view>
+    <view id="FormAssignAuthorityPt">
+      <page>/Pages/LevelOfAuth/FormAssignAuthorityPt.jsff</page>
+    </view>
+    <method-call id="Commit">
+      <method>#{bindings.Commit.execute}</method>
+      <outcome id="__16">
+        <fixed-outcome>Commit</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="Rollback">
+      <method>#{bindings.Rollback.execute}</method>
+      <outcome id="__17">
+        <fixed-outcome>Rollback</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__6">
+      <from-activity-id id="__7">LevelOfAuthMain</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome id="__10">assignAuthPt</from-outcome>
+        <to-activity-id id="__8">FormAssignAuthorityPt</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__11">
+      <from-activity-id id="__12">FormAssignAuthorityPt</from-activity-id>
+      <control-flow-case id="__13">
+        <from-outcome id="__15">save</from-outcome>
+        <to-activity-id id="__14">Commit</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__18">
+        <from-outcome id="__20">cancel</from-outcome>
+        <to-activity-id id="__19">Rollback</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__21">
+      <from-activity-id id="__22">Commit</from-activity-id>
+      <control-flow-case id="__24">
+        <from-outcome id="__25">Commit</from-outcome>
+        <to-activity-id id="__23">LevelOfAuthMain</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__26">
+      <from-activity-id id="__27">Rollback</from-activity-id>
+      <control-flow-case id="__30">
+        <from-outcome id="__28">Rollback</from-outcome>
+        <to-activity-id id="__29">LevelOfAuthMain</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

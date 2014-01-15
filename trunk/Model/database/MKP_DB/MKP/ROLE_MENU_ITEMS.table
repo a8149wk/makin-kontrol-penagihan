@@ -1,0 +1,347 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<table xmlns="http://xmlns.oracle.com/jdeveloper/1111/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">3232510a-67ec-4070-af06-023a5b334530</identifier>
+  </ID>
+  <name>ROLE_MENU_ITEMS</name>
+  <columns>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">f16638b6-f0c6-403b-86d0-5c3a5f7b5efa</identifier>
+      </ID>
+      <name>ROL_ID</name>
+      <dataTypeUsage class="oracle.javatools.db.datatypes.PredefinedDataTypeUsage">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">fa4f0939-d73d-4301-b3b7-6fce6d4686f1</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">10</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>ROL_ID</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ROLE_MENU_ITEMS</name>
+                  <identifier class="java.math.BigDecimal">27803</identifier>
+                  <schemaName>MKP</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>ROL_ID</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ROLE_MENU_ITEMS</name>
+              <identifier class="java.math.BigDecimal">27803</identifier>
+              <schemaName>MKP</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">f366177b-5013-4d2e-b5ce-dc6674dcc21e</identifier>
+      </ID>
+      <name>MIT_ID</name>
+      <dataTypeUsage class="oracle.javatools.db.datatypes.PredefinedDataTypeUsage">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">2a3c3449-4e25-4ebe-91bc-5ca8123f2248</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">10</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>MIT_ID</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ROLE_MENU_ITEMS</name>
+                  <identifier class="java.math.BigDecimal">27803</identifier>
+                  <schemaName>MKP</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>MIT_ID</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ROLE_MENU_ITEMS</name>
+              <identifier class="java.math.BigDecimal">27803</identifier>
+              <schemaName>MKP</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+  </columns>
+  <constraints>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">2e75f163-cf1a-4b2a-8d86-1abf3df1ab57</identifier>
+      </ID>
+      <name>RMI_MIT_FK</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>MIT_ID</name>
+          <identifier class="java.lang.String">f366177b-5013-4d2e-b5ce-dc6674dcc21e</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>ROLE_MENU_ITEMS</name>
+            <identifier class="java.lang.String">3232510a-67ec-4070-af06-023a5b334530</identifier>
+            <schemaName>MKP</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>MKP</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>RMI_MIT_FK</name>
+            <childObjectNames>
+              <childObjectName>MIT_ID</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ROLE_MENU_ITEMS</name>
+              <identifier class="java.math.BigDecimal">27803</identifier>
+              <schemaName>MKP</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.IdentifierBasedID">
+        <name>MIT_PK</name>
+        <identifier class="java.lang.String">8f7a15b5-8dc8-417b-96d1-512150a39cb0</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>MENU_ITEMS</name>
+          <identifier class="java.lang.String">9f964cba-22e6-4bc9-997b-d808166c1927</identifier>
+          <schemaName>MKP</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>MKP</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">809d5051-11e4-4223-8a19-4d40e902ad84</identifier>
+      </ID>
+      <name>RMI_ROL_FK</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>ROL_ID</name>
+          <identifier class="java.lang.String">f16638b6-f0c6-403b-86d0-5c3a5f7b5efa</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>ROLE_MENU_ITEMS</name>
+            <identifier class="java.lang.String">3232510a-67ec-4070-af06-023a5b334530</identifier>
+            <schemaName>MKP</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>MKP</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>1</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>RMI_ROL_FK</name>
+            <childObjectNames>
+              <childObjectName>ROL_ID</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ROLE_MENU_ITEMS</name>
+              <identifier class="java.math.BigDecimal">27803</identifier>
+              <schemaName>MKP</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.IdentifierBasedID">
+        <name>ROL_PK</name>
+        <identifier class="java.lang.String">20254c49-6439-450b-8a1f-430e8d7d939d</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>ROLES</name>
+          <identifier class="java.lang.String">75761b5f-ee27-402f-83ae-11b06b63192a</identifier>
+          <schemaName>MKP</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>MKP</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">0488e753-7696-4d6d-ab2d-9b84a2817d21</identifier>
+      </ID>
+      <name>RMI_PK</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>ROL_ID</name>
+          <identifier class="java.lang.String">f16638b6-f0c6-403b-86d0-5c3a5f7b5efa</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>ROLE_MENU_ITEMS</name>
+            <identifier class="java.lang.String">3232510a-67ec-4070-af06-023a5b334530</identifier>
+            <schemaName>MKP</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>MKP</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>MIT_ID</name>
+          <identifier class="java.lang.String">f366177b-5013-4d2e-b5ce-dc6674dcc21e</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>ROLE_MENU_ITEMS</name>
+            <identifier class="java.lang.String">3232510a-67ec-4070-af06-023a5b334530</identifier>
+            <schemaName>MKP</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>MKP</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>RMI_PK</name>
+            <childObjectNames>
+              <childObjectName>ROL_ID</childObjectName>
+              <childObjectName>MIT_ID</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ROLE_MENU_ITEMS</name>
+              <identifier class="java.math.BigDecimal">27803</identifier>
+              <schemaName>MKP</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>PKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+  </constraints>
+  <properties>
+    <entry>
+      <key>OfflineDBConstants.IMPORT_SOURCE_CONNECTION</key>
+      <value class="java.lang.String">MKPConnection</value>
+    </entry>
+    <entry>
+      <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+      <value class="oracle.javatools.db.ReferenceID">
+        <name>ROLE_MENU_ITEMS</name>
+        <identifier class="java.math.BigDecimal">27803</identifier>
+        <schemaName>MKP</schemaName>
+        <type>TABLE</type>
+      </value>
+    </entry>
+    <entry>
+      <key>OracleStorageProperties</key>
+      <value class="oracle.javatools.db.ora.OracleStorageProperties">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">dbc7a13d-7611-40e0-8d70-056fd0670a41</identifier>
+        </ID>
+        <bufferMode>DEFAULT</bufferMode>
+        <initialExtent>65536</initialExtent>
+        <initrans>1</initrans>
+        <logging>true</logging>
+        <maxExtent>2147483645</maxExtent>
+        <minExtent>1</minExtent>
+        <nextExtent>1048576</nextExtent>
+        <percentFree>10</percentFree>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>ROLE_MENU_ITEMS</name>
+                <identifier class="java.math.BigDecimal">27803</identifier>
+                <schemaName>MKP</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <type>OracleStorageProperties</type>
+            </value>
+          </entry>
+        </properties>
+        <tablespaceID class="oracle.javatools.db.ReferenceID">
+          <name>USERS</name>
+          <type>TABLESPACE</type>
+        </tablespaceID>
+      </value>
+    </entry>
+    <entry>
+      <key>TableType</key>
+      <value class="oracle.javatools.db.Table$TableType">NORMAL</value>
+    </entry>
+    <entry>
+      <key>Timestamp</key>
+    </entry>
+  </properties>
+  <schema>
+    <name>MKP</name>
+  </schema>
+</table>

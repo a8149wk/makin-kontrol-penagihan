@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PreInitialDocumentMknDokRelViewLink"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentMknDokRelViewLink_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="PreInitialDocumentView"
+    Cardinality="1"
+    Owner="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentView"
+    Source="true">
+    <DesignTime>
+      <Attr Name="_finderName" Value="PreInitialDocumentView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentView.Did"/>
+      <Item
+        Value="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentView.TipeDok"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="MknDokRelView"
+    Cardinality="-1"
+    Owner="app.mkp.model.view.ttf.linkdoc.MknDokRelView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="MknDokRelView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.view.ttf.linkdoc.MknDokRelView.Did"/>
+      <Item Value="app.mkp.model.view.ttf.linkdoc.MknDokRelView.TipeDok"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="app.mkp.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

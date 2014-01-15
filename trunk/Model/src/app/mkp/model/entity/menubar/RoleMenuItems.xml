@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="RoleMenuItems"
+  Version="11.1.1.61.92"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName="ROLE_MENU_ITEMS"
+  AliasName="RoleMenuItems"
+  BindingStyle="OracleName"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <AttrArray Name="_publishEvents"/>
+  </DesignTime>
+  <Attribute
+    Name="RolId"
+    Precision="10"
+    ColumnName="ROL_ID"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.DBSequence"
+    ColumnType="ROLID_TYPE"
+    TableName="ROLE_MENU_ITEMS"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MitId"
+    Precision="10"
+    ColumnName="MIT_ID"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.DBSequence"
+    ColumnType="MITID_TYPE"
+    TableName="ROLE_MENU_ITEMS"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+  </Attribute>
+  <AccessorAttribute
+    Name="MenuItems"
+    Association="app.mkp.model.entity.menubar.RmiMitFkAssoc"
+    AssociationEnd="app.mkp.model.entity.menubar.RmiMitFkAssoc.MenuItems"
+    AssociationOtherEnd="app.mkp.model.entity.menubar.RmiMitFkAssoc.RoleMenuItems"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="Roles"
+    Association="app.mkp.model.entity.menubar.RmiRolFkAssoc"
+    AssociationEnd="app.mkp.model.entity.menubar.RmiRolFkAssoc.Roles"
+    AssociationOtherEnd="app.mkp.model.entity.menubar.RmiRolFkAssoc.RoleMenuItems"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="RmiPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="RMI_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.RoleMenuItems.RolId"/>
+      <Item Value="app.mkp.model.entity.menubar.RoleMenuItems.MitId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013475">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013475"/>
+      <Attr Name="_checkCondition" Value='"ROL_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.RoleMenuItems.RolId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013476">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013476"/>
+      <Attr Name="_checkCondition" Value='"MIT_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.RoleMenuItems.MitId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="RmiMitFk">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="MIT_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="RMI_MIT_FK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.RoleMenuItems.MitId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="RmiRolFk">
+    <DesignTime>
+      <Attr Name="_isCascadeDelete" Value="true"/>
+      <Attr Name="_referencedKey" Value="ROL_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="RMI_ROL_FK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.RoleMenuItems.RolId"/>
+    </AttrArray>
+  </Key>
+</Entity>

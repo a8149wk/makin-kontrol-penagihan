@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['app.mkp.view.ViewControllerBundle']}"/>
+  <af:panelSplitter id="ps1" inlineStyle="margin:5px;" splitterPosition="300">
+    <f:facet name="first">
+      <af:decorativeBox id="db5" styleClass="AFStretchWidth">
+        <f:facet name="center">
+          <af:panelHeader text="#{viewcontrollerBundle.MAIN_HDR_BUSSINES_RULES_REFERENCES}"
+                          id="ph5">
+            <f:facet name="context"/>
+            <f:facet name="menuBar"/>
+            <f:facet name="toolbar"/>
+            <f:facet name="legend"/>
+            <f:facet name="info"/>
+            <af:panelSplitter id="ps2" orientation="vertical"
+                              inlineStyle="margin:5px;" splitterPosition="98">
+              <f:facet name="first">
+                <af:panelHeader text="#{viewcontrollerBundle.MAIN_HDR_BUSSINES_RULES}"
+                                id="ph1" icon="/Images/icon/bussines_rule.png">
+                  <f:facet name="context"/>
+                  <f:facet name="menuBar"/>
+                  <f:facet name="toolbar"/>
+                  <f:facet name="legend"/>
+                  <f:facet name="info"/>
+                  <af:panelFormLayout id="pfl1" inlineStyle="margin:5px;">
+                    <af:panelLabelAndMessage label="#{bindings.BrDescr.hints.label}"
+                                             id="plam1">
+                      <af:outputText value="#{bindings.BrDescr.inputValue}"
+                                     id="ot2"/>
+                    </af:panelLabelAndMessage>
+                    <af:selectOneChoice value="#{bindings.BrRef.inputValue}"
+                                        label="#{bindings.BrRef.label}"
+                                        required="#{bindings.BrRef.hints.mandatory}"
+                                        shortDesc="#{bindings.BrRef.hints.tooltip}"
+                                        id="soc1" readOnly="true">
+                      <f:selectItems value="#{bindings.BrRef.items}" id="si1"/>
+                    </af:selectOneChoice>
+                  </af:panelFormLayout>
+                </af:panelHeader>
+              </f:facet>
+              <f:facet name="second">
+                <af:panelHeader text="#{viewcontrollerBundle.PNL_HDR_APPROVER}"
+                                id="ph2" icon="/Images/icon/user.png">
+                  <f:facet name="context"/>
+                  <f:facet name="menuBar"/>
+                  <f:facet name="toolbar"/>
+                  <f:facet name="legend"/>
+                  <f:facet name="info"/>
+                  <af:selectOneChoice value="#{bindings.Approver.inputValue}"
+                                      label="#{bindings.Approver.label}"
+                                      required="#{bindings.Approver.hints.mandatory}"
+                                      shortDesc="#{bindings.Approver.hints.tooltip}"
+                                      id="soc2" readOnly="true"
+                                      inlineStyle="margin:5px;">
+                    <f:selectItems value="#{bindings.Approver.items}" id="si3"/>
+                  </af:selectOneChoice>
+                </af:panelHeader>
+              </f:facet>
+            </af:panelSplitter>
+          </af:panelHeader>
+        </f:facet>
+      </af:decorativeBox>
+    </f:facet>
+    <f:facet name="second">
+      <af:decorativeBox id="db2" styleClass="AFStretchWidth">
+        <f:facet name="center">
+          <af:panelHeader text="#{viewcontrollerBundle.BUT_TEXT_ASSIGN_REFERENCE}"
+                          id="ph6" icon="/Images/icon/link.png">
+            <f:facet name="context"/>
+            <f:facet name="menuBar"/>
+            <f:facet name="toolbar">
+              <af:toolbar id="t1">
+                <af:commandToolbarButton text="#{viewcontrollerBundle.BUT_TXT_CANCEL}"
+                                         id="ctb4" action="cancel"
+                                         icon="/Images/icon/cancel.png"/>
+                <af:commandToolbarButton text="#{viewcontrollerBundle.BUT_TXT_SAVE}"
+                                         id="ctb1" icon="/Images/icon/save.png"
+                                         action="save"/>
+              </af:toolbar>
+            </f:facet>
+            <f:facet name="legend"/>
+            <f:facet name="info"/>
+            <af:panelHeader text="#{viewcontrollerBundle.PNL_TXT_ADD_REMOVE_REFERENCES}"
+                            id="ph3" icon="/Images/icon/link_edit.png"
+                            inlineStyle="margin:5px;">
+              <f:facet name="context"/>
+              <f:facet name="menuBar"/>
+              <f:facet name="toolbar"/>
+              <f:facet name="legend"/>
+              <f:facet name="info"/>
+              <af:panelGroupLayout id="pgl2" layout="vertical"
+                                   inlineStyle="margin:5px;">
+                <af:selectManyShuttle label="Label 1" id="sms1"
+                                      leadingHeader="Daftar PT (Anak Perusahaan)"
+                                      trailingHeader="PT (Anak Perusahaan) Yang Dipilih"
+                                      simple="true"
+                                      value="#{backingBeanScope.approverBackingBean.selectedMenuItems}"
+                                      autoSubmit="true"
+                                      rendered="#{pageFlowScope.brRefApvr == 'APR'}">
+                  <f:selectItems value="#{backingBeanScope.approverBackingBean.allMenuItems}"
+                                 id="si2"/>
+                </af:selectManyShuttle>
+                <af:selectManyShuttle label="Label 1" id="sms2"
+                                      leadingHeader="Daftar Vendor"
+                                      trailingHeader="Vendor Yang Dipilih"
+                                      simple="true"
+                                      value="#{backingBeanScope.approverBackingBean.selectedVndMenuItems}"
+                                      autoSubmit="true"
+                                      rendered="#{pageFlowScope.brRefApvr == 'VND'}">
+                  <f:selectItems value="#{backingBeanScope.approverBackingBean.allVndMenuItems}"
+                                 id="si4"/>
+                </af:selectManyShuttle>
+                <af:spacer width="10" height="10" id="s2"/>
+                <af:commandButton text="Apply" id="cb1" partialSubmit="true"
+                                  icon="/Images/icon/apply.png"
+                                  action="#{backingBeanScope.approverBackingBean.processShuttle}"
+                                  rendered="#{pageFlowScope.brRefApvr == 'APR'}"/>
+                <af:commandButton text="Apply" id="cb2" partialSubmit="true"
+                                  icon="/Images/icon/apply.png"
+                                  action="#{backingBeanScope.approverBackingBean.processVndShuttle}"
+                                  rendered="#{pageFlowScope.brRefApvr == 'VND'}"/>
+                <af:spacer width="10" height="10" id="s11"/>
+              </af:panelGroupLayout>
+            </af:panelHeader>
+          </af:panelHeader>
+        </f:facet>
+      </af:decorativeBox>
+    </f:facet>
+  </af:panelSplitter>
+</jsp:root>

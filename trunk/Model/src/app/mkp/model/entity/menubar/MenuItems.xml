@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MenuItems"
+  Version="11.1.1.61.92"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName="MENU_ITEMS"
+  AliasName="MenuItems"
+  BindingStyle="OracleName"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <AttrArray Name="_publishEvents"/>
+  </DesignTime>
+  <Attribute
+    Name="Id"
+    Precision="10"
+    ColumnName="ID"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.DBSequence"
+    ColumnType="ID_TYPE"
+    TableName="MENU_ITEMS"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Name"
+    IsNotNull="true"
+    Precision="30"
+    ColumnName="NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MENU_ITEMS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Shortcut"
+    Precision="30"
+    ColumnName="SHORTCUT"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MENU_ITEMS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DisplaySequence"
+    Precision="10"
+    ColumnName="DISPLAY_SEQUENCE"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="DISPLAYSEQUENCE_TYPE"
+    TableName="MENU_ITEMS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Action"
+    IsNotNull="true"
+    Precision="60"
+    ColumnName="ACTION"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MENU_ITEMS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="60"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MenId"
+    IsNotNull="true"
+    Precision="10"
+    ColumnName="MEN_ID"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="MENID_TYPE"
+    TableName="MENU_ITEMS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Icon"
+    Precision="60"
+    ColumnName="ICON"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MENU_ITEMS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="60"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Label"
+    Precision="60"
+    ColumnName="LABEL"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MENU_ITEMS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="60"/>
+    </DesignTime>
+  </Attribute>
+  <AccessorAttribute
+    Name="RoleMenuItems"
+    Association="app.mkp.model.entity.menubar.RmiMitFkAssoc"
+    AssociationEnd="app.mkp.model.entity.menubar.RmiMitFkAssoc.RoleMenuItems"
+    AssociationOtherEnd="app.mkp.model.entity.menubar.RmiMitFkAssoc.MenuItems"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="Menu"
+    Association="app.mkp.model.entity.menubar.MitMenFkAssoc"
+    AssociationEnd="app.mkp.model.entity.menubar.MitMenFkAssoc.Menu"
+    AssociationOtherEnd="app.mkp.model.entity.menubar.MitMenFkAssoc.MenuItems"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="MitPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="MIT_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.MenuItems.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013469">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013469"/>
+      <Attr Name="_checkCondition" Value='"ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.MenuItems.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013470">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013470"/>
+      <Attr Name="_checkCondition" Value='"NAME" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.MenuItems.Name"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013471">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013471"/>
+      <Attr Name="_checkCondition" Value='"ACTION" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.MenuItems.Action"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013472">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013472"/>
+      <Attr Name="_checkCondition" Value='"MEN_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.MenuItems.MenId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="MitMenFk">
+    <DesignTime>
+      <Attr Name="_isCascadeDelete" Value="true"/>
+      <Attr Name="_referencedKey" Value="MEN_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="MIT_MEN_FK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.MenuItems.MenId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="fk_MenuItems">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="MEN_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="FK_MENU_ITEMS"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.MenuItems.MenId"/>
+    </AttrArray>
+  </Key>
+</Entity>

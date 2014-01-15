@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="ApproverListPageDef"
+                Package="Pages.BussinesRule">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="BrAppvrView1" RangeSize="25"
+              DataControl="BussinesRuleAMDataControl"
+              id="BrAppvrView1Iterator"/>
+    <searchRegion Criteria="BrAppvrViewCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="BrAppvrView1Iterator" id="BrAppvrViewCriteriaQuery"/>
+    <iterator Binds="BrMainView1" RangeSize="25"
+              DataControl="BussinesRuleAMDataControl" id="BrMainView1Iterator"/>
+    <iterator id="ListPtView1Iterator" Binds="ListPtView1"
+              DataControl="BussinesRuleAMDataControl" RangeSize="25"/>
+    <iterator id="BrAppvrRefView1Iterator" Binds="BrAppvrRefView1"
+              DataControl="BussinesRuleAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="BrAppvrView1Iterator" id="BrAppvrView1">
+      <nodeDefinition DefName="app.mkp.model.view.bussinesrule.BrAppvrView"
+                      Name="BrAppvrView10">
+        <AttrNames>
+          <Item Value="Approver"/>
+          <Item Value="PriorityLvl"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="BrMainView1Iterator" id="BrDescr">
+      <AttrNames>
+        <Item Value="BrDescr"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="BrMainView1Iterator" StaticList="false" Uses="LOV_BrRef"
+          id="BrRef" DTSupportsMRU="true"/>
+    <action IterBinding="BrAppvrView1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <tree IterBinding="BrAppvrRefView1Iterator" id="BrAppvrRefView1">
+      <nodeDefinition DefName="app.mkp.model.view.bussinesrule.BrAppvrRefView"
+                      Name="BrAppvrRefView10">
+        <AttrNames>
+          <Item Value="BrRefId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="BussinesRuleAMDataControl"/>
+    <list IterBinding="BrAppvrView1Iterator" StaticList="false"
+          Uses="LOV_Approver" id="Approver" DTSupportsMRU="true"/>
+    <list IterBinding="BrAppvrView1Iterator" StaticList="false"
+          Uses="LOV_PriorityLvl" id="PriorityLvl" DTSupportsMRU="true"/>
+  </bindings>
+</pageDefinition>

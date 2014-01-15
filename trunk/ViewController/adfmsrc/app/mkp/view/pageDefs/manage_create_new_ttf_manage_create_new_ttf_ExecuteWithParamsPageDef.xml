@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="manage_create_new_ttf_manage_create_new_ttf_ExecuteWithParamsPageDef"
+                Package="app.mkp.view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="InitialDocumentTtfView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="InitialDocumentTtfView1Iterator" Refresh="never"/>
+  </executables>
+  <bindings>
+    <action IterBinding="InitialDocumentTtfView1Iterator" id="ExecuteWithParams"
+            RequiresUpdateModel="true" Action="executeWithParams">
+      <NamedData NDName="deptTerkait" NDValue="#{UserData.departmentCode}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="tipeDokumen" NDType="java.lang.String"/>
+      <NamedData NDName="pihakTerkait" NDType="java.lang.String"/>
+      <NamedData NDName="startDate" NDType="oracle.jbo.domain.Date"/>
+      <NamedData NDName="endDate" NDType="oracle.jbo.domain.Date"/>
+    </action>
+  </bindings>
+</pageDefinition>

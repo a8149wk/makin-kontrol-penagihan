@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="NotificationTempateFormPageDef"
+                Package="Pages.NotifConfig">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="NotifikasiCfgView1" RangeSize="25"
+              DataControl="NotificationAMDataControl"
+              id="NotifikasiCfgView1Iterator"/>
+    <searchRegion Criteria="NotifikasiCfgViewCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="NotifikasiCfgView1Iterator"
+                  id="NotifikasiCfgViewCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="NotifikasiCfgView1Iterator" id="NotifikasiCfgView1">
+      <nodeDefinition DefName="app.mkp.model.view.notification.config.NotifikasiCfgView"
+                      Name="NotifikasiCfgView10">
+        <AttrNames>
+          <Item Value="NamaNotifikasi"/>
+          <Item Value="MailTemplateNm"/>
+          <Item Value="NotificationType"/>
+          <Item Value="NotifParams"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="NotifikasiCfgView1Iterator" StaticList="false"
+          Uses="LOV_NotificationType" id="NotificationType"
+          DTSupportsMRU="false"/>
+    <attributeValues IterBinding="NotifikasiCfgView1Iterator"
+                     id="NamaNotifikasi">
+      <AttrNames>
+        <Item Value="NamaNotifikasi"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NotifikasiCfgView1Iterator" id="Descr">
+      <AttrNames>
+        <Item Value="Descr"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="NotifikasiCfgView1Iterator" StaticList="false"
+          Uses="E" id="MailTemplateNm" DTSupportsMRU="false"/>
+    <action IterBinding="NotifikasiCfgView1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="NotifikasiCfgView1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="NotificationAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction"
+            DataControl="NotificationAMDataControl"/>
+    <action IterBinding="NotifikasiCfgView1Iterator" id="Execute"
+            RequiresUpdateModel="true" Action="iteratorExecute"/>
+    <attributeValues IterBinding="NotifikasiCfgView1Iterator" id="NotifParams">
+      <AttrNames>
+        <Item Value="NotifParams"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

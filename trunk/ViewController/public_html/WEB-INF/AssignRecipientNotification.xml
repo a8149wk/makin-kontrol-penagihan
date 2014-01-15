@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="AssignRecipientNotification">
+    <default-activity id="__1">SetCurrentRowWithKey</default-activity>
+    <transaction id="__19">
+      <new-transaction/>
+    </transaction>
+    <task-flow-reentry id="__18">
+      <reentry-outcome-dependent/>
+    </task-flow-reentry>
+    <managed-bean id="__20">
+      <managed-bean-name id="__21">notifikasiBackingBean</managed-bean-name>
+      <managed-bean-class id="__22">app.mkp.backing.NotifikasiBackingBean</managed-bean-class>
+      <managed-bean-scope id="__23">backingBean</managed-bean-scope>
+    </managed-bean>
+    <method-call id="SetCurrentRowWithKey">
+      <method>#{bindings.setCurrentRowWithKey.execute}</method>
+      <outcome id="__2">
+        <fixed-outcome>setCurrentRowWithKey</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="AssignRecipientForm">
+      <page>/Pages/NotifConfig/AssignRecipientForm.jsff</page>
+    </view>
+    <task-flow-return id="Save">
+      <outcome id="__10">
+        <name>Save</name>
+        <reentry-not-allowed/>
+        <commit/>
+      </outcome>
+    </task-flow-return>
+    <task-flow-return id="Cancel">
+      <outcome id="__11">
+        <name>Cancel</name>
+        <reentry-not-allowed/>
+        <rollback/>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__3">
+      <from-activity-id id="__4">SetCurrentRowWithKey</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome id="__7">setCurrentRowWithKey</from-outcome>
+        <to-activity-id id="__6">AssignRecipientForm</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__9">
+      <from-activity-id id="__8">*</from-activity-id>
+      <control-flow-case id="__12">
+        <from-outcome id="__14">save</from-outcome>
+        <to-activity-id id="__13">Save</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__15">
+        <from-outcome id="__17">cancel</from-outcome>
+        <to-activity-id id="__16">Cancel</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MknTtfReqDocView"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  SelectList="MknTtfReqDoc.CODE, 
+       MknTtfReqDoc.TIPE_DOK, 
+       MknTtfReqDoc.DESC_TIPE_DOK, 
+       MknTtfReqDoc.SUB_TIPE_DOK, 
+       MknTtfReqDoc.DES_SUB_TIPE_DOK, 
+       (SELECT COUNT(*) FROM MKN_TTF_ADDED_DOC TAD, MKN_DMS_META MDM, MKN_TTF MT                  WHERE TAD.DID = MDM.DID          AND MT.ID = TAD.TTF_NO        AND MT.DID = :invDid                AND MDM.TIPE_DOKUMEN = MknTtfReqDoc.TIPE_DOK) AS TIPE_DOK_NUM"
+  FromList="MKN_TTF_REQ_DOC MknTtfReqDoc"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|VarAccess"/>
+  </DesignTime>
+  <Variable
+    Name="invDid"
+    Kind="where"
+    Type="java.lang.String"/>
+  <EntityUsage
+    Name="MknTtfReqDoc"
+    Entity="app.mkp.model.entity.ttf.createnew.MknTtfReqDoc"/>
+  <ViewAttribute
+    Name="Code"
+    PrecisionRule="true"
+    EntityAttrName="Code"
+    EntityUsage="MknTtfReqDoc"
+    AliasName="CODE"/>
+  <ViewAttribute
+    Name="TipeDok"
+    PrecisionRule="true"
+    EntityAttrName="TipeDok"
+    EntityUsage="MknTtfReqDoc"
+    AliasName="TIPE_DOK"/>
+  <ViewAttribute
+    Name="DescTipeDok"
+    PrecisionRule="true"
+    EntityAttrName="DescTipeDok"
+    EntityUsage="MknTtfReqDoc"
+    AliasName="DESC_TIPE_DOK">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="TIPE_DOKUMEN"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SubTipeDok"
+    PrecisionRule="true"
+    EntityAttrName="SubTipeDok"
+    EntityUsage="MknTtfReqDoc"
+    AliasName="SUB_TIPE_DOK"/>
+  <ViewAttribute
+    Name="DesSubTipeDok"
+    PrecisionRule="true"
+    EntityAttrName="DesSubTipeDok"
+    EntityUsage="MknTtfReqDoc"
+    AliasName="DES_SUB_TIPE_DOK">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="SUB_TIPE_DOKUMEN"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AllDescr"
+    IsUpdateable="false"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR">
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
+    <TransientExpression><![CDATA[if (DesSubTipeDok == null) 
+return DescTipeDok;
+else 
+return DescTipeDok + ' - ' + DesSubTipeDok;]]></TransientExpression>
+    <Dependencies>
+      <Item
+        Value="DesSubTipeDok"/>
+      <Item
+        Value="DescTipeDok"/>
+    </Dependencies>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="TIPE_DOKUMEN"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TipeDokNum"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Long"
+    ColumnType="VARCHAR2"
+    AliasName="TIPE_DOK_NUM"
+    SQLType="VARCHAR"
+    Precision="255"
+    Expression="SELECT COUNT(*) FROM MKN_TTF_ADDED_DOC TAD, MKN_DMS_META MDM, MKN_TTF MT                  WHERE TAD.DID = MDM.DID          AND MT.ID = TAD.TTF_NO        AND MT.DID = :invDid                AND MDM.TIPE_DOKUMEN = MknTtfReqDoc.TIPE_DOK"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="app.mkp.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

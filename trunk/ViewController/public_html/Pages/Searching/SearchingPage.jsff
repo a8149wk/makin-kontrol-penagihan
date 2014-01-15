@@ -1,0 +1,268 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['app.mkp.view.ViewControllerBundle']}"/>
+  <af:decorativeBox id="db1" inlineStyle="margin:5px;">
+    <f:facet name="center">
+      <af:panelHeader text="#{viewcontrollerBundle.MAIN_HDR_REPORT}" id="ph1"
+                      icon="/Images/icon/searching.png">
+        <f:facet name="context"/>
+        <f:facet name="menuBar"/>
+        <f:facet name="toolbar"/>
+        <f:facet name="legend"/>
+        <f:facet name="info"/>
+        <af:panelSplitter id="ps1" orientation="vertical"
+                          splitterPosition="170" inlineStyle="margin:5px;">
+          <f:facet name="first">
+            <af:query id="qryId1" headerText="Search" disclosed="true"
+                      value="#{bindings.MknTtfSearchingViewCriteriaQuery.queryDescriptor}"
+                      model="#{bindings.MknTtfSearchingViewCriteriaQuery.queryModel}"
+                      queryListener="#{bindings.MknTtfSearchingViewCriteriaQuery.processQuery}"
+                      queryOperationListener="#{bindings.MknTtfSearchingViewCriteriaQuery.processQueryOperation}"
+                      resultComponentId="::pc1:resId1"
+                      saveQueryMode="hidden"/>
+          </f:facet>
+          <f:facet name="second">
+            <af:panelCollection id="pc1" featuresOff="detach"
+                                styleClass="AFStretchWidth">
+              <f:facet name="menus">
+                <af:menu text="Export Data" id="m1">
+                  <af:commandMenuItem text="Export Data ke Excel"
+                                      icon="/Images/icon/page_excel.png">
+                    <af:exportCollectionActionListener exportedId="resId1"
+                                                       type="excelHTML"
+                                                       filename="Tanda Terima Faktur Report.xls"
+                                                       title="Tanda Terima Faktur Report"/>
+                  </af:commandMenuItem>
+                </af:menu>
+              </f:facet>
+              <f:facet name="toolbar"/>
+              <f:facet name="statusbar"/>
+              <af:table value="#{bindings.MknTtfSearchingView1.collectionModel}"
+                        var="row"
+                        rows="#{bindings.MknTtfSearchingView1.rangeSize}"
+                        emptyText="#{bindings.MknTtfSearchingView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                        fetchSize="#{bindings.MknTtfSearchingView1.rangeSize}"
+                        rowBandingInterval="0"
+                        selectedRowKeys="#{bindings.MknTtfSearchingView1.collectionModel.selectedRow}"
+                        selectionListener="#{bindings.MknTtfSearchingView1.collectionModel.makeCurrent}"
+                        rowSelection="single" id="resId1"
+                        columnStretching="column:resId1c9">
+                <af:column sortProperty="UnitcompanyId" sortable="true"
+                           headerText="#{bindings.MknTtfSearchingView1.hints.UnitcompanyId.label}"
+                           id="resId1c1" width="140" noWrap="false">
+                  <f:facet name="header">
+                    <af:panelGroupLayout id="pgl2" layout="vertical"
+                                         halign="center">
+                      <af:outputText value="#{bindings.MknTtfSearchingView1.hints.UnitcompanyId.label}"
+                                     id="ot5"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                  <af:panelGroupLayout id="pgl10" layout="vertical">
+                    <af:spacer width="10" height="10" id="s10"/>
+                    <af:selectOneChoice value="#{row.bindings.UnitcompanyId.inputValue}"
+                                        label="#{row.bindings.UnitcompanyId.label}"
+                                        required="#{bindings.MknTtfSearchingView1.hints.UnitcompanyId.mandatory}"
+                                        shortDesc="#{bindings.MknTtfSearchingView1.hints.UnitcompanyId.tooltip}"
+                                        id="soc1" readOnly="true">
+                      <f:selectItems value="#{row.bindings.UnitcompanyId.items}"
+                                     id="si1"/>
+                    </af:selectOneChoice>
+                    <af:spacer width="10" height="10" id="s13"/>
+                  </af:panelGroupLayout>
+                </af:column>
+                <af:column sortProperty="DepartmentId" sortable="true"
+                           headerText="#{bindings.MknTtfSearchingView1.hints.DepartmentId.label}"
+                           id="resId1c2" width="140" noWrap="false">
+                  <f:facet name="header">
+                    <af:panelGroupLayout id="pgl22" layout="vertical"
+                                         halign="center">
+                      <af:outputText value="#{bindings.MknTtfSearchingView1.hints.DepartmentId.label}"
+                                     id="ot521"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                  <af:selectOneChoice value="#{row.bindings.DepartmentId.inputValue}"
+                                      label="#{row.bindings.DepartmentId.label}"
+                                      required="#{bindings.MknTtfSearchingView1.hints.DepartmentId.mandatory}"
+                                      shortDesc="#{bindings.MknTtfSearchingView1.hints.DepartmentId.tooltip}"
+                                      id="soc2" readOnly="true">
+                    <f:selectItems value="#{row.bindings.DepartmentId.items}"
+                                   id="si2"/>
+                  </af:selectOneChoice>
+                </af:column>
+                <af:column headerText="#{bindings.MknTtfSearchingView1.hints.SupplierId.label}"
+                           id="c2" width="140" noWrap="false">
+                  <f:facet name="header">
+                    <af:panelGroupLayout id="pgl4" layout="vertical"
+                                         halign="center">
+                      <af:outputText value="#{bindings.MknTtfSearchingView1.hints.SupplierId.label}"
+                                     id="ot7"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                  <af:selectOneChoice value="#{row.bindings.SupplierId.inputValue}"
+                                      label="#{row.bindings.SupplierId.label}"
+                                      required="#{bindings.MknTtfSearchingView1.hints.SupplierId.mandatory}"
+                                      shortDesc="#{bindings.MknTtfSearchingView1.hints.SupplierId.tooltip}"
+                                      id="soc3" readOnly="true">
+                    <f:selectItems value="#{row.bindings.SupplierId.items}"
+                                   id="si3"/>
+                  </af:selectOneChoice>
+                </af:column>
+                <af:column id="c1" align="center" headerText="Invoice"
+                           width="309">
+                  <af:column sortProperty="InvoiceNo" sortable="true"
+                             headerText="#{bindings.MknTtfSearchingView1.hints.InvoiceNo.label}"
+                             id="resId1c8" align="center">
+                    <af:outputText value="#{row.InvoiceNo}" id="ot1"/>
+                  </af:column>
+                  <af:column sortProperty="InvoiceDate" sortable="true"
+                             headerText="#{bindings.MknTtfSearchingView1.hints.InvoiceDate.label}"
+                             id="resId1c6" align="center" width="80">
+                    <af:outputText value="#{row.InvoiceDate}" id="ot50">
+                      <af:convertDateTime pattern="#{bindings.MknTtfSearchingView1.hints.InvoiceDate.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="InvoiceDuedate" sortable="true"
+                             headerText="#{bindings.MknTtfSearchingView1.hints.InvoiceDuedate.label}"
+                             id="resId1c7" align="center" width="80">
+                    <af:outputText value="#{row.InvoiceDuedate}" id="ot3">
+                      <af:convertDateTime pattern="#{bindings.MknTtfSearchingView1.hints.InvoiceDuedate.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="Amount" sortable="true"
+                             headerText="#{bindings.MknTtfSearchingView1.hints.Amount.label}"
+                             id="resId1c3" width="180" align="right">
+                    <af:panelGroupLayout id="pgl3" layout="horizontal">
+                      <af:outputText value="#{row.CurrencyId}" id="ot6"/>
+                      <af:spacer width="10" height="10" id="s3"/>
+                      <af:outputText value="#{row.Amount}" id="ot9"
+                                     inlineStyle="text-align:right;">
+                        <af:convertNumber type="currency" minFractionDigits="2"
+                                          maxFractionDigits="2"
+                                          currencySymbol="" locale="id"/>
+                      </af:outputText>
+                      <af:spacer width="10" height="10" id="s9"/>
+                    </af:panelGroupLayout>
+                    <f:facet name="header">
+                      <af:panelGroupLayout id="pgl20" layout="vertical"
+                                           halign="center">
+                        <af:outputText value="#{bindings.MknTtfSearchingView1.hints.Amount.label}"
+                                       id="ot2"/>
+                      </af:panelGroupLayout>
+                    </f:facet>
+                  </af:column>
+                </af:column>
+                <af:column headerText="#{bindings.MknTtfSearchingView1.hints.TipePembelian.label}"
+                           id="c3" noWrap="false">
+                  <f:facet name="header">
+                    <af:panelGroupLayout id="pgl5" layout="vertical"
+                                         halign="center">
+                      <af:outputText value="#{bindings.MknTtfSearchingView1.hints.TipePembelian.label}"
+                                     id="ot11"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                  <af:selectOneChoice value="#{row.bindings.TipePembelian.inputValue}"
+                                      label="#{row.bindings.TipePembelian.label}"
+                                      required="#{bindings.MknTtfSearchingView1.hints.TipePembelian.mandatory}"
+                                      shortDesc="#{bindings.MknTtfSearchingView1.hints.TipePembelian.tooltip}"
+                                      id="soc4" readOnly="true">
+                    <f:selectItems value="#{row.bindings.TipePembelian.items}"
+                                   id="si4"/>
+                  </af:selectOneChoice>
+                </af:column>
+                <af:column headerText="#{bindings.MknTtfSearchingView1.hints.PembayaranKe.label}"
+                           id="c4" width="65" align="center">
+                  <f:facet name="header">
+                    <af:panelGroupLayout id="pgl6" layout="vertical"
+                                         halign="center">
+                      <af:outputText value="#{bindings.MknTtfSearchingView1.hints.PembayaranKe.label}"
+                                     id="ot12"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                  <af:selectOneChoice value="#{row.bindings.PembayaranKe.inputValue}"
+                                      label="#{row.bindings.PembayaranKe.label}"
+                                      required="#{bindings.MknTtfSearchingView1.hints.PembayaranKe.mandatory}"
+                                      shortDesc="#{bindings.MknTtfSearchingView1.hints.PembayaranKe.tooltip}"
+                                      id="soc6" readOnly="true">
+                    <f:selectItems value="#{row.bindings.PembayaranKe.items}"
+                                   id="si6"/>
+                  </af:selectOneChoice>
+                </af:column>
+                <af:column headerText="#{bindings.MknTtfSearchingView1.hints.TglTerimaDok.label}"
+                           id="c5" align="center">
+                  <f:facet name="header">
+                    <af:panelGroupLayout id="pgl7" layout="vertical"
+                                         halign="center">
+                      <af:outputText value="#{bindings.MknTtfSearchingView1.hints.TglTerimaDok.label}"
+                                     id="ot13"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                  <af:outputText value="#{row.TglTerimaDok}" id="ot8">
+                    <af:convertDateTime pattern="#{bindings.MknTtfSearchingView1.hints.TglTerimaDok.format}"/>
+                  </af:outputText>
+                </af:column>
+                <af:column headerText="#{bindings.MknTtfSearchingView1.hints.CostCenter.label}"
+                           id="c6">
+                  <f:facet name="header">
+                    <af:panelGroupLayout id="pgl8" layout="vertical"
+                                         halign="center">
+                      <af:outputText value="#{bindings.MknTtfSearchingView1.hints.CostCenter.label}"
+                                     id="ot14"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                  <af:outputText value="#{row.CostCenter}" id="ot10"/>
+                </af:column>
+                <af:column headerText="#{bindings.MknTtfSearchingView1.hints.Bolean1.label}"
+                           id="c7">
+                  <f:facet name="header">
+                    <af:panelGroupLayout id="pgl9" layout="vertical"
+                                         halign="center">
+                      <af:outputText value="#{bindings.MknTtfSearchingView1.hints.Bolean1.label}"
+                                     id="ot15"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                  <af:selectOneChoice value="#{row.bindings.Bolean1.inputValue}"
+                                      label="#{row.bindings.Bolean1.label}"
+                                      required="#{bindings.MknTtfSearchingView1.hints.Bolean1.mandatory}"
+                                      shortDesc="#{bindings.MknTtfSearchingView1.hints.Bolean1.tooltip}"
+                                      id="soc5" readOnly="true">
+                    <f:selectItems value="#{row.bindings.Bolean1.items}"
+                                   id="si5"/>
+                  </af:selectOneChoice>
+                </af:column>
+                <af:column headerText="#{bindings.MknTtfSearchingView1.hints.TglBuktiBayar.label}"
+                           id="c8">
+                  <f:facet name="header">
+                    <af:panelGroupLayout id="pgl11" layout="vertical"
+                                         halign="center">
+                      <af:outputText value="#{bindings.MknTtfSearchingView1.hints.TglBuktiBayar.label}"
+                                     id="ot17"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                  <af:outputText value="#{row.TglBuktiBayar}" id="ot16">
+                    <af:convertDateTime pattern="#{bindings.MknTtfSearchingView1.hints.TglBuktiBayar.format}"/>
+                  </af:outputText>
+                </af:column>
+                <af:column sortProperty="Memotext" sortable="true"
+                           headerText="#{bindings.MknTtfSearchingView1.hints.Memotext.label}"
+                           id="resId1c9" noWrap="false" width="132">
+                  <af:outputText value="#{row.Memotext}" id="ot4"/>
+                  <f:facet name="header">
+                    <af:panelGroupLayout id="pgl21" layout="vertical"
+                                         halign="center">
+                      <af:outputText value="#{bindings.MknTtfSearchingView1.hints.Memotext.label}"
+                                     id="ot52"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                </af:column>
+              </af:table>
+            </af:panelCollection>
+          </f:facet>
+        </af:panelSplitter>
+      </af:panelHeader>
+    </f:facet>
+  </af:decorativeBox>
+</jsp:root>

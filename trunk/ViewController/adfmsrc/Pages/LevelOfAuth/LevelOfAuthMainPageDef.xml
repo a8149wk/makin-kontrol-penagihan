@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="LevelOfAuthMainPageDef"
+                Package="Pages.LevelOfAuth">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="LoaMainView1" RangeSize="25"
+              DataControl="LevelOfAuthorityAMDataControl"
+              id="LoaMainView1Iterator"/>
+    <searchRegion Criteria="LoaMainViewCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="LoaMainView1Iterator" id="LoaMainViewCriteriaQuery"/>
+    <iterator Binds="LoaAuthView1" RangeSize="25"
+              DataControl="LevelOfAuthorityAMDataControl"
+              id="LoaAuthView1Iterator"/>
+    <iterator Binds="LoaAprvrView1" RangeSize="25"
+              DataControl="LevelOfAuthorityAMDataControl"
+              id="LoaAprvrView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="LoaMainView1Iterator" id="LoaMainView1">
+      <nodeDefinition DefName="app.mkp.model.view.loa.LoaMainView"
+                      Name="LoaMainView10">
+        <AttrNames>
+          <Item Value="LoaTipe"/>
+          <Item Value="Descr"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="LoaMainView1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <list IterBinding="LoaMainView1Iterator" StaticList="false"
+          Uses="LOV_LoaTipe" id="LoaTipe" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="LoaMainView1Iterator" id="Descr">
+      <AttrNames>
+        <Item Value="Descr"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="LoaAuthView1Iterator" id="LoaAuthView1">
+      <nodeDefinition DefName="app.mkp.model.view.loa.LoaAuthView"
+                      Name="LoaAuthView10">
+        <AttrNames>
+          <Item Value="LoaName"/>
+          <Item Value="Descr"/>
+          <Item Value="Min1"/>
+          <Item Value="Max1"/>
+          <Item Value="Kurs"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction"
+            DataControl="LevelOfAuthorityAMDataControl"/>
+    <action IterBinding="LoaAuthView1Iterator" id="CreateInsert1"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="LoaAuthView1Iterator" id="keyAuthTbl"
+            InstanceName="LevelOfAuthorityAMDataControl.LoaAuthView1"
+            DataControl="LevelOfAuthorityAMDataControl"
+            RequiresUpdateModel="false" Action="setCurrentRowWithKey">
+      <NamedData NDName="rowKey" NDValue="#{pageFlowScope.keyAuthTbl}"
+                 NDType="java.lang.String"/>
+    </action>
+    <tree IterBinding="LoaAprvrView1Iterator" id="LoaAprvrView1">
+      <nodeDefinition DefName="app.mkp.model.view.loa.LoaAprvrView"
+                      Name="LoaAprvrView10">
+        <AttrNames>
+          <Item Value="Approver"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="LoaAprvrView1Iterator" id="CreateInsert2"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="LoaAprvrView1Iterator" id="keyApvrTbl"
+            InstanceName="LevelOfAuthorityAMDataControl.LoaAprvrView1"
+            DataControl="LevelOfAuthorityAMDataControl"
+            RequiresUpdateModel="false" Action="setCurrentRowWithKey">
+      <NamedData NDName="rowKey" NDValue="#{pageFlowScope.keyApvrTbl}"
+                 NDType="java.lang.String"/>
+    </action>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="LevelOfAuthorityAMDataControl"/>
+  </bindings>
+</pageDefinition>

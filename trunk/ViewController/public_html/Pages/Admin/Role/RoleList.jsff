@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['app.mkp.view.ViewControllerBundle']}"/>
+  <af:decorativeBox id="db1" inlineStyle="margin:5px;">
+    <f:facet name="center">
+      <af:panelHeader text="#{viewcontrollerBundle.MAIN_HDR_USER_ROLE}" id="ph1"
+                      icon="/Images/icon/role.png">
+        <f:facet name="context"/>
+        <f:facet name="menuBar"/>
+        <f:facet name="toolbar"/>
+        <f:facet name="legend"/>
+        <f:facet name="info"/>
+        <af:panelSplitter id="ps1" orientation="vertical" splitterPosition="110"
+                          inlineStyle="margin:5px;">
+          <f:facet name="first">
+            <af:query id="qryId1" headerText="Search" disclosed="true"
+                      value="#{bindings.RolesViewCriteriaQuery.queryDescriptor}"
+                      model="#{bindings.RolesViewCriteriaQuery.queryModel}"
+                      queryListener="#{bindings.RolesViewCriteriaQuery.processQuery}"
+                      queryOperationListener="#{bindings.RolesViewCriteriaQuery.processQueryOperation}"
+                      resultComponentId="::pc1:resId1" saveQueryMode="hidden"
+                      modeChangeVisible="false"/>
+          </f:facet>
+          <f:facet name="second">
+            <af:panelCollection id="pc1" featuresOff="detach"
+                                styleClass="AFStretchWidth">
+              <f:facet name="menus"/>
+              <f:facet name="toolbar">
+                <af:toolbar id="t1">
+                  <af:commandToolbarButton text="#{viewcontrollerBundle.BUT_TEXT_ADD_USER_ROLE}"
+                                           id="ctb1" icon="/Images/icon/add.png"
+                                           action="addEditRole">
+                    <af:setPropertyListener type="action" from="#{'Add'}"
+                                            to="#{pageFlowScope.mode}"/>
+                  </af:commandToolbarButton>
+                </af:toolbar>
+              </f:facet>
+              <f:facet name="statusbar"/>
+              <af:table value="#{bindings.RolesView1.collectionModel}" var="row"
+                        rows="#{bindings.RolesView1.rangeSize}"
+                        emptyText="#{bindings.RolesView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                        fetchSize="#{bindings.RolesView1.rangeSize}"
+                        rowBandingInterval="0"
+                        selectedRowKeys="#{bindings.RolesView1.collectionModel.selectedRow}"
+                        selectionListener="#{bindings.RolesView1.collectionModel.makeCurrent}"
+                        rowSelection="single" id="resId1"
+                        columnStretching="column:resId1c2"
+                        binding="#{backingBeanScope.rolesBackingBean.childTable}"
+                        partialTriggers="confirmDeleteDialog">
+                <af:column id="c1" headerText="Actions" width="80">
+                  <af:panelGroupLayout id="pgl4" layout="horizontal"
+                                       halign="center">
+                    <af:commandImageLink id="cil1" icon="/Images/icon/edit.png"
+                                         action="addEditRole">
+                      <af:setPropertyListener type="action" from="#{'Edit'}"
+                                              to="#{pageFlowScope.mode}"/>
+                      <af:setPropertyListener from="#{row.rowKeyStr}"
+                                              to="#{pageFlowScope.editKey}"
+                                              type="action"/>
+                    </af:commandImageLink>
+                    <af:spacer width="10" height="10" id="s3"/>
+                    <af:commandImageLink id="cil2"
+                                         icon="/Images/icon/delete.png">
+                      <af:showPopupBehavior popupId="confirmDeletePopup"/>
+                    </af:commandImageLink>
+                    <af:popup id="confirmDeletePopup"
+                              contentDelivery="lazyUncached">
+                      <af:dialog closeIconVisible="false" modal="true"
+                                 title="Warning" id="confirmDeleteDialog"
+                                 dialogListener="#{backingBeanScope.rolesBackingBean.confirmDeleteClientDialogListener}">
+                        <af:panelGroupLayout inlineStyle="background-color:Window;"
+                                             layout="vertical" halign="left"
+                                             valign="middle" id="nwtpgl1">
+                          <af:outputText value="#{viewcontrollerBundle.DEL_MSG_ROLE}"
+                                         id="nwtot1"/>
+                        </af:panelGroupLayout>
+                      </af:dialog>
+                    </af:popup>
+                  </af:panelGroupLayout>
+                </af:column>
+                <af:column sortProperty="Id" sortable="true"
+                           headerText="#{bindings.RolesView1.hints.Id.label}"
+                           id="resId1c1" width="132" visible="false">
+                  <af:outputText value="#{row.Id}" id="ot2">
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.RolesView1.hints.Id.format}"/>
+                  </af:outputText>
+                </af:column>
+                <af:column sortProperty="Name" sortable="true"
+                           headerText="#{bindings.RolesView1.hints.Name.label}"
+                           id="resId1c2" width="216">
+                  <af:outputText value="#{row.Name}" id="ot1"/>
+                </af:column>
+              </af:table>
+            </af:panelCollection>
+          </f:facet>
+        </af:panelSplitter>
+      </af:panelHeader>
+    </f:facet>
+  </af:decorativeBox>
+</jsp:root>

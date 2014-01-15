@@ -1,0 +1,423 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['app.mkp.view.ViewControllerBundle']}"/>
+  <af:panelSplitter id="ps1" inlineStyle="margin:5px;" splitterPosition="553">
+    <f:facet name="first">
+      <af:decorativeBox id="db1">
+        <f:facet name="center">
+          <af:panelHeader text="#{viewcontrollerBundle.MAIN_HDR_MY_TTF}"
+                          id="ph1" icon="/Images/icon/my_ttf.png">
+            <f:facet name="context"/>
+            <f:facet name="menuBar"/>
+            <f:facet name="toolbar"/>
+            <f:facet name="legend"/>
+            <f:facet name="info"/>
+            <af:panelSplitter id="ps2" orientation="vertical"
+                              splitterPosition="197">
+              <f:facet name="first">
+                <af:query id="qryId1" headerText="Search" disclosed="true"
+                          value="#{bindings.MknMyTtfViewCriteriaQuery.queryDescriptor}"
+                          model="#{bindings.MknMyTtfViewCriteriaQuery.queryModel}"
+                          queryListener="#{bindings.MknMyTtfViewCriteriaQuery.processQuery}"
+                          queryOperationListener="#{bindings.MknMyTtfViewCriteriaQuery.processQueryOperation}"
+                          resultComponentId="::pc1:t2" modeChangeVisible="false"
+                          saveQueryMode="hidden" inlineStyle="margin:5px;"/>
+              </f:facet>
+              <f:facet name="second">
+                <af:panelCollection id="pc1" featuresOff="detach"
+                                    styleClass="AFStretchWidth"
+                                    inlineStyle="margin:5px;">
+                  <f:facet name="menus"/>
+                  <f:facet name="toolbar"/>
+                  <f:facet name="statusbar"/>
+                  <af:table value="#{bindings.MknMyTtfView1.collectionModel}"
+                            var="row" rows="#{bindings.MknMyTtfView1.rangeSize}"
+                            emptyText="#{bindings.MknMyTtfView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                            fetchSize="#{bindings.MknMyTtfView1.rangeSize}"
+                            rowBandingInterval="0"
+                            selectedRowKeys="#{bindings.MknMyTtfView1.collectionModel.selectedRow}"
+                            selectionListener="#{bindings.MknMyTtfView1.collectionModel.makeCurrent}"
+                            rowSelection="single" id="t2"
+                            columnStretching="column:c1" varStatus="vs">
+                    <af:column id="c6" width="25" rowHeader="true"
+                               align="center">
+                      <af:outputText value="#{vs.index+1}" id="ot5"/>
+                    </af:column>
+                    <af:column id="c7"
+                               headerText="#{viewcontrollerBundle.REVIEW_TTF}"
+                               align="center" width="50">
+                      <af:commandImageLink id="cil3"
+                                           rendered="#{row.Status == 0}"
+                                           icon="/Images/icon/create_new.png"
+                                           action="reviewTtf">
+                        <af:setPropertyListener type="action" from="#{'Edit'}"
+                                                to="#{pageFlowScope.mode}"/>
+                        <af:setPropertyListener type="action" from="#{'MyEdit'}"
+                                                to="#{pageFlowScope.mymode}"/>
+                        <af:setPropertyListener from="#{row.IdDokumen}"
+                                                to="#{pageFlowScope.dId}"
+                                                type="action"/>
+                      </af:commandImageLink>
+                      <af:commandImageLink id="cil1"
+                                           rendered="#{row.Status != 0}"
+                                           icon="/Images/icon/ttf_submitted.png"
+                                           action="reviewTtf">
+                        <af:setPropertyListener type="action" from="#{'Edit'}"
+                                                to="#{pageFlowScope.mode}"/>
+                        <af:setPropertyListener type="action" from="#{'MyEdit'}"
+                                                to="#{pageFlowScope.mymode}"/>
+                        <af:setPropertyListener from="#{row.IdDokumen}"
+                                                to="#{pageFlowScope.dId}"
+                                                type="action"/>
+                      </af:commandImageLink>
+                      <af:spacer width="10" height="5" id="s8"/>
+                      <af:image source="/Images/icon/paid.png" shortDesc="Paid"
+                                rendered="#{row.Bolean1 == 'T'}" id="i3"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.MknMyTtfView1.hints.NoTtf.name}"
+                               sortable="true" id="c4" width="130"
+                               headerText="#{viewcontrollerBundle.INFO_TTF}">
+                      <af:panelFormLayout id="pfl1" labelAlignment="top">
+                        <af:panelLabelAndMessage label="#{bindings.MknMyTtfView1.hints.Id.label}"
+                                                 id="plam1">
+                          <af:outputText value="#{row.Id}" id="ot1"/>
+                        </af:panelLabelAndMessage>
+                        <af:spacer width="10" height="5" id="s3"/>
+                        <af:panelLabelAndMessage label="#{bindings.MknMyTtfView1.hints.InvoiceDuedate.label}"
+                                                 id="plam7">
+                          <af:outputText value="#{row.InvoiceDuedate}" id="ot3">
+                            <af:convertDateTime pattern="#{bindings.MknMyTtfView1.hints.InvoiceDuedate.format}"/>
+                          </af:outputText>
+                        </af:panelLabelAndMessage>
+                      </af:panelFormLayout>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.MknMyTtfView1.hints.UnitcompanyId.name}"
+                               sortable="true"
+                               headerText="#{viewcontrollerBundle.PT_ANAK_PERUSAHAAN__VENDOR}"
+                               id="c1" width="86">
+                      <af:panelFormLayout id="pfl2" labelAlignment="top">
+                        <af:selectOneChoice value="#{row.bindings.UnitcompanyId.inputValue}"
+                                            label="#{row.bindings.UnitcompanyId.label}"
+                                            required="#{bindings.MknMyTtfView1.hints.UnitcompanyId.mandatory}"
+                                            shortDesc="#{bindings.MknMyTtfView1.hints.UnitcompanyId.tooltip}"
+                                            id="soc1" readOnly="true">
+                          <f:selectItems value="#{row.bindings.UnitcompanyId.items}"
+                                         id="si1"/>
+                        </af:selectOneChoice>
+                        <af:spacer width="10" height="5" id="s4"/>
+                        <af:selectOneChoice value="#{row.bindings.SupplierId.inputValue}"
+                                            label="#{row.bindings.SupplierId.label}"
+                                            required="#{bindings.MknMyTtfView1.hints.SupplierId.mandatory}"
+                                            shortDesc="#{bindings.MknMyTtfView1.hints.SupplierId.tooltip}"
+                                            id="soc2" readOnly="true">
+                          <f:selectItems value="#{row.bindings.SupplierId.items}"
+                                         id="si2"/>
+                        </af:selectOneChoice>
+                      </af:panelFormLayout>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.MknMyTtfView1.hints.Duedate.name}"
+                               sortable="true"
+                               headerText="#{viewcontrollerBundle.TANGGAL}"
+                               id="c2" width="90" align="center">
+                      <af:panelFormLayout id="pfl4" labelAlignment="top">
+                        <af:panelLabelAndMessage label="#{bindings.MknMyTtfView1.hints.InvoiceDate.label}"
+                                                 id="plam2">
+                          <af:outputText value="#{row.InvoiceDate}" id="ot6">
+                            <af:convertDateTime pattern="#{bindings.MknMyTtfView1.hints.InvoiceDate.format}"/>
+                          </af:outputText>
+                        </af:panelLabelAndMessage>
+                        <af:spacer width="10" height="5" id="spacer1"/>
+                        <af:panelLabelAndMessage label="#{bindings.MknMyTtfView1.hints.CreateDate.label}"
+                                                 id="plam6">
+                          <af:outputText value="#{row.CreateDate}" id="ot2">
+                            <af:convertDateTime pattern="#{bindings.MknMyTtfView1.hints.CreateDate.format}"/>
+                          </af:outputText>
+                        </af:panelLabelAndMessage>
+                      </af:panelFormLayout>
+                    </af:column>
+                  </af:table>
+                </af:panelCollection>
+              </f:facet>
+            </af:panelSplitter>
+          </af:panelHeader>
+        </f:facet>
+      </af:decorativeBox>
+    </f:facet>
+    <f:facet name="second">
+      <af:decorativeBox id="db2"
+                        visible="#{bindings.MknMyTtfView1.estimatedRowCount > 0}">
+        <f:facet name="center">
+          <af:panelHeader text="#{viewcontrollerBundle.MAIN_HDR_TANDA_TERIMA_FAKTUR}"
+                          id="ph2" icon="/Images/icon/dokumen.png">
+            <f:facet name="context"/>
+            <f:facet name="menuBar"/>
+            <f:facet name="toolbar"/>
+            <f:facet name="legend"/>
+            <f:facet name="info"/>
+            <af:panelGroupLayout id="pgl2" layout="scroll"
+                                 inlineStyle="padding:8px;"
+                                 partialTriggers="qryId1 pc1:t2">
+              <!-- TTF Draft Information-->
+              <af:panelGroupLayout id="pgl3" layout="vertical"
+                                   visible="#{bindings.Status.inputValue == 0}"
+                                   inlineStyle="background-color:#bcdd55; border-color:#3f8400; padding:10px;"
+                                   styleClass="AFStretchWidth">
+                <af:panelGroupLayout id="pgl4" layout="horizontal">
+                  <af:image source="/Images/icon/create_new.png"
+                            shortDesc="Edit TTF" id="i1"/>
+                  <af:spacer width="10" height="10" id="s5"/>
+                  <af:outputText value="#{viewcontrollerBundle.TTF_INI_MASIH_DALAM_STATUS_DRA}"
+                                 id="ot10"
+                                 visible="#{bindings.Status.inputValue == 0}"
+                                 inlineStyle="font-size:small; color:#3f8400;"/>
+                </af:panelGroupLayout>
+              </af:panelGroupLayout>
+              <!-- End TTF Draft Information-->
+              <!-- TTF Submitted Information-->
+              <af:panelGroupLayout id="pgl5" layout="vertical"
+                                   visible="#{bindings.Status.inputValue != 0}"
+                                   inlineStyle="background-color:#ffc8b5; border-color:#b32b26; padding:10px;"
+                                   styleClass="AFStretchWidth">
+                <af:panelGroupLayout id="pgl6" layout="horizontal">
+                  <af:image source="/Images/icon/ttf_submitted.png"
+                            shortDesc="Edit TTF" id="i2"/>
+                  <af:spacer width="10" height="10" id="s7"/>
+                  <af:outputText value="#{viewcontrollerBundle.TTF_BERIKUT_INI_SUDAH_MASUK_DA}"
+                                 id="ot12"
+                                 visible="#{bindings.Status.inputValue != 0}"
+                                 inlineStyle="font-size:small; color:#dd352e;"/>
+                </af:panelGroupLayout>
+              </af:panelGroupLayout>
+              <!-- End TTF Submitted Information-->
+              <af:spacer width="10" height="10" id="s6"/>
+              <af:panelFormLayout id="pfl3" partialTriggers="pc1:t2 qryId1"
+                                  styleClass="AFStretchWidth">
+                <af:selectOneChoice value="#{bindings.Bolean1.inputValue}"
+                                    rendered="#{bindings.Bolean1.inputValue != null}"
+                                    label="#{bindings.Bolean1.label}"
+                                    required="#{bindings.Bolean1.hints.mandatory}"
+                                    shortDesc="#{bindings.Bolean1.hints.tooltip}"
+                                    id="soc10"
+                                    inlineStyle="padding:2px; color:Red;"
+                                    readOnly="true">
+                  <f:selectItems value="#{bindings.Bolean1.items}" id="si10"/>
+                </af:selectOneChoice>
+                <af:panelLabelAndMessage label="#{bindings.CreateDate.hints.label}"
+                                         id="plam8">
+                  <af:outputText value="#{bindings.CreateDate.inputValue}"
+                                 id="ot8">
+                    <af:convertDateTime pattern="#{bindings.CreateDate.format}"/>
+                  </af:outputText>
+                </af:panelLabelAndMessage>
+                <af:selectOneChoice value="#{bindings.UnitcompanyId1.inputValue}"
+                                    label="#{bindings.UnitcompanyId1.label}"
+                                    required="#{bindings.UnitcompanyId1.hints.mandatory}"
+                                    shortDesc="#{bindings.UnitcompanyId1.hints.tooltip}"
+                                    id="soc3" readOnly="true">
+                  <f:selectItems value="#{bindings.UnitcompanyId1.items}"
+                                 id="si3"/>
+                </af:selectOneChoice>
+                <af:selectOneChoice value="#{bindings.DepartmentId.inputValue}"
+                                    label="#{bindings.DepartmentId.label}"
+                                    required="#{bindings.DepartmentId.hints.mandatory}"
+                                    shortDesc="#{bindings.DepartmentId.hints.tooltip}"
+                                    id="soc4" readOnly="true">
+                  <f:selectItems value="#{bindings.DepartmentId.items}"
+                                 id="si4"/>
+                </af:selectOneChoice>
+                <af:selectOneChoice value="#{bindings.SupplierId1.inputValue}"
+                                    label="#{bindings.SupplierId1.label}"
+                                    required="#{bindings.SupplierId1.hints.mandatory}"
+                                    shortDesc="#{bindings.SupplierId1.hints.tooltip}"
+                                    id="soc5" readOnly="true">
+                  <f:selectItems value="#{bindings.SupplierId1.items}"
+                                 id="si5"/>
+                </af:selectOneChoice>
+                <af:panelLabelAndMessage label="#{bindings.KontrakNo.hints.label}"
+                                         id="plam18">
+                  <af:outputText value="#{bindings.KontrakNo.inputValue}"
+                                 id="ot19"/>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.PoNo.hints.label}"
+                                         id="plam4">
+                  <af:outputText value="#{bindings.PoNo.inputValue}" id="ot11"/>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.ImNo.hints.label}"
+                                         id="plam15">
+                  <af:outputText value="#{bindings.ImNo.inputValue}" id="ot7"/>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.InvoiceNo.hints.label}"
+                                         id="plam17">
+                  <af:outputText value="#{bindings.InvoiceNo.inputValue}"
+                                 id="ot14"/>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.CreateDate.hints.label}"
+                                         id="plam5">
+                  <af:outputText value="#{bindings.CreateDate.inputValue}"
+                                 id="ot13">
+                    <af:convertDateTime pattern="#{bindings.CreateDate.format}"/>
+                  </af:outputText>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.InvoiceDate.hints.label}"
+                                         id="plam16">
+                  <af:outputText value="#{bindings.InvoiceDate.inputValue}"
+                                 id="ot18">
+                    <af:convertDateTime pattern="#{bindings.InvoiceDate.format}"/>
+                  </af:outputText>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.TglTerimaDok.hints.label}"
+                                         id="plam3">
+                  <af:outputText value="#{bindings.TglTerimaDok.inputValue}"
+                                 id="ot15">
+                    <af:convertDateTime pattern="#{bindings.TglTerimaDok.format}"/>
+                  </af:outputText>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.InvoiceDuedate.hints.label}"
+                                         id="plam19">
+                  <af:outputText value="#{bindings.InvoiceDuedate.inputValue}"
+                                 id="ot4">
+                    <af:convertDateTime pattern="#{bindings.InvoiceDuedate.format}"/>
+                  </af:outputText>
+                </af:panelLabelAndMessage>
+                <af:selectOneChoice value="#{bindings.TipePembelian.inputValue}"
+                                    label="#{bindings.TipePembelian.label}"
+                                    required="#{bindings.TipePembelian.hints.mandatory}"
+                                    shortDesc="#{bindings.TipePembelian.hints.tooltip}"
+                                    id="soc6" readOnly="true">
+                  <f:selectItems value="#{bindings.TipePembelian.items}"
+                                 id="si6"/>
+                </af:selectOneChoice>
+                <af:selectOneChoice value="#{bindings.CurrencyId.inputValue}"
+                                    label="#{bindings.CurrencyId.label}"
+                                    required="#{bindings.CurrencyId.hints.mandatory}"
+                                    shortDesc="#{bindings.CurrencyId.hints.tooltip}"
+                                    id="soc7" readOnly="true">
+                  <f:selectItems value="#{bindings.CurrencyId.items}" id="si7"/>
+                </af:selectOneChoice>
+                <af:panelLabelAndMessage label="#{bindings.Amount.hints.label}"
+                                         id="plam13">
+                  <af:outputText value="#{bindings.Amount.inputValue}"
+                                 id="ot20">
+                    <af:convertNumber type="currency" minFractionDigits="2"
+                                      maxFractionDigits="2" currencySymbol=""
+                                      locale="id"/>
+                  </af:outputText>
+                </af:panelLabelAndMessage>
+                <af:selectOneChoice value="#{bindings.PembayaranKe.inputValue}"
+                                    label="#{bindings.PembayaranKe.label}"
+                                    required="#{bindings.PembayaranKe.hints.mandatory}"
+                                    shortDesc="#{bindings.PembayaranKe.hints.tooltip}"
+                                    id="soc8" readOnly="true">
+                  <f:selectItems value="#{bindings.PembayaranKe.items}"
+                                 id="si8"/>
+                </af:selectOneChoice>
+                <af:panelLabelAndMessage label="#{bindings.CostCenter.hints.label}"
+                                         id="plam14">
+                  <af:outputText value="#{bindings.CostCenter.inputValue}"
+                                 id="ot17"/>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.Descr.hints.label}"
+                                         id="plam11">
+                  <af:outputText value="#{bindings.Descr.inputValue}" id="ot9"/>
+                </af:panelLabelAndMessage>
+              </af:panelFormLayout>
+              <af:spacer width="10" height="15" id="s2"/>
+              <af:panelCollection id="pc2" styleClass="AFStretchWidth"
+                                  featuresOff="detach"
+                                  rendered="#{bindings.MknMyTtfAddedDocView1.estimatedRowCount > 0}">
+                <f:facet name="menus">
+                  <af:menu text="Dokumen Pendukung TTF" id="m1"
+                           icon="/Images/icon/dokumen.png"/>
+                </f:facet>
+                <f:facet name="toolbar"/>
+                <f:facet name="statusbar"/>
+                <af:table value="#{bindings.MknMyTtfAddedDocView1.collectionModel}"
+                          var="row"
+                          rows="#{bindings.MknMyTtfAddedDocView1.rangeSize}"
+                          emptyText="#{bindings.MknMyTtfAddedDocView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                          fetchSize="#{bindings.MknMyTtfAddedDocView1.rangeSize}"
+                          rowBandingInterval="0" id="t1"
+                          columnStretching="column:c5"
+                          partialTriggers=":::qryId1 :::pc1:t2"
+                          contentDelivery="immediate" autoHeightRows="25">
+                  <af:column sortProperty="#{bindings.MknMyTtfAddedDocView1.hints.Did.name}"
+                             sortable="false"
+                             headerText="#{bindings.MknMyTtfAddedDocView1.hints.Did.label}"
+                             id="c5" noWrap="false">
+                    <af:selectOneChoice value="#{row.bindings.Did.inputValue}"
+                                        label="#{row.bindings.Did.label}"
+                                        required="#{bindings.MknMyTtfAddedDocView1.hints.Did.mandatory}"
+                                        shortDesc="#{bindings.MknMyTtfAddedDocView1.hints.Did.tooltip}"
+                                        id="soc9" readOnly="true">
+                      <f:selectItems value="#{row.bindings.Did.items}"
+                                     id="si9"/>
+                    </af:selectOneChoice>
+                  </af:column>
+                  <af:column id="c3" width="60"
+                             headerText="#{viewcontrollerBundle.URL_LINK}">
+                    <af:panelGroupLayout id="pgl0" layout="horizontal"
+                                         halign="center"
+                                         rendered="#{row.DocName != null}">
+                      <af:goImageLink text="" id="gil1" targetFrame="_blank"
+                                      icon="/Images/icon/go_to_doc.png"
+                                      destination="#{row.AppUrl1}#{row.Url}"/>
+                      <af:spacer width="5" height="10" id="s11"/>
+                      <af:goImageLink text="" id="gil2" targetFrame="_blank"
+                                      icon="/Images/icon/information.png"
+                                      destination="#{row.AppUrl1}#{row.MetaUrl}"/>
+                    </af:panelGroupLayout>
+                    <!-- DMS will show in ADF Popup: Enable this -->
+                    <!--af:panelGroupLayout id="pgl0" layout="horizontal"
+                                           halign="center"
+                                           rendered="#{row.DocTitle != null}">
+                        <af:commandImageLink id="cil1"
+                                             icon="/Images/icon/go_to_doc.png"
+                                             rendered="true">
+                          <af:showPopupBehavior popupId="popupAddedFile"/>
+                        </af:commandImageLink>
+                        <af:popup id="popupAddedFile" animate="default"
+                                  contentDelivery="lazyUncached">
+                          <af:panelWindow id="pw1" modal="true"
+                                          title="#{row.DocTitle}"
+                                          contentHeight="625" contentWidth="700"
+                                          resize="on">
+                            <af:inlineFrame id="if1" shortDesc="#{row.DocTitle}"
+                                            source="#{row.AppUrl1}#{row.Url}"
+                                            styleClass="AFStretchWidth"
+                                            inlineStyle="height:600px;"/>
+                          </af:panelWindow>
+                        </af:popup>
+                        <af:spacer width="5" height="10" id="s11"/>
+                        <af:commandImageLink id="cil2"
+                                             icon="/Images/icon/information.png"
+                                             rendered="true">
+                          <af:showPopupBehavior popupId="popupAddedFileMeta"/>
+                        </af:commandImageLink>
+                        <af:popup id="popupAddedFileMeta" animate="default"
+                                  contentDelivery="lazyUncached">
+                          <af:panelWindow id="pw2" modal="true"
+                                          title="#{row.DocTitle}"
+                                          contentHeight="625" contentWidth="700"
+                                          resize="on">
+                            <af:inlineFrame id="if2" shortDesc="#{row.DocTitle}"
+                                            source="#{row.AppUrl1}#{row.MetaUrl}"
+                                            styleClass="AFStretchWidth"
+                                            inlineStyle="height:600px;"/>
+                          </af:panelWindow>
+                        </af:popup>
+                      </af:panelGroupLayout-->
+                  </af:column>
+                </af:table>
+              </af:panelCollection>
+            </af:panelGroupLayout>
+          </af:panelHeader>
+        </f:facet>
+      </af:decorativeBox>
+    </f:facet>
+  </af:panelSplitter>
+</jsp:root>

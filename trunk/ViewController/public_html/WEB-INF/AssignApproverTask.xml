@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="AssignApproverTask">
+    <default-activity id="__11">SetCurrentRowWithKey</default-activity>
+    <transaction id="__29">
+      <new-transaction/>
+    </transaction>
+    <task-flow-reentry id="__28">
+      <reentry-outcome-dependent/>
+    </task-flow-reentry>
+    <input-parameter-definition id="__8">
+      <name id="__9">editKey</name>
+      <value>#{pageFlowScope.editKey}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__32">
+      <name id="__31">brRef</name>
+      <value>#{pageFlowScope.brRef}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__4">
+      <managed-bean-name id="__3">approverBackingBean</managed-bean-name>
+      <managed-bean-class id="__2">app.mkp.backing.ApproverBackingBean</managed-bean-class>
+      <managed-bean-scope id="__1">backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="ApproverList">
+      <page>/Pages/BussinesRule/ApproverList.jsff</page>
+    </view>
+    <method-call id="SetCurrentRowWithKey">
+      <method>#{bindings.setCurrentRowWithKey.execute}</method>
+      <outcome id="__10">
+        <fixed-outcome>setCurrentRowWithKey</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-return id="CancelAndBack">
+      <outcome id="__20">
+        <name>CancelAndBack</name>
+        <reentry-not-allowed/>
+        <rollback/>
+      </outcome>
+    </task-flow-return>
+    <task-flow-return id="SaveAndBack">
+      <outcome id="__21">
+        <name>SaveAndBack</name>
+        <reentry-not-allowed/>
+        <commit/>
+      </outcome>
+    </task-flow-return>
+    <task-flow-call id="AssignApproverPt">
+      <task-flow-reference>
+        <document>/WEB-INF/AssignApproverPt.xml</document>
+        <id>AssignApproverPt</id>
+      </task-flow-reference>
+      <input-parameter id="__33">
+        <name>brRef</name>
+        <value>brRefApvr</value>
+      </input-parameter>
+      <input-parameter id="__17">
+        <name>brRefApvr</name>
+        <value>#{pageFlowScope.brRefApvr}</value>
+      </input-parameter>
+    </task-flow-call>
+    <control-flow-rule id="__12">
+      <from-activity-id id="__13">SetCurrentRowWithKey</from-activity-id>
+      <control-flow-case id="__15">
+        <from-outcome id="__14">setCurrentRowWithKey</from-outcome>
+        <to-activity-id id="__16">ApproverList</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__19">
+      <from-activity-id id="__18">*</from-activity-id>
+      <control-flow-case id="__22">
+        <from-outcome id="__24">save</from-outcome>
+        <to-activity-id id="__23">SaveAndBack</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__25">
+        <from-outcome id="__27">cancel</from-outcome>
+        <to-activity-id id="__26">CancelAndBack</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__42">
+      <from-activity-id id="__43">ApproverList</from-activity-id>
+      <control-flow-case id="__30">
+        <from-outcome id="__34">assignPt</from-outcome>
+        <to-activity-id id="__35">AssignApproverPt</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="FormBussinesRulePageDef"
+                Package="Pages.BussinesRule">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="BrMainView1" RangeSize="25"
+              DataControl="BussinesRuleAMDataControl" id="BrMainView1Iterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="BrMainView1Iterator" StaticList="false" Uses="LOV_BrTipe"
+          id="BrTipe" DTSupportsMRU="false"/>
+    <list IterBinding="BrMainView1Iterator" StaticList="false" Uses="LOV_BrRef"
+          id="BrRef" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="BrMainView1Iterator" id="BrDescr">
+      <AttrNames>
+        <Item Value="BrDescr"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="BrMainView1Iterator" id="BrName">
+      <AttrNames>
+        <Item Value="BrName"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

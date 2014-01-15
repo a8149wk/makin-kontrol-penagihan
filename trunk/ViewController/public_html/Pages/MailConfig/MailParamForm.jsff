@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['app.mkp.view.ViewControllerBundle']}"/>
+  <af:panelStretchLayout id="psl1" startWidth="10px" endWidth="7px"
+                         topHeight="10px" bottomHeight="7px">
+    <f:facet name="center">
+      <af:decorativeBox id="db1">
+        <f:facet name="center">
+          <af:panelHeader text="Mail Parameter" id="ph1"
+                          icon="/Images/icon/input_parameter.png">
+            <f:facet name="context"/>
+            <f:facet name="menuBar"/>
+            <f:facet name="toolbar"/>
+            <f:facet name="legend"/>
+            <f:facet name="info"/>
+            <af:panelSplitter id="ps2" orientation="vertical"
+                              splitterPosition="100">
+              <f:facet name="first">
+                <af:query id="qryId1" headerText="Search" disclosed="true"
+                          value="#{bindings.InputParamViewCriteriaQuery.queryDescriptor}"
+                          model="#{bindings.InputParamViewCriteriaQuery.queryModel}"
+                          queryListener="#{bindings.InputParamViewCriteriaQuery.processQuery}"
+                          queryOperationListener="#{bindings.InputParamViewCriteriaQuery.processQueryOperation}"
+                          resultComponentId="::pc1:t1" saveQueryMode="hidden"
+                          modeChangeVisible="false"/>
+              </f:facet>
+              <f:facet name="second">
+                <af:panelSplitter id="ps1" splitterPosition="270"
+                                  styleClass="AFStretchWidth">
+                  <f:facet name="first">
+                    <af:panelCollection id="pc1" featuresOff="detach"
+                                        styleClass="AFStretchWidth"
+                                        inlineStyle="background-color:InactiveCaption;">
+                      <f:facet name="menus"/>
+                      <f:facet name="toolbar">
+                        <af:toolbar id="t2">
+                          <af:commandToolbarButton text="Tambah" id="ctb2"
+                                                   actionListener="#{bindings.CreateInsert.execute}"
+                                                   icon="/Images/icon/input_parameter_add.png"/>
+                          <af:commandToolbarButton text="Delete" id="ctb1"
+                                                   actionListener="#{bindings.Delete.execute}"
+                                                   icon="/Images/icon/input_parameter_delete.png"/>
+                        </af:toolbar>
+                      </f:facet>
+                      <f:facet name="statusbar"/>
+                      <af:table value="#{bindings.InputParamView1.collectionModel}"
+                                var="row"
+                                rows="#{bindings.InputParamView1.rangeSize}"
+                                emptyText="#{bindings.InputParamView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                fetchSize="#{bindings.InputParamView1.rangeSize}"
+                                rowBandingInterval="0"
+                                selectedRowKeys="#{bindings.InputParamView1.collectionModel.selectedRow}"
+                                selectionListener="#{bindings.InputParamView1.collectionModel.makeCurrent}"
+                                rowSelection="single" id="t1"
+                                columnStretching="column:c1"
+                                partialTriggers="::ctb2 ::ctb1 :::cb2 :::cb1">
+                        <af:column id="c2" width="10" rowHeader="true"/>
+                        <af:column sortProperty="#{bindings.InputParamView1.hints.ParamNm.name}"
+                                   sortable="true"
+                                   headerText="#{bindings.InputParamView1.hints.ParamNm.label}"
+                                   id="c1">
+                          <af:outputText value="#{row.ParamNm}" id="ot1"/>
+                        </af:column>
+                      </af:table>
+                    </af:panelCollection>
+                  </f:facet>
+                  <f:facet name="second">
+                    <af:decorativeBox id="db3">
+                      <f:facet name="center">
+                        <af:panelHeader text="Edit Mail Parameter" id="ph2"
+                                        icon="/Images/icon/input_parameter_edit.png">
+                          <f:facet name="context"/>
+                          <f:facet name="menuBar"/>
+                          <f:facet name="toolbar">
+                            <af:toolbar id="t3">
+                              <af:commandButton actionListener="#{bindings.Rollback.execute}"
+                                                text="#{viewcontrollerBundle.BUT_TXT_CANCEL}"
+                                                disabled="#{!bindings.Rollback.enabled}"
+                                                immediate="true" id="cb2"
+                                                icon="/Images/icon/cancel.png"
+                                                partialTriggers="qryId1 pc1:ctb2 pc1:ctb1 pc1:t1">
+                                <af:resetActionListener/>
+                              </af:commandButton>
+                              <af:commandButton actionListener="#{bindings.Commit.execute}"
+                                                text="#{viewcontrollerBundle.BUT_TXT_SAVE}"
+                                                id="cb1"
+                                                icon="/Images/icon/save.png"/>
+                            </af:toolbar>
+                          </f:facet>
+                          <f:facet name="legend"/>
+                          <f:facet name="info"/>
+                          <af:panelFormLayout id="pfl1"
+                                              partialTriggers="pc1:t1">
+                            <af:inputText value="#{bindings.ParamId.inputValue}"
+                                          label="#{bindings.ParamId.hints.label}"
+                                          required="#{bindings.ParamId.hints.mandatory}"
+                                          columns="#{bindings.ParamId.hints.displayWidth}"
+                                          maximumLength="#{bindings.ParamId.hints.precision}"
+                                          shortDesc="#{bindings.ParamId.hints.tooltip}"
+                                          id="it3">
+                              <f:validator binding="#{bindings.ParamId.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.ParamNm.inputValue}"
+                                          label="#{bindings.ParamNm.hints.label}"
+                                          required="#{bindings.ParamNm.hints.mandatory}"
+                                          columns="#{bindings.ParamNm.hints.displayWidth}"
+                                          maximumLength="#{bindings.ParamNm.hints.precision}"
+                                          shortDesc="#{bindings.ParamNm.hints.tooltip}"
+                                          id="it2">
+                              <f:validator binding="#{bindings.ParamNm.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.ParamGrp.inputValue}"
+                                          label="#{bindings.ParamGrp.hints.label}"
+                                          required="#{bindings.ParamGrp.hints.mandatory}"
+                                          columns="#{bindings.ParamGrp.hints.displayWidth}"
+                                          maximumLength="#{bindings.ParamGrp.hints.precision}"
+                                          shortDesc="#{bindings.ParamGrp.hints.tooltip}"
+                                          id="it1">
+                              <f:validator binding="#{bindings.ParamGrp.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.Descr.inputValue}"
+                                          label="#{bindings.Descr.hints.label}"
+                                          required="#{bindings.Descr.hints.mandatory}"
+                                          columns="#{bindings.Descr.hints.displayWidth}"
+                                          maximumLength="#{bindings.Descr.hints.precision}"
+                                          shortDesc="#{bindings.Descr.hints.tooltip}"
+                                          id="it4" rows="2">
+                              <f:validator binding="#{bindings.Descr.validator}"/>
+                            </af:inputText>
+                            <af:selectOneChoice value="#{bindings.FlgActive.inputValue}"
+                                                label="#{bindings.FlgActive.label}"
+                                                required="#{bindings.FlgActive.hints.mandatory}"
+                                                shortDesc="#{bindings.FlgActive.hints.tooltip}"
+                                                id="soc1">
+                              <f:selectItems value="#{bindings.FlgActive.items}"
+                                             id="si1"/>
+                            </af:selectOneChoice>
+                            <af:spacer width="10" height="10" id="s1"/>
+                          </af:panelFormLayout>
+                        </af:panelHeader>
+                      </f:facet>
+                    </af:decorativeBox>
+                  </f:facet>
+                </af:panelSplitter>
+              </f:facet>
+            </af:panelSplitter>
+          </af:panelHeader>
+        </f:facet>
+      </af:decorativeBox>
+    </f:facet>
+  </af:panelStretchLayout>
+</jsp:root>

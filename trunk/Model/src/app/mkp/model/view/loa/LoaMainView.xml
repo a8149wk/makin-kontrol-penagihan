@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="LoaMainView"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  SelectList="LoaMain.LOA_ID, 
+       LoaMain.LOA_TIPE, 
+       LoaMain.DESCR"
+  FromList="LOA_MAIN LoaMain"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|VarAccess"/>
+  </DesignTime>
+  <Variable
+    Name="tipeLoa"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="descr"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <ViewAccessor
+    Name="LovTipeLoa1"
+    ViewObjectName="app.mkp.model.view.lov.LovTipeLoa"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_LoaTipe"
+    ListVOName="LovTipeLoa1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_LoaTipe_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="LoaTipe"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LoaTipeNm"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Label"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="LoaMain"
+    Entity="app.mkp.model.entity.loa.LoaMain"/>
+  <ViewAttribute
+    Name="LoaId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="LoaId"
+    EntityUsage="LoaMain"
+    AliasName="LOA_ID"/>
+  <ViewAttribute
+    Name="LoaTipe"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="LoaTipe"
+    EntityUsage="LoaMain"
+    AliasName="LOA_TIPE"
+    LOVName="LOV_LoaTipe">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="COL_NM_TIPE_LOA"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Descr"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Descr"
+    EntityUsage="LoaMain"
+    AliasName="DESCR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="COL_NM_DESKRIPSI"/>
+        <DISPLAYWIDTH
+          Value="29"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="LoaMainViewCriteria"
+    ViewObjectName="app.mkp.model.view.loa.LoaMainView"
+    Conjunction="AND"
+    Mode="3">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="false"/>
+        <Property
+          Name="showInList"
+          Value="false"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow7"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="LoaTipe"
+        ViewAttribute="LoaTipe"
+        Operator="="
+        Conjunction="AND"
+        Value=":tipeLoa"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="LoaMainViewCriteria_vcrow7_Descr"
+        ViewAttribute="Descr"
+        Operator="CONTAINS"
+        Conjunction="AND"
+        Value=":descr"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ViewLinkAccessor
+    Name="LoaAuthView"
+    ViewLink="app.mkp.model.view.loa.LoaMainLoaAuthViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="app.mkp.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

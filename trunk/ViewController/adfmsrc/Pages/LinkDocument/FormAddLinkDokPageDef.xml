@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="FormAddLinkDokPageDef"
+                Package="Pages.LinkDocument">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MknDokLinkView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="MknDokLinkView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="MknDokLinkView1Iterator" id="MknDokLinkView1">
+      <nodeDefinition DefName="app.mkp.model.view.ttf.linkdoc.MknDokLinkView"
+                      Name="MknDokLinkView10">
+        <AttrNames>
+          <Item Value="LinkDokDid"/>
+          <Item Value="AppUrl1"/>
+          <Item Value="Url"/>
+          <Item Value="DocName"/>
+          <Item Value="DocTitle"/>
+          <Item Value="MetaUrl"/>
+          <Item Value="TipeDokumen"/>
+          <Item Value="TipeDok"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" DataControl="TandaTerimaFakturAMDataControl"
+            RequiresUpdateModel="true" Action="commitTransaction"/>
+  </bindings>
+</pageDefinition>

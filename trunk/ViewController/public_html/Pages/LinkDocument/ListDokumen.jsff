@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['app.mkp.view.ViewControllerBundle']}"/>
+  <af:panelSplitter id="ps1" inlineStyle="margin:5px;" splitterPosition="725">
+    <f:facet name="first">
+        <af:decorativeBox id="db1">
+          <f:facet name="center">
+            <af:panelHeader text="#{viewcontrollerBundle.MAIN_HDR_LINKING_DOCUMENTS}" id="ph1"
+                            icon="/Images/icon/doc_link.png">
+              <f:facet name="context"/>
+              <f:facet name="menuBar"/>
+              <f:facet name="toolbar"/>
+              <f:facet name="legend"/>
+              <f:facet name="info"/>
+              <af:panelSplitter id="ps2" orientation="vertical"
+                                splitterPosition="170">
+                <f:facet name="first">
+                  <af:query id="qryId1" headerText="Search" disclosed="true"
+                            value="#{bindings.PreInitialDocumentViewCriteriaQuery.queryDescriptor}"
+                            model="#{bindings.PreInitialDocumentViewCriteriaQuery.queryModel}"
+                            queryListener="#{bindings.PreInitialDocumentViewCriteriaQuery.processQuery}"
+                            queryOperationListener="#{bindings.PreInitialDocumentViewCriteriaQuery.processQueryOperation}"
+                            resultComponentId="::pc1:resId1"
+                            saveQueryMode="hidden" modeChangeVisible="false"
+                            inlineStyle="margin:5px;"/>
+                </f:facet>
+                <f:facet name="second">
+                  <af:panelCollection id="pc1" styleClass="AFStretchWidth"
+                                      featuresOff="detach"
+                                      inlineStyle="margin:5px;">
+                    <f:facet name="menus"/>
+                    <f:facet name="toolbar"/>
+                    <f:facet name="statusbar"/>
+                    <af:table value="#{bindings.PreInitialDocumentView1.collectionModel}"
+                              var="row"
+                              rows="#{bindings.PreInitialDocumentView1.rangeSize}"
+                              emptyText="#{bindings.PreInitialDocumentView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              fetchSize="#{bindings.PreInitialDocumentView1.rangeSize}"
+                              rowBandingInterval="0"
+                              selectedRowKeys="#{bindings.PreInitialDocumentView1.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.PreInitialDocumentView1.collectionModel.makeCurrent}"
+                              rowSelection="single" id="resId1"
+                              columnStretching="column:resId1c2">
+                      <af:column id="c1" width="10" rowHeader="true"/>
+                      <af:column id="c2" width="46"
+                                 headerText="#{viewcontrollerBundle.COL_HDR_ACTIONS}">
+                        <af:panelGroupLayout id="pgl0" layout="horizontal"
+                                             halign="center">
+                          <af:commandImageLink id="cil1"
+                                               icon="/Images/icon/link_add.png"
+                                               action="addEditLinkDoc"
+                                               rendered="#{row.NumLink == 0}"
+                                               useWindow="true">
+                            <af:setPropertyListener type="action"
+                                                    from="#{'Add'}"
+                                                    to="#{pageFlowScope.mode}"/>
+                            <af:setPropertyListener type="action"
+                                                    from="#{row.TipeDok}"
+                                                    to="#{pageFlowScope.tipeDok}"/>
+                            <af:setPropertyListener type="action"
+                                                    from="#{row.Did}"
+                                                    to="#{pageFlowScope.dId}"/>
+                          </af:commandImageLink>
+                          <af:commandImageLink id="cil4"
+                                               rendered="#{row.NumLink > 0}"
+                                               action="addEditLinkDoc"
+                                               icon="/Images/icon/doc_link.png"
+                                               useWindow="true">
+                            <af:setPropertyListener type="action"
+                                                    from="#{'Edit'}"
+                                                    to="#{pageFlowScope.mode}"/>
+                            <af:setPropertyListener type="action"
+                                                    from="#{row.TipeDok}"
+                                                    to="#{pageFlowScope.tipeDok}"/>
+                            <af:setPropertyListener from="#{row.rowKeyStr}"
+                                                    to="#{pageFlowScope.editKey}"
+                                                    type="action"/>
+                            <af:setPropertyListener type="action"
+                                                    from="#{row.Did}"
+                                                    to="#{pageFlowScope.dId}"/>
+                          </af:commandImageLink>
+                        </af:panelGroupLayout>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.PreInitialDocumentView1.hints.TipeDok.name}"
+                                 sortable="true"
+                                 headerText="#{bindings.PreInitialDocumentView1.hints.TipeDok.label}"
+                                 id="resId1c1" noWrap="false" width="80">
+                        <af:outputText value="#{row.TipeDok}" id="ot5"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.PreInitialDocumentView1.hints.IdDokumen.name}"
+                                 sortable="true"
+                                 headerText="#{bindings.PreInitialDocumentView1.hints.IdDokumen.label}"
+                                 id="resId1c2" noWrap="false">
+                        <af:outputText value="#{row.IdDokumen}" id="ot1"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.PreInitialDocumentView1.hints.PihakTerkait.name}"
+                                 sortable="true"
+                                 headerText="#{bindings.PreInitialDocumentView1.hints.PihakTerkait.label}"
+                                 id="resId1c3" noWrap="false" width="140">
+                        <af:selectOneChoice value="#{row.bindings.PihakTerkait.inputValue}"
+                                            label="#{row.bindings.PihakTerkait.label}"
+                                            required="#{bindings.PreInitialDocumentView1.hints.PihakTerkait.mandatory}"
+                                            shortDesc="#{bindings.PreInitialDocumentView1.hints.PihakTerkait.tooltip}"
+                                            id="soc1" readOnly="true">
+                          <f:selectItems value="#{row.bindings.PihakTerkait.items}"
+                                         id="si1"/>
+                        </af:selectOneChoice>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.PreInitialDocumentView1.hints.DeptTerkait.name}"
+                                 sortable="true"
+                                 headerText="#{bindings.PreInitialDocumentView1.hints.DeptTerkait.label}"
+                                 id="resId1c4" noWrap="false" width="140">
+                        <af:selectOneChoice value="#{row.bindings.DeptTerkait.inputValue}"
+                                            label="#{row.bindings.DeptTerkait.label}"
+                                            required="#{bindings.PreInitialDocumentView1.hints.DeptTerkait.mandatory}"
+                                            shortDesc="#{bindings.PreInitialDocumentView1.hints.DeptTerkait.tooltip}"
+                                            id="soc2" readOnly="true">
+                          <f:selectItems value="#{row.bindings.DeptTerkait.items}"
+                                         id="si2"/>
+                        </af:selectOneChoice>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.PreInitialDocumentView1.hints.Tanggal.name}"
+                                 sortable="true"
+                                 headerText="#{bindings.PreInitialDocumentView1.hints.Tanggal.label}"
+                                 id="resId1c5" width="80">
+                        <af:outputText value="#{row.Tanggal}" id="ot3">
+                          <af:convertDateTime pattern="#{bindings.PreInitialDocumentView1.hints.Tanggal.format}"/>
+                        </af:outputText>
+                      </af:column>
+                    </af:table>
+                  </af:panelCollection>
+                </f:facet>
+              </af:panelSplitter>
+            </af:panelHeader>
+          </f:facet>
+        </af:decorativeBox>
+    </f:facet>
+    <f:facet name="second">
+        <af:decorativeBox id="db2">
+          <f:facet name="center">
+            <af:panelHeader text="#{viewcontrollerBundle.LIST_DOKUMEN_TERKAIT}" id="ph2"
+                            icon="/Images/icon/dokumen.png">
+              <f:facet name="context"/>
+              <f:facet name="menuBar"/>
+              <f:facet name="toolbar"/>
+              <f:facet name="legend"/>
+              <f:facet name="info"/>
+              <af:panelCollection id="pc2" featuresOff="detach"
+                                  inlineStyle="margin:5px;">
+                <f:facet name="menus"/>
+                <f:facet name="toolbar"/>
+                <f:facet name="statusbar"/>
+                <af:table value="#{bindings.MknDokLinkView1.collectionModel}"
+                          var="row" rows="#{bindings.MknDokLinkView1.rangeSize}"
+                          emptyText="#{bindings.MknDokLinkView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                          fetchSize="#{bindings.MknDokLinkView1.rangeSize}"
+                          rowBandingInterval="0"
+                          selectedRowKeys="#{bindings.MknDokLinkView1.collectionModel.selectedRow}"
+                          selectionListener="#{bindings.MknDokLinkView1.collectionModel.makeCurrent}"
+                          rowSelection="single" id="t1"
+                          columnStretching="column:c3"
+                          partialTriggers=":::qryId1 :::pc1:resId1">
+                  <af:column id="c4" width="10" rowHeader="true"/>
+                  <af:column sortProperty="#{bindings.MknDokLinkView1.hints.LinkDokDid.name}"
+                             sortable="true"
+                             headerText="#{bindings.MknDokLinkView1.hints.LinkDokDid.label}"
+                             id="c3" noWrap="false">
+                    <af:selectOneChoice value="#{row.bindings.LinkDokDid.inputValue}"
+                                        label="#{row.bindings.LinkDokDid.label}"
+                                        required="#{bindings.MknDokLinkView1.hints.LinkDokDid.mandatory}"
+                                        shortDesc="#{bindings.MknDokLinkView1.hints.LinkDokDid.tooltip}"
+                                        id="soc3" readOnly="true">
+                      <f:selectItems value="#{row.bindings.LinkDokDid.items}"
+                                     id="si3"/>
+                    </af:selectOneChoice>
+                  </af:column>
+                  <af:column id="c5" width="60"
+                             headerText="#{viewcontrollerBundle.URL_LINK}">
+                    <af:panelGroupLayout id="pgl2" layout="horizontal"
+                                         halign="center"
+                                         rendered="#{row.DocName != null}">
+                      <af:goImageLink text="" id="gil1" targetFrame="_blank"
+                                      icon="/Images/icon/go_to_doc.png"
+                                      destination="#{row.AppUrl1}#{row.Url}"/>
+                      <af:spacer width="5" height="10" id="s11"/>
+                      <af:goImageLink text="" id="gil2" targetFrame="_blank"
+                                      icon="/Images/icon/information.png"
+                                      destination="#{row.AppUrl1}#{row.MetaUrl}"/>
+                    </af:panelGroupLayout>
+                  </af:column>
+                </af:table>
+              </af:panelCollection>
+            </af:panelHeader>
+          </f:facet>
+        </af:decorativeBox>
+    </f:facet>
+  </af:panelSplitter>
+</jsp:root>

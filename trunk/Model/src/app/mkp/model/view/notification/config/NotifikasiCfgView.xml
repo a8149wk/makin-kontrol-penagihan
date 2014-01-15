@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="NotifikasiCfgView"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  SelectList="NotifikasiCfg.ID_NOTIFIKASI, 
+       NotifikasiCfg.NOTIFICATION_TYPE, 
+       NotifikasiCfg.NAMA_NOTIFIKASI, 
+       NotifikasiCfg.DESCR, 
+       NotifikasiCfg.MAIL_TEMPLATE_NM, 
+       (SELECT LISTAGG(MAIL_INPUT_PARAM.INPUT_NM, ', ') WITHIN GROUP (ORDER BY MAIL_INPUT_PARAM.ID) NOTIF_PARAMS FROM MAIL_INPUT_PARAM, MAIL_TEMPLATE WHERE MAIL_TEMPLATE.MAIL_ID = MAIL_INPUT_PARAM.MAIL_ID AND MAIL_NM = NotifikasiCfg.MAIL_TEMPLATE_NM GROUP BY MAIL_INPUT_PARAM.MAIL_ID) AS NOTIF_PARAMS"
+  FromList="NOTIFIKASI_CFG NotifikasiCfg"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|VarAccess"/>
+  </DesignTime>
+  <Variable
+    Name="nmNotif"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="notifType"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <ViewAccessor
+    Name="LovMailTemplateEvent1"
+    ViewObjectName="app.mkp.model.view.lov.LovMailTemplateEvent"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="LovMailTemplateScheduler1"
+    ViewObjectName="app.mkp.model.view.lov.LovMailTemplateScheduler"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="LovNotificationType1"
+    ViewObjectName="app.mkp.model.view.lov.LovNotificationType"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_NotificationType"
+    ListVOName="LovNotificationType1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_NotificationType_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="NotificationType"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Label"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="E"
+    ListVOName="LovMailTemplateEvent1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="E_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="MailTemplateNm"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="MailNm"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="MailNm"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="B"
+    ListVOName="LovMailTemplateScheduler1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="B_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="MailTemplateNm"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="MailNm"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="MailNm"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="NotifikasiCfg"
+    Entity="app.mkp.model.entity.notification.config.NotifikasiCfg"/>
+  <ViewAttribute
+    Name="IdNotifikasi"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdNotifikasi"
+    EntityUsage="NotifikasiCfg"
+    AliasName="ID_NOTIFIKASI"/>
+  <ViewAttribute
+    Name="NotificationType"
+    LOVName="LOV_NotificationType"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="NotificationType"
+    EntityUsage="NotifikasiCfg"
+    AliasName="NOTIFICATION_TYPE">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="app.mkp.model.view.notification.config.NotifikasiCfgView.NotificationType_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NamaNotifikasi"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="NamaNotifikasi"
+    EntityUsage="NotifikasiCfg"
+    AliasName="NAMA_NOTIFIKASI">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="app.mkp.model.view.notification.config.NotifikasiCfgView.NamaNotifikasi_LABEL"/>
+        <DISPLAYWIDTH
+          Value="50"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Descr"
+    PrecisionRule="true"
+    EntityAttrName="Descr"
+    EntityUsage="NotifikasiCfg"
+    AliasName="DESCR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="app.mkp.model.view.notification.config.NotifikasiCfgView.Descr_LABEL"/>
+        <DISPLAYWIDTH
+          Value="50"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MailTemplateNm"
+    LOVName="E"
+    LOVFinder="NotificationType"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="MailTemplateNm"
+    EntityUsage="NotifikasiCfg"
+    AliasName="MAIL_TEMPLATE_NM">
+    <TransientExpression><![CDATA[if(NotificationType == 'E'){
+return 'E'
+} else if(NotificationType == 'B'){
+return 'B'
+} else {
+return null;
+}]]></TransientExpression>
+    <Dependencies>
+      <Item
+        Value="NotificationType"/>
+    </Dependencies>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="app.mkp.model.view.notification.config.NotifikasiCfgView.MailTemplateNm_LABEL"/>
+        <DISPLAYWIDTH
+          Value="80"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NotifParams"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="NOTIF_PARAMS"
+    Expression="SELECT LISTAGG(MAIL_INPUT_PARAM.INPUT_NM, ', ') WITHIN GROUP (ORDER BY MAIL_INPUT_PARAM.ID) NOTIF_PARAMS FROM MAIL_INPUT_PARAM, MAIL_TEMPLATE WHERE MAIL_TEMPLATE.MAIL_ID = MAIL_INPUT_PARAM.MAIL_ID AND MAIL_NM = NotifikasiCfg.MAIL_TEMPLATE_NM GROUP BY MAIL_INPUT_PARAM.MAIL_ID"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="app.mkp.model.view.notification.config.NotifikasiCfgView.NotifParams_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="NotifikasiCfgViewCriteria"
+    ViewObjectName="app.mkp.model.view.notification.config.NotifikasiCfgView"
+    Conjunction="AND"
+    Mode="3">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="true"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="false"/>
+        <Property
+          Name="showInList"
+          Value="false"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow9"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="NotificationType"
+        ViewAttribute="NotificationType"
+        Operator="="
+        Conjunction="AND"
+        Value=":notifType"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="NamaNotifikasi"
+        ViewAttribute="NamaNotifikasi"
+        Operator="CONTAINS"
+        Conjunction="AND"
+        Value=":nmNotif"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ViewLinkAccessor
+    Name="NotifikasiPositionView"
+    ViewLink="app.mkp.model.view.notification.config.NotifikasiCfgPositionViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="app.mkp.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

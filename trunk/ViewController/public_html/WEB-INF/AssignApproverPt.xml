@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="AssignApproverPt">
+    <default-activity id="__1">FormApproverAssignPt</default-activity>
+    <transaction id="__25">
+      <requires-transaction/>
+    </transaction>
+    <task-flow-reentry id="__14">
+      <reentry-outcome-dependent/>
+    </task-flow-reentry>
+    <input-parameter-definition id="__6">
+      <name id="__7">brRefApvr</name>
+      <value>#{pageFlowScope.brRefApvr}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__2">
+      <managed-bean-name id="__3">approverBackingBean</managed-bean-name>
+      <managed-bean-class id="__4">app.mkp.backing.ApproverBackingBean</managed-bean-class>
+      <managed-bean-scope id="__5">backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="FormApproverAssignPt">
+      <page>/Pages/BussinesRule/FormApproverAssignPt.jsff</page>
+    </view>
+    <task-flow-return id="SaveAndBack">
+      <outcome id="__17">
+        <name>SaveAndBack</name>
+        <reentry-not-allowed/>
+        <commit/>
+      </outcome>
+    </task-flow-return>
+    <task-flow-return id="CancelAndBack">
+      <outcome id="__18">
+        <name>CancelAndBack</name>
+        <reentry-not-allowed/>
+        <rollback/>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__15">
+      <from-activity-id id="__16">*</from-activity-id>
+      <control-flow-case id="__19">
+        <from-outcome id="__21">save</from-outcome>
+        <to-activity-id id="__20">SaveAndBack</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__22">
+        <from-outcome id="__24">cancel</from-outcome>
+        <to-activity-id id="__23">CancelAndBack</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

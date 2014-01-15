@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="MyTTFPagePageDef"
+                Package="Pages.MyTtf">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MknMyTtfView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="MknMyTtfView1Iterator"/>
+    <searchRegion Criteria="MknMyTtfViewCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="MknMyTtfView1Iterator" id="MknMyTtfViewCriteriaQuery"/>
+    <iterator Binds="MknMyTtfAddedDocView1"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="MknMyTtfAddedDocView1Iterator" RangeSize="24"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="MknMyTtfView1Iterator" id="KontrakNo">
+      <AttrNames>
+        <Item Value="KontrakNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MknMyTtfView1Iterator" id="PoNo">
+      <AttrNames>
+        <Item Value="PoNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MknMyTtfView1Iterator" id="ImNo">
+      <AttrNames>
+        <Item Value="ImNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MknMyTtfView1Iterator" id="InvoiceNo">
+      <AttrNames>
+        <Item Value="InvoiceNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MknMyTtfView1Iterator" id="InvoiceDate">
+      <AttrNames>
+        <Item Value="InvoiceDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MknMyTtfView1Iterator" id="InvoiceDuedate">
+      <AttrNames>
+        <Item Value="InvoiceDuedate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MknMyTtfView1Iterator" id="Amount">
+      <AttrNames>
+        <Item Value="Amount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MknMyTtfView1Iterator" id="TglTerimaDok">
+      <AttrNames>
+        <Item Value="TglTerimaDok"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MknMyTtfView1Iterator" id="CostCenter">
+      <AttrNames>
+        <Item Value="CostCenter"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MknMyTtfView1Iterator" id="Descr">
+      <AttrNames>
+        <Item Value="Descr"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="MknMyTtfAddedDocView1Iterator"
+          id="MknMyTtfAddedDocView1">
+      <nodeDefinition DefName="app.mkp.model.view.ttf.myttf.MknMyTtfAddedDocView"
+                      Name="MknMyTtfAddedDocView10">
+        <AttrNames>
+          <Item Value="Did"/>
+          <Item Value="AppUrl1"/>
+          <Item Value="Url"/>
+          <Item Value="MetaUrl"/>
+          <Item Value="DocTitle"/>
+          <Item Value="DocName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="MknMyTtfView1Iterator" StaticList="false"
+          Uses="LOV_UnitcompanyId" id="UnitcompanyId1" DTSupportsMRU="true"/>
+    <list IterBinding="MknMyTtfView1Iterator" StaticList="false"
+          Uses="LOV_DepartmentId" id="DepartmentId" DTSupportsMRU="true"/>
+    <list IterBinding="MknMyTtfView1Iterator" StaticList="false"
+          Uses="LOV_SupplierId" id="SupplierId1" DTSupportsMRU="true"/>
+    <list IterBinding="MknMyTtfView1Iterator" StaticList="false"
+          Uses="LOV_TipePembelian" id="TipePembelian" DTSupportsMRU="true"/>
+    <list IterBinding="MknMyTtfView1Iterator" StaticList="false"
+          Uses="LOV_CurrencyId" id="CurrencyId" DTSupportsMRU="true"/>
+    <list IterBinding="MknMyTtfView1Iterator" StaticList="false"
+          Uses="LOV_PembayaranKe" id="PembayaranKe" DTSupportsMRU="true"/>
+    <tree IterBinding="MknMyTtfView1Iterator" id="MknMyTtfView1">
+      <nodeDefinition DefName="app.mkp.model.view.ttf.myttf.MknMyTtfView"
+                      Name="MknMyTtfView10">
+        <AttrNames>
+          <Item Value="UnitcompanyId"/>
+          <Item Value="Duedate"/>
+          <Item Value="InvoiceDate"/>
+          <Item Value="SupplierId"/>
+          <Item Value="InvoiceDuedate"/>
+          <Item Value="IdDokumen"/>
+          <Item Value="CreateDate"/>
+          <Item Value="Status"/>
+          <Item Value="Id"/>
+          <Item Value="Bolean1"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="MknMyTtfView1Iterator" id="CreateDate">
+      <AttrNames>
+        <Item Value="CreateDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MknMyTtfView1Iterator" id="Status">
+      <AttrNames>
+        <Item Value="Status"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="MknMyTtfView1Iterator" StaticList="false"
+          Uses="LOV_Bolean1" id="Bolean1" DTSupportsMRU="true"/>
+  </bindings>
+</pageDefinition>

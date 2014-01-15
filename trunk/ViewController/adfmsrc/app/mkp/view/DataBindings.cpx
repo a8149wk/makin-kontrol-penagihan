@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.61.92" id="DataBindings" SeparateXMLFiles="false"
+             Package="app.mkp.view" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/Login.jspx" usageId="app_mkp_view_LoginPageDef"/>
+    <page path="/Pages/CreateNewTtf/CreateNewTtf.jspx"
+          usageId="app_mkp_view_CreateNewTtfPageDef"/>
+    <page path="/Pages/CreateNewTtf/InitialDocumentList.jsff"
+          usageId="app_mkp_view_InitialDocumentListPageDef"/>
+    <page path="/Pages/Monitoring/Monitoring.jspx"
+          usageId="app_mkp_view_MonitoringPageDef"/>
+    <page path="/Pages/MyTtf/MyTtf.jspx" usageId="app_mkp_view_MyTtfPageDef"/>
+    <page path="/Pages/Searching/Searching.jspx"
+          usageId="app_mkp_view_SearchingPageDef"/>
+    <page path="/WEB-INF/AddNewTtf.xml#AddNewTtf@CreateInsert"
+          usageId="app_mkp_view_AddNewTtf_AddNewTtf_CreateInsertPageDef"/>
+    <page path="/Pages/CreateNewTtf/TtfForm.jsff"
+          usageId="app_mkp_view_TtfFormPageDef"/>
+    <page path="/Pages/Searching/SearchingPage.jsff"
+          usageId="app_mkp_view_SearchingPagePageDef"/>
+    <page path="/Pages/Monitoring/MonitoringPage.jsff"
+          usageId="app_mkp_view_MonitoringPagePageDef"/>
+    <page path="/Pages/Admin/Role/RoleUser.jspx"
+          usageId="app_mkp_view_RoleUserPageDef"/>
+    <page path="/Pages/Admin/Role/RoleList.jsff"
+          usageId="app_mkp_view_RoleListPageDef"/>
+    <page path="/WEB-INF/add-edit-role.xml#add-edit-role@CreateInsert"
+          usageId="app_mkp_view_add_edit_role_add_edit_role_CreateInsertPageDef"/>
+    <page path="/WEB-INF/add-edit-role.xml#add-edit-role@SetCurrentRowWithKey"
+          usageId="app_mkp_view_add_edit_role_add_edit_role_SetCurrentRowWithKeyPageDef"/>
+    <page path="/Pages/Admin/Role/RoleAddEditForm.jsff"
+          usageId="app_mkp_view_RoleAddEditFormPageDef"/>
+    <page path="/Pages/LinkDocument/ListDokumen.jsff"
+          usageId="app_mkp_view_ListDokumenPageDef"/>
+    <page path="/Pages/LinkDocument/LinkDocument.jspx"
+          usageId="app_mkp_view_LinkDocumentPageDef"/>
+    <page path="/Error.jspx" usageId="app_mkp_view_ErrorPageDef"/>
+    <page path="/Pages/MainUserDashboard.jspx"
+          usageId="app_mkp_view_MainUserDashboardPageDef"/>
+    <page path="/Templates/MAKINTemplateUserPage.jspx"
+          usageId="app_mkp_view_MAKINTemplateUserPagePageDef"/>
+    <page path="/Pages/MyTtf/MyTTFPage.jsff"
+          usageId="app_mkp_view_MyTTFPagePageDef"/>
+    <page path="/Pages/BussinesRule/BussinesRule.jspx"
+          usageId="app_mkp_view_BussinesRulePageDef"/>
+    <page path="/Pages/BussinesRule/BussinesRuleList.jsff"
+          usageId="app_mkp_view_BussinesRuleListPageDef"/>
+    <page path="/WEB-INF/AddEditBussinesRule.xml#AddEditBussinesRule@SetCurrentRowWithKey"
+          usageId="app_mkp_view_AddEditBussinesRule_AddEditBussinesRule_SetCurrentRowWithKeyPageDef"/>
+    <page path="/WEB-INF/AddEditBussinesRule.xml#AddEditBussinesRule@CreateInsert"
+          usageId="app_mkp_view_AddEditBussinesRule_AddEditBussinesRule_CreateInsertPageDef"/>
+    <page path="/Pages/BussinesRule/FormBussinesRule.jsff"
+          usageId="app_mkp_view_FormBussinesRulePageDef"/>
+    <page path="/Pages/BussinesRule/ApproverList.jsff"
+          usageId="app_mkp_view_ApproverListPageDef"/>
+    <page path="/WEB-INF/AssignApproverTask.xml#AssignApproverTask@SetCurrentRowWithKey"
+          usageId="app_mkp_view_AssignApproverTask_AssignApproverTask_SetCurrentRowWithKeyPageDef"/>
+    <page path="/Pages/BussinesRule/FormApproverAssignPt.jsff"
+          usageId="app_mkp_view_FormApproverAssignPtPageDef"/>
+    <page path="/Pages/MailConfig/MailConfig.jspx"
+          usageId="app_mkp_view_MailConfigPageDef"/>
+    <page path="/Pages/MailConfig/MailConfigPage.jsff"
+          usageId="app_mkp_view_MailConfigPagePageDef"/>
+    <page path="/Pages/MailConfig/MailTemplateForm.jsff"
+          usageId="app_mkp_view_MailTemplateFormPageDef"/>
+    <page path="/Pages/LevelOfAuth/LevelOfAuth.jspx"
+          usageId="app_mkp_view_LevelOfAuthPageDef"/>
+    <page path="/Pages/LevelOfAuth/LevelOfAuthMain.jsff"
+          usageId="app_mkp_view_LevelOfAuthMainPageDef"/>
+    <page path="/Pages/MailConfig/MailParamForm.jsff"
+          usageId="app_mkp_view_MailParamFormPageDef"/>
+    <page path="/Pages/NotifConfig/NotificationConfig.jspx"
+          usageId="app_mkp_view_NotificationConfigPageDef"/>
+    <page path="/Pages/NotifConfig/NotifConfigPage.jsff"
+          usageId="app_mkp_view_NotifConfigPagePageDef"/>
+    <page path="/Pages/NotifConfig/NotificationTempateForm.jsff"
+          usageId="app_mkp_view_NotificationTempateFormPageDef"/>
+    <page path="/WEB-INF/AssignRecipientNotification.xml#AssignRecipientNotification@SetCurrentRowWithKey"
+          usageId="app_mkp_view_AssignRecipientNotification_AssignRecipientNotification_SetCurrentRowWithKeyPageDef"/>
+    <page path="/Pages/NotifConfig/AssignRecipientForm.jsff"
+          usageId="app_mkp_view_AssignRecipientFormPageDef"/>
+    <page path="/Pages/LevelOfAuth/FormAssignAuthorityPt.jsff"
+          usageId="app_mkp_view_FormAssignAuthorityPtPageDef"/>
+    <page path="/WEB-INF/manage-level-of-auth.xml#manage-level-of-auth@Commit"
+          usageId="app_mkp_view_manage_level_of_auth_manage_level_of_auth_CommitPageDef"/>
+    <page path="/WEB-INF/manage-level-of-auth.xml#manage-level-of-auth@Rollback"
+          usageId="app_mkp_view_manage_level_of_auth_manage_level_of_auth_RollbackPageDef"/>
+    <page path="/WEB-INF/AddNewTtf.xml#AddNewTtf@ExecuteWithParams"
+          usageId="app_mkp_view_AddNewTtf_AddNewTtf_ExecuteWithParamsPageDef"/>
+    <page path="/Pages/CreateNewTtf/TtfFormReview.jsff"
+          usageId="app_mkp_view_TtfFormReviewPageDef"/>
+    <page path="/Pages/Utilisasi/Utilisasi.jspx"
+          usageId="app_mkp_view_UtilisasiPageDef"/>
+    <page path="/Pages/Utilisasi/UtilisasiTtf.jsff"
+          usageId="app_mkp_view_UtilisasiTtfPageDef"/>
+    <page path="/WEB-INF/manage-my-ttf.xml#manage-my-ttf@ExecuteWithParams"
+          usageId="app_mkp_view_manage_my_ttf_manage_my_ttf_ExecuteWithParamsPageDef"/>
+    <page path="/WEB-INF/AddNewTtf.xml#AddNewTtf@ExecuteWithParamsDocRec"
+          usageId="app_mkp_view_AddNewTtf_AddNewTtf_ExecuteWithParams1PageDef"/>
+    <page path="/WEB-INF/AddNewTtf.xml#AddNewTtf@generateExistingDoc"
+          usageId="app_mkp_view_AddNewTtf_AddNewTtf_generateExistingDocPageDef"/>
+    <page path="/Pages/Monitoring/MonitoringPageByDept.jsff"
+          usageId="app_mkp_view_MonitoringPageByDeptPageDef"/>
+    <page path="/WEB-INF/manage-monitoring.xml#manage-monitoring@ExecuteWithParams"
+          usageId="app_mkp_view_manage_monitoring_manage_monitoring_ExecuteWithParamsPageDef"/>
+    <page path="/Pages/LovDocument/LovDocPage.jspx"
+          usageId="app_mkp_view_LovDocPagePageDef"/>
+    <page path="/Pages/MyTtf/MyTtfFormReview.jsff"
+          usageId="app_mkp_view_MyTtfFormReviewPageDef"/>
+    <page path="/WEB-INF/AddNewTtf.xml#AddNewTtf@ExecuteWithParams1"
+          usageId="app_mkp_view_AddNewTtf_AddNewTtf_ExecuteWithParams1PageDef1"/>
+    <page path="/WEB-INF/AddNewTtf.xml#AddNewTtf@ExecuteWithParams2"
+          usageId="app_mkp_view_AddNewTtf_AddNewTtf_ExecuteWithParams2PageDef"/>
+    <page path="/WEB-INF/manage-create-new-ttf.xml#manage-create-new-ttf@ExecuteWithParams"
+          usageId="app_mkp_view_manage_create_new_ttf_manage_create_new_ttf_ExecuteWithParamsPageDef"/>
+    <page path="/Pages/LinkDocument/FormAddLinkDok.jsff"
+          usageId="app_mkp_view_FormAddLinkDokPageDef"/>
+    <page path="/Pages/LovDocument/LovDocImPoKontrakPage.jspx"
+          usageId="app_mkp_view_LovDocImPoKontrakPagePageDef"/>
+    <page path="/WEB-INF/add-edit-link-document.xml#add-edit-link-document@generateSelfDoc"
+          usageId="app_mkp_view_add_edit_link_document_add_edit_link_document_generateSelfDocPageDef"/>
+    <page path="/WEB-INF/add-edit-link-document.xml#add-edit-link-document@ExecuteWithParams"
+          usageId="app_mkp_view_add_edit_link_document_add_edit_link_document_ExecuteWithParamsPageDef"/>
+    <page path="/WEB-INF/manage-link-document.xml#manage-link-document@Execute"
+          usageId="app_mkp_view_manage_link_document_manage_link_document_ExecutePageDef"/>
+    <page path="/Pages/LovDocument/LovDocImPage.jspx"
+          usageId="app_mkp_view_LovDocImPagePageDef"/>
+    <page path="/Pages/LovDocument/LovDocImPoPage.jspx"
+          usageId="app_mkp_view_LovDocImPoPagePageDef"/>
+    <page path="/WEB-INF/manage-create-new-ttf.xml#manage-create-new-ttf@Execute"
+          usageId="app_mkp_view_manage_create_new_ttf_manage_create_new_ttf_ExecutePageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="app_mkp_view_LoginPageDef"
+          path="app.mkp.view.pageDefs.LoginPageDef"/>
+    <page id="app_mkp_view_CreateNewTtfPageDef"
+          path="Pages.CreateNewTtf.CreateNewTtfPageDef"/>
+    <page id="app_mkp_view_InitialDocumentListPageDef"
+          path="Pages.CreateNewTtf.InitialDocumentListPageDef"/>
+    <page id="app_mkp_view_MonitoringPageDef"
+          path="Pages.Monitoring.MonitoringPageDef"/>
+    <page id="app_mkp_view_MyTtfPageDef" path="Pages.MyTtf.MyTtfPageDef"/>
+    <page id="app_mkp_view_SearchingPageDef"
+          path="Pages.Searching.SearchingPageDef"/>
+    <page id="app_mkp_view_AddNewTtf_AddNewTtf_CreateInsertPageDef"
+          path="app.mkp.view.pageDefs.AddNewTtf_AddNewTtf_CreateInsertPageDef"/>
+    <page id="app_mkp_view_TtfFormPageDef"
+          path="Pages.CreateNewTtf.TtfFormPageDef"/>
+    <page id="app_mkp_view_SearchingPagePageDef"
+          path="Pages.Searching.SearchingPagePageDef"/>
+    <page id="app_mkp_view_MonitoringPagePageDef"
+          path="Pages.Monitoring.MonitoringPagePageDef"/>
+    <page id="app_mkp_view_RoleUserPageDef"
+          path="Pages.Admin.Role.RoleUserPageDef"/>
+    <page id="app_mkp_view_RoleListPageDef"
+          path="Pages.Admin.Role.RoleListPageDef"/>
+    <page id="app_mkp_view_add_edit_role_add_edit_role_CreateInsertPageDef"
+          path="app.mkp.view.pageDefs.add_edit_role_add_edit_role_CreateInsertPageDef"/>
+    <page id="app_mkp_view_add_edit_role_add_edit_role_SetCurrentRowWithKeyPageDef"
+          path="app.mkp.view.pageDefs.add_edit_role_add_edit_role_SetCurrentRowWithKeyPageDef"/>
+    <page id="app_mkp_view_RoleAddEditFormPageDef"
+          path="Pages.Admin.Role.RoleAddEditFormPageDef"/>
+    <page id="app_mkp_view_ListDokumenPageDef"
+          path="Pages.LinkDocument.ListDokumenPageDef"/>
+    <page id="app_mkp_view_LinkDocumentPageDef"
+          path="Pages.LinkDocument.LinkDocumentPageDef"/>
+    <page id="app_mkp_view_ErrorPageDef"
+          path="app.mkp.view.pageDefs.ErrorPageDef"/>
+    <page id="app_mkp_view_MainUserDashboardPageDef"
+          path="Pages.MainUserDashboardPageDef"/>
+    <page id="app_mkp_view_MAKINTemplateUserPagePageDef"
+          path="Templates.MAKINTemplateUserPagePageDef"/>
+    <page id="app_mkp_view_MyTTFPagePageDef"
+          path="Pages.MyTtf.MyTTFPagePageDef"/>
+    <page id="app_mkp_view_BussinesRulePageDef"
+          path="Pages.BussinesRule.BussinesRulePageDef"/>
+    <page id="app_mkp_view_BussinesRuleListPageDef"
+          path="Pages.BussinesRule.BussinesRuleListPageDef"/>
+    <page id="app_mkp_view_AddEditBussinesRule_AddEditBussinesRule_SetCurrentRowWithKeyPageDef"
+          path="app.mkp.view.pageDefs.AddEditBussinesRule_AddEditBussinesRule_SetCurrentRowWithKeyPageDef"/>
+    <page id="app_mkp_view_AddEditBussinesRule_AddEditBussinesRule_CreateInsertPageDef"
+          path="app.mkp.view.pageDefs.AddEditBussinesRule_AddEditBussinesRule_CreateInsertPageDef"/>
+    <page id="app_mkp_view_FormBussinesRulePageDef"
+          path="Pages.BussinesRule.FormBussinesRulePageDef"/>
+    <page id="app_mkp_view_ApproverListPageDef"
+          path="Pages.BussinesRule.ApproverListPageDef"/>
+    <page id="app_mkp_view_AssignApproverTask_AssignApproverTask_SetCurrentRowWithKeyPageDef"
+          path="app.mkp.view.pageDefs.AssignApproverTask_AssignApproverTask_SetCurrentRowWithKeyPageDef"/>
+    <page id="app_mkp_view_FormApproverAssignPtPageDef"
+          path="Pages.BussinesRule.FormApproverAssignPtPageDef"/>
+    <page id="app_mkp_view_MailConfigPageDef"
+          path="Pages.MailConfig.MailConfigPageDef"/>
+    <page id="app_mkp_view_MailConfigPagePageDef"
+          path="Pages.MailConfig.MailConfigPagePageDef"/>
+    <page id="app_mkp_view_MailTemplateFormPageDef"
+          path="Pages.MailConfig.MailTemplateFormPageDef"/>
+    <page id="app_mkp_view_LevelOfAuthPageDef"
+          path="Pages.LevelOfAuth.LevelOfAuthPageDef"/>
+    <page id="app_mkp_view_LevelOfAuthMainPageDef"
+          path="Pages.LevelOfAuth.LevelOfAuthMainPageDef"/>
+    <page id="app_mkp_view_MailParamFormPageDef"
+          path="Pages.MailConfig.MailParamFormPageDef"/>
+    <page id="app_mkp_view_NotificationConfigPageDef"
+          path="Pages.NotifConfig.NotificationConfigPageDef"/>
+    <page id="app_mkp_view_NotifConfigPagePageDef"
+          path="Pages.NotifConfig.NotifConfigPagePageDef"/>
+    <page id="app_mkp_view_NotificationTempateFormPageDef"
+          path="Pages.NotifConfig.NotificationTempateFormPageDef"/>
+    <page id="app_mkp_view_AssignRecipientNotification_AssignRecipientNotification_SetCurrentRowWithKeyPageDef"
+          path="app.mkp.view.pageDefs.AssignRecipientNotification_AssignRecipientNotification_SetCurrentRowWithKeyPageDef"/>
+    <page id="app_mkp_view_AssignRecipientFormPageDef"
+          path="Pages.NotifConfig.AssignRecipientFormPageDef"/>
+    <page id="app_mkp_view_FormAssignAuthorityPtPageDef"
+          path="Pages.LevelOfAuth.FormAssignAuthorityPtPageDef"/>
+    <page id="app_mkp_view_manage_level_of_auth_manage_level_of_auth_CommitPageDef"
+          path="app.mkp.view.pageDefs.manage_level_of_auth_manage_level_of_auth_CommitPageDef"/>
+    <page id="app_mkp_view_manage_level_of_auth_manage_level_of_auth_RollbackPageDef"
+          path="app.mkp.view.pageDefs.manage_level_of_auth_manage_level_of_auth_RollbackPageDef"/>
+    <page id="app_mkp_view_AddNewTtf_AddNewTtf_ExecuteWithParamsPageDef"
+          path="app.mkp.view.pageDefs.AddNewTtf_AddNewTtf_ExecuteWithParamsPageDef"/>
+    <page id="app_mkp_view_TtfFormReviewPageDef"
+          path="Pages.CreateNewTtf.TtfFormReviewPageDef"/>
+    <page id="app_mkp_view_UtilisasiPageDef"
+          path="Pages.Utilisasi.UtilisasiPageDef"/>
+    <page id="app_mkp_view_UtilisasiTtfPageDef"
+          path="Pages.Utilisasi.UtilisasiTtfPageDef"/>
+    <page id="app_mkp_view_manage_my_ttf_manage_my_ttf_ExecuteWithParamsPageDef"
+          path="app.mkp.view.pageDefs.manage_my_ttf_manage_my_ttf_ExecuteWithParamsPageDef"/>
+    <page id="app_mkp_view_AddNewTtf_AddNewTtf_ExecuteWithParams1PageDef"
+          path="app.mkp.view.pageDefs.AddNewTtf_AddNewTtf_ExecuteWithParams1PageDef"/>
+    <page id="app_mkp_view_AddNewTtf_AddNewTtf_generateExistingDocPageDef"
+          path="app.mkp.view.pageDefs.AddNewTtf_AddNewTtf_generateExistingDocPageDef"/>
+    <page id="app_mkp_view_MonitoringPageByDeptPageDef"
+          path="Pages.Monitoring.MonitoringPageByDeptPageDef"/>
+    <page id="app_mkp_view_manage_monitoring_manage_monitoring_ExecuteWithParamsPageDef"
+          path="app.mkp.view.pageDefs.manage_monitoring_manage_monitoring_ExecuteWithParamsPageDef"/>
+    <page id="app_mkp_view_LovDocPagePageDef"
+          path="Pages.LovDocument.LovDocPagePageDef"/>
+    <page id="app_mkp_view_MyTtfFormReviewPageDef"
+          path="Pages.MyTtf.MyTtfFormReviewPageDef"/>
+    <page id="app_mkp_view_AddNewTtf_AddNewTtf_ExecuteWithParams1PageDef1"
+          path="app.mkp.view.pageDefs.AddNewTtf_AddNewTtf_ExecuteWithParams1PageDef1"/>
+    <page id="app_mkp_view_AddNewTtf_AddNewTtf_ExecuteWithParams2PageDef"
+          path="app.mkp.view.pageDefs.AddNewTtf_AddNewTtf_ExecuteWithParams2PageDef"/>
+    <page id="app_mkp_view_manage_create_new_ttf_manage_create_new_ttf_ExecuteWithParamsPageDef"
+          path="app.mkp.view.pageDefs.manage_create_new_ttf_manage_create_new_ttf_ExecuteWithParamsPageDef"/>
+    <page id="app_mkp_view_FormAddLinkDokPageDef"
+          path="Pages.LinkDocument.FormAddLinkDokPageDef"/>
+    <page id="app_mkp_view_LovDocImPoKontrakPagePageDef"
+          path="Pages.LinkDocument.LovDocImPoKontrakPagePageDef"/>
+    <page id="app_mkp_view_add_edit_link_document_add_edit_link_document_generateSelfDocPageDef"
+          path="app.mkp.view.pageDefs.add_edit_link_document_add_edit_link_document_generateSelfDocPageDef"/>
+    <page id="app_mkp_view_add_edit_link_document_add_edit_link_document_ExecuteWithParamsPageDef"
+          path="app.mkp.view.pageDefs.add_edit_link_document_add_edit_link_document_ExecuteWithParamsPageDef"/>
+    <page id="app_mkp_view_manage_link_document_manage_link_document_ExecutePageDef"
+          path="app.mkp.view.pageDefs.manage_link_document_manage_link_document_ExecutePageDef"/>
+    <page id="app_mkp_view_LovDocImPagePageDef"
+          path="Pages.LovDocument.LovDocImPagePageDef"/>
+    <page id="app_mkp_view_LovDocImPoPagePageDef"
+          path="Pages.LovDocument.LovDocImPoPagePageDef"/>
+    <page id="app_mkp_view_manage_create_new_ttf_manage_create_new_ttf_ExecutePageDef"
+          path="app.mkp.view.pageDefs.manage_create_new_ttf_manage_create_new_ttf_ExecutePageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="SecurityAMDataControl" Package="app.mkp.model"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="SecurityAMLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="MenuAMDataControl" Package="app.mkp.model"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="MenuAMLocal"
+                     syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="SecurityAMDataControl1" Package="app.mkp.model"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="SecurityAMLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="NotificationAMDataControl" Package="app.mkp.model"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="NotificationAMLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="TandaTerimaFakturAMDataControl" Package="app.mkp.model"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="TandaTerimaFakturAMLocal"
+                     syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="AdminAMDataControl" Package="app.mkp.model"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="AdminAMLocal"
+                     syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="BussinesRuleAMDataControl" Package="app.mkp.model"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="BussinesRuleAMLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="LevelOfAuthorityAMDataControl" Package="app.mkp.model"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="LevelOfAuthorityAMLocal"
+                     syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

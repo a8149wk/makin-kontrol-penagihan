@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="UserAccess"
+  Version="11.1.1.61.92"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName="USER_ACCESS"
+  AliasName="UserAccess"
+  BindingStyle="OracleName"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <AttrArray Name="_publishEvents"/>
+  </DesignTime>
+  <Attribute
+    Name="Id"
+    Precision="10"
+    ColumnName="ID"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.DBSequence"
+    ColumnType="ID_TYPE"
+    TableName="USER_ACCESS"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="FirstName"
+    IsNotNull="true"
+    Precision="30"
+    ColumnName="FIRST_NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="USER_ACCESS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MiddleName"
+    Precision="30"
+    ColumnName="MIDDLE_NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="USER_ACCESS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LastName"
+    Precision="30"
+    ColumnName="LAST_NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="USER_ACCESS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="UserName"
+    IsNotNull="true"
+    Precision="30"
+    ColumnName="USER_NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="USER_ACCESS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Password"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="PASSWORD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="USER_ACCESS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Department"
+    IsNotNull="true"
+    Precision="30"
+    ColumnName="DEPARTMENT"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="USER_ACCESS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Title"
+    IsNotNull="true"
+    Precision="30"
+    ColumnName="TITLE"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="USER_ACCESS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="FullName"
+    Precision="90"
+    ColumnName="FULL_NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="USER_ACCESS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="90"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="KdKntr"
+    Precision="4"
+    Scale="0"
+    ColumnName="KD_KNTR"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="USER_ACCESS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+  </Attribute>
+  <Key
+    Name="SysC0013459">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013459"/>
+      <Attr Name="_checkCondition" Value='"ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.UserAccess.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013460">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013460"/>
+      <Attr Name="_checkCondition" Value='"FIRST_NAME" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.UserAccess.FirstName"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013461">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013461"/>
+      <Attr Name="_checkCondition" Value='"USER_NAME" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.UserAccess.UserName"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013462">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013462"/>
+      <Attr Name="_checkCondition" Value='"PASSWORD" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.UserAccess.Password"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013463">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013463"/>
+      <Attr Name="_checkCondition" Value='"DEPARTMENT" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.UserAccess.Department"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013464">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013464"/>
+      <Attr Name="_checkCondition" Value='"TITLE" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.UserAccess.Title"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="UserAccessPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="USER_ACCESS_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.menubar.UserAccess.Id"/>
+    </AttrArray>
+  </Key>
+</Entity>

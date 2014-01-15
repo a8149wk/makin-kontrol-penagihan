@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MknTtfReqDoc"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName="MKN_TTF_REQ_DOC"
+  AliasName="MknTtfReqDoc"
+  BindingStyle="OracleName"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <AttrArray Name="_publishEvents"/>
+  </DesignTime>
+  <Attribute
+    Name="Code"
+    IsNotNull="true"
+    Precision="16"
+    ColumnName="CODE"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MKN_TTF_REQ_DOC"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="16"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="TipeDok"
+    IsNotNull="true"
+    Precision="100"
+    ColumnName="TIPE_DOK"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MKN_TTF_REQ_DOC"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DescTipeDok"
+    Precision="200"
+    ColumnName="DESC_TIPE_DOK"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MKN_TTF_REQ_DOC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="SubTipeDok"
+    Precision="100"
+    ColumnName="SUB_TIPE_DOK"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MKN_TTF_REQ_DOC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DesSubTipeDok"
+    Precision="200"
+    ColumnName="DES_SUB_TIPE_DOK"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MKN_TTF_REQ_DOC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+  </Attribute>
+  <Key
+    Name="MknTtfReqDocCodeCheck">
+    <DesignTime>
+      <Attr Name="_isNotNull" Value="true"/>
+      <Attr Name="_DBObjectName" Value="MKN_TTF_REQ_DOC_CODE_CHECK"/>
+      <Attr Name="_checkCondition" Value='"CODE" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.ttf.createnew.MknTtfReqDoc.Code"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="MknTtfReqDocTipeDokCheck">
+    <DesignTime>
+      <Attr Name="_isNotNull" Value="true"/>
+      <Attr Name="_DBObjectName" Value="MKN_TTF_REQ_DOC_TIPE_DOK_CHECK"/>
+      <Attr Name="_checkCondition" Value='"TIPE_DOK" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.ttf.createnew.MknTtfReqDoc.TipeDok"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="MknttfreqdocPrimaryKey"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="MKNTTFREQDOC_PRIMARY_KEY"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.ttf.createnew.MknTtfReqDoc.Code"/>
+      <Item Value="app.mkp.model.entity.ttf.createnew.MknTtfReqDoc.TipeDok"/>
+    </AttrArray>
+  </Key>
+</Entity>

@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['app.mkp.view.ViewControllerBundle']}"/>
+  <af:decorativeBox id="db1">
+        <f:facet name="center">
+          <af:panelHeader text="#{viewcontrollerBundle.NOTIFIKASI__SETTING}" id="ph1"
+                          icon="/Images/icon/setting_tools.png">
+            <f:facet name="context"/>
+            <f:facet name="menuBar"/>
+            <f:facet name="toolbar"/>
+            <f:facet name="legend"/>
+            <af:panelSplitter id="ps2" orientation="vertical"
+                              splitterPosition="144">
+              <f:facet name="first">
+                <af:query id="qryId1" headerText="Search" disclosed="true"
+                          value="#{bindings.NotifikasiCfgViewCriteriaQuery.queryDescriptor}"
+                          model="#{bindings.NotifikasiCfgViewCriteriaQuery.queryModel}"
+                          queryListener="#{bindings.NotifikasiCfgViewCriteriaQuery.processQuery}"
+                          queryOperationListener="#{bindings.NotifikasiCfgViewCriteriaQuery.processQueryOperation}"
+                          saveQueryMode="hidden" modeChangeVisible="false"
+                          resultComponentId="::pc1:t1"
+                          inlineStyle="margin:5px;"/>
+              </f:facet>
+              <f:facet name="second">
+                <af:panelSplitter id="ps1" splitterPosition="550"
+                                  styleClass="AFStretchWidth">
+                  <f:facet name="first">
+                    <af:panelCollection id="pc1" featuresOff="detach"
+                                        inlineStyle="background-color:InactiveCaption; margin:5px;"
+                                        styleClass="AFStretchWidth">
+                      <f:facet name="menus"/>
+                      <f:facet name="toolbar">
+                        <af:toolbar id="t2">
+                          <af:commandToolbarButton actionListener="#{bindings.CreateInsert.execute}"
+                                                   text="Tambah Notifikasi"
+                                                   disabled="#{!bindings.CreateInsert.enabled}"
+                                                   id="ctb1"
+                                                   icon="/Images/icon/bell_add.png"/>
+                          <af:commandToolbarButton actionListener="#{bindings.Delete.execute}"
+                                                   text="Delete Notifikasi"
+                                                   disabled="#{!bindings.Delete.enabled}"
+                                                   id="ctb2"
+                                                   icon="/Images/icon/bell_delete.png"/>
+                          <af:commandToolbarButton actionListener="#{bindings.Execute.execute}"
+                                                   text="Refresh"
+                                                   disabled="#{!bindings.Execute.enabled}"
+                                                   id="ctb3"
+                                                   icon="/Images/icon/refresh.png"/>
+                        </af:toolbar>
+                      </f:facet>
+                      <f:facet name="statusbar"/>
+                      <af:table value="#{bindings.NotifikasiCfgView1.collectionModel}"
+                                var="row"
+                                rows="#{bindings.NotifikasiCfgView1.rangeSize}"
+                                emptyText="#{bindings.NotifikasiCfgView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                fetchSize="#{bindings.NotifikasiCfgView1.rangeSize}"
+                                rowBandingInterval="0"
+                                selectedRowKeys="#{bindings.NotifikasiCfgView1.collectionModel.selectedRow}"
+                                selectionListener="#{bindings.NotifikasiCfgView1.collectionModel.makeCurrent}"
+                                rowSelection="single" id="t1"
+                                columnStretching="column:c3"
+                                partialTriggers="::ctb1 ::ctb2 :::cb1 :::cb2 ::ctb3">
+                        <af:column id="c6" rowHeader="true" width="10"/>
+                        <af:column sortProperty="#{bindings.NotifikasiCfgView1.hints.NamaNotifikasi.name}"
+                                   sortable="true"
+                                   headerText="#{bindings.NotifikasiCfgView1.hints.NamaNotifikasi.label}"
+                                   id="c2" width="120" noWrap="false">
+                          <af:outputText value="#{row.NamaNotifikasi}"
+                                         id="ot2"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.NotifikasiCfgView1.hints.MailTemplateNm.name}"
+                                   sortable="true"
+                                   headerText="#{bindings.NotifikasiCfgView1.hints.MailTemplateNm.label}"
+                                   id="c3" width="110" noWrap="false">
+                          <af:selectOneChoice value="#{row.bindings.MailTemplateNm.inputValue}"
+                                              label="#{row.bindings.MailTemplateNm.label}"
+                                              required="#{bindings.NotifikasiCfgView1.hints.MailTemplateNm.mandatory}"
+                                              shortDesc="#{bindings.NotifikasiCfgView1.hints.MailTemplateNm.tooltip}"
+                                              id="soc1" readOnly="true">
+                            <f:selectItems value="#{row.bindings.MailTemplateNm.items}"
+                                           id="si1"/>
+                          </af:selectOneChoice>
+                        </af:column>
+                        <af:column headerText="#{bindings.NotifikasiCfgView1.hints.NotifParams.label}"
+                                   id="c4" noWrap="false" width="120"
+                                   inlineStyle="background-color:Yellow;">
+                          <af:outputText value="#{row.NotifParams}" id="ot1"
+                                         visible="#{row.NotificationType == 'E'}"/>
+                          <af:outputText value="-" id="ot3"
+                                         visible="#{row.NotificationType == 'B'}"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.NotifikasiCfgView1.hints.NotificationType.name}"
+                                   sortable="true"
+                                   headerText="#{bindings.NotifikasiCfgView1.hints.NotificationType.label}"
+                                   id="c1" width="70" align="center">
+                          <af:selectOneChoice value="#{row.bindings.NotificationType.inputValue}"
+                                              label="#{row.bindings.NotificationType.label}"
+                                              required="#{bindings.NotifikasiCfgView1.hints.NotificationType.mandatory}"
+                                              shortDesc="#{bindings.NotifikasiCfgView1.hints.NotificationType.tooltip}"
+                                              id="soc2" readOnly="true">
+                            <f:selectItems value="#{row.bindings.NotificationType.items}"
+                                           id="si2"/>
+                          </af:selectOneChoice>
+                        </af:column>
+                        <af:column id="c5"
+                                   headerText="Posisi / Jabatan Penerima"
+                                   align="center" width="55">
+                          <!--af:commandImageLink id="cil1" disabled="true" visible="#{row.NotificationType == 'E'}"
+                                         icon="/Images/icon/posisi_penerima_off.png"/>
+                    <af:commandImageLink id="cil2" visible="#{row.NotificationType == 'B'}"
+                                         icon="/Images/icon/posisi_penerima.png"
+                                           action="assignRecipient"-->
+                          <af:commandImageLink id="cil2"
+                                               icon="/Images/icon/posisi_penerima.png"
+                                               action="assignRecipient">
+                            <af:setPropertyListener from="#{row.rowKeyStr}"
+                                                    to="#{pageFlowScope.editKey}"
+                                                    type="action"/>
+                          </af:commandImageLink>
+                        </af:column>
+                      </af:table>
+                    </af:panelCollection>
+                  </f:facet>
+                  <f:facet name="second">
+                    <af:decorativeBox id="db2" inlineStyle="margin:5px;">
+                      <f:facet name="center">
+                        <af:panelHeader text="Edit Notifikasi" id="ph2"
+                                        icon="/Images/icon/bell_edit.png">
+                          <f:facet name="context"/>
+                          <f:facet name="menuBar"/>
+                          <f:facet name="toolbar"/>
+                          <f:facet name="legend"/>
+                          <f:facet name="info"/>
+                          <af:panelGroupLayout layout="scroll"
+                                               xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                                               id="pgl1">
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <af:panelFormLayout id="pfl1"
+                                                partialTriggers="pc1:t1">
+                              <af:selectOneRadio value="#{bindings.NotificationType.inputValue}"
+                                                 label="#{bindings.NotificationType.label}"
+                                                 immediate="true"
+                                                 autoSubmit="true"
+                                                 required="#{bindings.NotificationType.hints.mandatory}"
+                                                 shortDesc="#{bindings.NotificationType.hints.tooltip}"
+                                                 id="sor1">
+                                <f:selectItems value="#{bindings.NotificationType.items}"
+                                               id="si4"/>
+                              </af:selectOneRadio>
+                              <af:selectOneChoice value="#{bindings.MailTemplateNm.inputValue}"
+                                                  label="#{bindings.MailTemplateNm.label}"
+                                                  required="#{bindings.MailTemplateNm.hints.mandatory}"
+                                                  shortDesc="#{bindings.MailTemplateNm.hints.tooltip}"
+                                                  immediate="true" id="soc3"
+                                                  partialTriggers="sor1"
+                                                  showRequired="true">
+                                <f:selectItems value="#{bindings.MailTemplateNm.items}"
+                                               id="si3"/>
+                              </af:selectOneChoice>
+                              <af:inputText value="#{bindings.NamaNotifikasi.inputValue}"
+                                            label="#{bindings.NamaNotifikasi.hints.label}"
+                                            required="#{bindings.NamaNotifikasi.hints.mandatory}"
+                                            columns="#{bindings.NamaNotifikasi.hints.displayWidth}"
+                                            maximumLength="#{bindings.NamaNotifikasi.hints.precision}"
+                                            shortDesc="#{bindings.NamaNotifikasi.hints.tooltip}"
+                                            id="it2">
+                                <f:validator binding="#{bindings.NamaNotifikasi.validator}"/>
+                              </af:inputText>
+                              <af:inputText value="#{bindings.Descr.inputValue}"
+                                            label="#{bindings.Descr.hints.label}"
+                                            required="#{bindings.Descr.hints.mandatory}"
+                                            columns="#{bindings.Descr.hints.displayWidth}"
+                                            maximumLength="#{bindings.Descr.hints.precision}"
+                                            shortDesc="#{bindings.Descr.hints.tooltip}"
+                                            id="it1" rows="2">
+                                <f:validator binding="#{bindings.Descr.validator}"/>
+                              </af:inputText>
+                              <af:spacer width="10" height="10" id="s2"/>
+                              <af:panelLabelAndMessage label="#{bindings.NotifParams.hints.label}"
+                                                       id="plam1"
+                                                       inlineStyle="background-color:Yellow;">
+                                <af:outputText value="#{bindings.NotifParams.inputValue}"
+                                               id="ot4"/>
+                              </af:panelLabelAndMessage>
+                              <af:spacer width="10" height="10" id="s4"/>
+                              <af:panelGroupLayout id="pgl2"
+                                                   layout="horizontal">
+                                <af:commandButton actionListener="#{bindings.Commit.execute}"
+                                                  text="  Save  " id="cb1"
+                                                  icon="/Images/icon/save.png"/>
+                                <af:spacer width="10" height="10" id="s3"/>
+                                <af:commandButton actionListener="#{bindings.Rollback.execute}"
+                                                  text="  Cancel  "
+                                                  immediate="true" id="cb2"
+                                                  icon="/Images/icon/cancel.png">
+                                  <af:resetActionListener/>
+                                </af:commandButton>
+                              </af:panelGroupLayout>
+                            </af:panelFormLayout>
+                          </af:panelGroupLayout>
+                        </af:panelHeader>
+                      </f:facet>
+                    </af:decorativeBox>
+                  </f:facet>
+                </af:panelSplitter>
+              </f:facet>
+            </af:panelSplitter>
+          </af:panelHeader>
+        </f:facet>
+      </af:decorativeBox>
+</jsp:root>

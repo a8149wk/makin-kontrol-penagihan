@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="NotifikasiPosition"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName="NOTIFIKASI_POSITION"
+  AliasName="NotifikasiPosition"
+  BindingStyle="OracleName"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <AttrArray Name="_publishEvents"/>
+  </DesignTime>
+  <Attribute
+    Name="NotifikasiId"
+    IsNotNull="true"
+    Precision="38"
+    Scale="0"
+    ColumnName="NOTIFIKASI_ID"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    TableName="NOTIFIKASI_POSITION"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="UsrPosition"
+    IsNotNull="true"
+    Precision="8"
+    ColumnName="USR_POSITION"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    TableName="NOTIFIKASI_POSITION"
+    RetrievedOnUpdate="true"
+    RetrievedOnInsert="true"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="8"/>
+    </DesignTime>
+  </Attribute>
+  <AccessorAttribute
+    Name="NotifikasiCfg"
+    Association="app.mkp.model.entity.notification.config.NotifikasiCfgPositionFkAssoc"
+    AssociationEnd="app.mkp.model.entity.notification.config.NotifikasiCfgPositionFkAssoc.NotifikasiCfg"
+    AssociationOtherEnd="app.mkp.model.entity.notification.config.NotifikasiCfgPositionFkAssoc.NotifikasiPosition"
+    Type="app.mkp.model.entity.notification.config.NotifikasiCfgImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="NotifikasiPositionPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="NOTIFIKASI_POSITION_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="app.mkp.model.entity.notification.config.NotifikasiPosition.NotifikasiId"/>
+      <Item
+        Value="app.mkp.model.entity.notification.config.NotifikasiPosition.Position"/>
+      <Item
+        Value="app.mkp.model.entity.notification.config.NotifikasiPosition.UsrPosition"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013534">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013534"/>
+      <Attr Name="_checkCondition" Value='"NOTIFIKASI_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="app.mkp.model.entity.notification.config.NotifikasiPosition.NotifikasiId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013535">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013535"/>
+      <Attr Name="_checkCondition" Value='"POSITION" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="app.mkp.model.entity.notification.config.NotifikasiPosition.Position"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="fk_NotifikasiPosition">
+    <DesignTime>
+      <Attr Name="_isCascadeDelete" Value="true"/>
+      <Attr Name="_referencedKey" Value="NOTIFIKASI_CFG_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="FK_NOTIFIKASI_POSITION"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="app.mkp.model.entity.notification.config.NotifikasiPosition.NotifikasiId"/>
+    </AttrArray>
+  </Key>
+</Entity>

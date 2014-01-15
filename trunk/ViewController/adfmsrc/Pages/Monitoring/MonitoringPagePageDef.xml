@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.61.92" id="MonitoringPagePageDef"
+                Package="Pages.Monitoring">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="TtfMonitoringView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="TtfMonitoringView1Iterator"/>
+    <searchRegion Criteria="TtfMonitoringViewCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="TtfMonitoringView1Iterator"
+                  id="TtfMonitoringViewCriteriaQuery"/>
+    <iterator Binds="TtfMonitoringDetail1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="TtfMonitoringDetail1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="TtfMonitoringView1Iterator" id="TtfMonitoringView1">
+      <nodeDefinition DefName="app.mkp.model.view.ttf.monitoring.TtfMonitoringView"
+                      Name="TtfMonitoringView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="UnitcompanyId"/>
+          <Item Value="SupplierId"/>
+          <Item Value="InvoiceDate"/>
+          <Item Value="Pstart"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="TtfMonitoringView1Iterator" StaticList="false"
+          Uses="LOV_UnitcompanyId" id="UnitcompanyId" DTSupportsMRU="true"/>
+    <list IterBinding="TtfMonitoringView1Iterator" StaticList="false"
+          Uses="LOV_SupplierId" id="SupplierId" DTSupportsMRU="true"/>
+    <tree IterBinding="TtfMonitoringDetail1Iterator" id="TtfMonitoringDetail1">
+      <nodeDefinition DefName="app.mkp.model.view.ttf.monitoring.TtfMonitoringDetail"
+                      Name="TtfMonitoringDetail10">
+        <AttrNames>
+          <Item Value="Pstart"/>
+          <Item Value="Pend"/>
+          <Item Value="Aname"/>
+          <Item Value="UpdatedBy"/>
+          <Item Value="Astatus"/>
+          <Item Value="CommentText"/>
+          <Item Value="Astart"/>
+          <Item Value="Aend"/>
+          <Item Value="AssignedTo"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="TtfMonitoringView1Iterator" id="Presult">
+      <AttrNames>
+        <Item Value="Presult"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="TtfMonitoringDetail1Iterator" id="Execute"
+            RequiresUpdateModel="true" Action="iteratorExecute"/>
+    <attributeValues IterBinding="TtfMonitoringView1Iterator" id="Id">
+      <AttrNames>
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <view id="Login">
+    <page>/Login.jspx</page>
+  </view>
+  <view id="MainUserDashboard">
+    <page>/Pages/MainUserDashboard.jspx</page>
+  </view>
+  <view id="CreateNewTtf">
+    <page>/Pages/CreateNewTtf/CreateNewTtf.jspx</page>
+  </view>
+  <view id="MyTtf">
+    <page>/Pages/MyTtf/MyTtf.jspx</page>
+  </view>
+  <view id="Searching">
+    <page>/Pages/Searching/Searching.jspx</page>
+  </view>
+  <view id="Monitoring">
+    <page>/Pages/Monitoring/Monitoring.jspx</page>
+  </view>
+  <view id="RoleUser">
+    <page>/Pages/Admin/Role/RoleUser.jspx</page>
+  </view>
+  <view id="LinkDocument">
+    <page>/Pages/LinkDocument/LinkDocument.jspx</page>
+  </view>
+  <view id="Error">
+    <page>/Error.jspx</page>
+  </view>
+  <view id="BussinesRule">
+    <page>/Pages/BussinesRule/BussinesRule.jspx</page>
+  </view>
+  <view id="MailConfig">
+    <page>/Pages/MailConfig/MailConfig.jspx</page>
+  </view>
+  <view id="LevelOfAuth">
+    <page>/Pages/LevelOfAuth/LevelOfAuth.jspx</page>
+  </view>
+  <view id="NotificationConfig">
+    <page>/Pages/NotifConfig/NotificationConfig.jspx</page>
+  </view>
+  <url-view id="DmsApps">
+    <url>#{UserData.appDmsUrl}/cs/</url>
+  </url-view>
+  <url-view id="BpmApps">
+    <url>#{UserData.appBpmUrl}/bpm/workspace/</url>
+  </url-view>
+  <view id="Utilisasi">
+    <page>/Pages/Utilisasi/Utilisasi.jspx</page>
+  </view>
+  <view id="ErrorLogin">
+    <page>/ErrorLogin.jspx</page>
+  </view>
+  <control-flow-rule id="__23">
+    <from-activity-id id="__22">*</from-activity-id>
+    <control-flow-case id="__24">
+      <from-outcome id="__26">createnew</from-outcome>
+      <to-activity-id id="__25">CreateNewTtf</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__27">
+      <from-outcome id="__29">myttf</from-outcome>
+      <to-activity-id id="__28">MyTtf</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__30">
+      <from-outcome id="__32">search</from-outcome>
+      <to-activity-id id="__31">Searching</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__33">
+      <from-outcome id="__35">monitor</from-outcome>
+      <to-activity-id id="__34">Monitoring</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__40">
+      <from-outcome id="__41">role</from-outcome>
+      <to-activity-id id="__39">RoleUser</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__37">
+      <from-outcome id="__38">linkdokumen</from-outcome>
+      <to-activity-id id="__36">LinkDocument</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__10">
+      <from-outcome id="__11">bussinesrule</from-outcome>
+      <to-activity-id id="__9">BussinesRule</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__13">
+      <from-outcome id="__47">mailconfig</from-outcome>
+      <to-activity-id id="__12">MailConfig</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__49">
+      <from-outcome id="__50">levelofauth</from-outcome>
+      <to-activity-id id="__48">LevelOfAuth</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__59">
+      <from-outcome id="__60">notifconfig</from-outcome>
+      <to-activity-id id="__58">NotificationConfig</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__51">
+      <from-outcome id="__53">gotoDms</from-outcome>
+      <to-activity-id id="__52">DmsApps</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__62">
+      <from-outcome id="__63">gotoBpm</from-outcome>
+      <to-activity-id id="__61">BpmApps</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__64">
+      <from-outcome id="__66">utilisasi</from-outcome>
+      <to-activity-id id="__65">Utilisasi</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__77">
+      <from-outcome id="__78">loginAgain</from-outcome>
+      <to-activity-id id="__79">Login</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__67">
+    <from-activity-id id="__68">Login</from-activity-id>
+    <control-flow-case id="__70">
+      <from-outcome id="__71">errlogin</from-outcome>
+      <to-activity-id id="__69">ErrorLogin</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__81">
+      <from-outcome id="__82">errglobal</from-outcome>
+      <to-activity-id id="__80">Error</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <managed-bean id="__3">
+    <managed-bean-name id="__2">Menu</managed-bean-name>
+    <managed-bean-class id="__1">app.mkp.backing.MenuBean</managed-bean-class>
+    <managed-bean-scope id="__4">session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__5">
+    <managed-bean-name id="__6">UserData</managed-bean-name>
+    <managed-bean-class id="__8">app.mkp.backing.UserData</managed-bean-class>
+    <managed-bean-scope id="__7">session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__15">
+    <managed-bean-name id="__16">Login</managed-bean-name>
+    <managed-bean-class id="__14">app.mkp.backing.LoginBean</managed-bean-class>
+    <managed-bean-scope id="__17">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__19">
+    <managed-bean-name id="__20">Logout</managed-bean-name>
+    <managed-bean-class id="__21">app.mkp.backing.LogoutBean</managed-bean-class>
+    <managed-bean-scope id="__18">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__56">
+    <managed-bean-name id="__54">TimerBean</managed-bean-name>
+    <managed-bean-class id="__57">app.mkp.backing.timer.TimerBean</managed-bean-class>
+    <managed-bean-scope id="__55">request</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='windows-1252' ?>
+<!DOCTYPE JboProject SYSTEM "jbo_03_01.dtd">
+<!---->
+
+<JboProject
+   xmlns="http://xmlns.oracle.com/bc4j"
+   Name="Model"
+   Version="11.1.1.64.93"
+   SeparateXMLFiles="true"
+   PackageName="app.mkp.model">
+   <DesignTime>
+      <Attr Name="_appModuleNames6" Value="app.mkp.model.LevelOfAuthorityAM"/>
+      <Attr Name="_appModuleNames3" Value="app.mkp.model.TandaTerimaFakturAM"/>
+      <Attr Name="_appModuleNames2" Value="app.mkp.model.NotificationAM"/>
+      <Attr Name="_jprName" Value="../../../../Model.jpr"/>
+      <Attr Name="_appModuleNames5" Value="app.mkp.model.BussinesRuleAM"/>
+      <Attr Name="_appModuleNames4" Value="app.mkp.model.AdminAM"/>
+      <Attr Name="_appModuleNames1" Value="app.mkp.model.SecurityAM"/>
+      <Attr Name="_appModuleNames0" Value="app.mkp.model.MenuAM"/>
+      <Attr Name="_NamedConnection" Value="MKPConnection"/>
+   </DesignTime>
+   <Containee
+      Name="admin"
+      PackageName="app.mkp.model.entity.admin"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_EO" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="bussinesrule"
+      PackageName="app.mkp.model.entity.bussinesrule"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_EO" Value="true"/>
+         <Attr Name="_AS" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="exchange"
+      PackageName="app.mkp.model.entity.exchange"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_EO" Value="true"/>
+         <Attr Name="_AS" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="loa"
+      PackageName="app.mkp.model.entity.loa"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_EO" Value="true"/>
+         <Attr Name="_AS" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="menu"
+      PackageName="app.mkp.model.entity.menu"
+      ObjectType="JboPackage"/>
+   <Containee
+      Name="menubar"
+      PackageName="app.mkp.model.entity.menubar"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_EO" Value="true"/>
+         <Attr Name="_AS" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="config"
+      PackageName="app.mkp.model.entity.notification.config"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_EO" Value="true"/>
+         <Attr Name="_AS" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="queue"
+      PackageName="app.mkp.model.entity.notification.event.queue"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_EO" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="mail"
+      PackageName="app.mkp.model.entity.notification.mail"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_EO" Value="true"/>
+         <Attr Name="_AS" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="mailtemplate"
+      PackageName="app.mkp.model.entity.notification.mailtemplate"
+      ObjectType="JboPackage"/>
+   <Containee
+      Name="param"
+      PackageName="app.mkp.model.entity.param"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_EO" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="createnew"
+      PackageName="app.mkp.model.entity.ttf.createnew"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_EO" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="linkdoc"
+      PackageName="app.mkp.model.entity.ttf.linkdoc"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_EO" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="monitoring"
+      PackageName="app.mkp.model.entity.ttf.monitoring"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_EO" Value="true"/>
+         <Attr Name="_AS" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="ttf"
+      PackageName="app.mkp.model.entity.ttf"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_EO" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="model"
+      PackageName="app.mkp.model"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_AM" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="admin"
+      PackageName="app.mkp.model.view.admin"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="bussinesrule"
+      PackageName="app.mkp.model.view.bussinesrule"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+         <Attr Name="_VL" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="exchange"
+      PackageName="app.mkp.model.view.exchange"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+         <Attr Name="_VL" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="loa"
+      PackageName="app.mkp.model.view.loa"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+         <Attr Name="_VL" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="lov"
+      PackageName="app.mkp.model.view.lov"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="menubar"
+      PackageName="app.mkp.model.view.menubar"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="config"
+      PackageName="app.mkp.model.view.notification.config"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+         <Attr Name="_VL" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="queue"
+      PackageName="app.mkp.model.view.notification.event.queue"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="mail"
+      PackageName="app.mkp.model.view.notification.mail"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+         <Attr Name="_VL" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="param"
+      PackageName="app.mkp.model.view.param"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+         <Attr Name="_VL" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="createnew"
+      PackageName="app.mkp.model.view.ttf.createnew"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+         <Attr Name="_VL" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="linkdoc"
+      PackageName="app.mkp.model.view.ttf.linkdoc"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+         <Attr Name="_VL" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="monitoring"
+      PackageName="app.mkp.model.view.ttf.monitoring"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+         <Attr Name="_VL" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="myttf"
+      PackageName="app.mkp.model.view.ttf.myttf"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+         <Attr Name="_VL" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="report"
+      PackageName="app.mkp.model.view.ttf.report"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="utilisasi"
+      PackageName="app.mkp.model.view.ttf.utilisasi"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+      </DesignTime>
+   </Containee>
+</JboProject>

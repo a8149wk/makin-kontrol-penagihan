@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.61.92" id="InitialDocumentListPageDef"
+                Package="Pages.CreateNewTtf">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="InitialDocumentTtfView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="InitialDocumentTtfView1Iterator"/>
+    <searchRegion Criteria="InitialDocumentTtfViewCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="InitialDocumentTtfView1Iterator"
+                  id="InitialDocumentTtfViewCriteriaQuery"/>
+    <iterator Binds="InvoiceView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="InvoiceView1Iterator"/>
+    <searchRegion Criteria="InitialDocumentTtfViewCriteria1"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="InitialDocumentTtfView1Iterator"
+                  id="InitialDocumentTtfViewCriteria1Query"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="InitialDocumentTtfView1Iterator"
+          id="InitialDocumentTtfView1">
+      <nodeDefinition DefName="app.mkp.model.view.ttf.createnew.InitialDocumentTtfView"
+                      Name="InitialDocumentTtfView10">
+        <AttrNames>
+          <Item Value="TipeDok"/>
+          <Item Value="PihakTerkait"/>
+          <Item Value="DeptTerkait"/>
+          <Item Value="Tanggal"/>
+          <Item Value="JudulDok"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="InvoiceView1Iterator" id="InvoiceView1">
+      <nodeDefinition DefName="app.mkp.model.view.ttf.createnew.InvoiceView"
+                      Name="InvoiceView10">
+        <AttrNames>
+          <Item Value="NoInvoice"/>
+          <Item Value="NilaiInvoice"/>
+          <Item Value="Keterangan"/>
+          <Item Value="Id"/>
+          <Item Value="TtfExists"/>
+          <Item Value="MataUang"/>
+          <Item Value="TtfStatus"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="InvoiceView1Iterator" id="Execute"
+            RequiresUpdateModel="true" Action="iteratorExecute"/>
+  </bindings>
+</pageDefinition>

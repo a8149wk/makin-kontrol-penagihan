@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="manage-my-ttf">
+    <default-activity id="__1">ExecuteWithParams</default-activity>
+    <view id="MyTTFPage">
+      <page>/Pages/MyTtf/MyTTFPage.jsff</page>
+    </view>
+    <method-call id="ExecuteWithParams">
+      <method>#{bindings.ExecuteWithParams.execute}</method>
+      <outcome id="__2">
+        <fixed-outcome>ExecuteWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-call id="AddNewTtf">
+      <task-flow-reference>
+        <document>/WEB-INF/AddNewTtf.xml</document>
+        <id>AddNewTtf</id>
+      </task-flow-reference>
+      <input-parameter id="__13">
+        <name>dId</name>
+        <value>#{pageFlowScope.dId}</value>
+      </input-parameter>
+      <input-parameter id="__15">
+        <name>mode</name>
+        <value>#{pageFlowScope.mode}</value>
+      </input-parameter>
+      <input-parameter id="__22">
+        <name>mymode</name>
+        <value>#{pageFlowScope.mymode}</value>
+      </input-parameter>
+      <return-value id="__14">
+        <name>dId</name>
+        <value>#{pageFlowScope.dId}</value>
+      </return-value>
+      <return-value id="__16">
+        <name>mode</name>
+        <value>#{pageFlowScope.mode}</value>
+      </return-value>
+      <return-value id="__23">
+        <name>mymode</name>
+        <value>#{pageFlowScope.mymode}</value>
+      </return-value>
+    </task-flow-call>
+    <control-flow-rule id="__3">
+      <from-activity-id id="__4">ExecuteWithParams</from-activity-id>
+      <control-flow-case id="__6">
+        <from-outcome id="__5">ExecuteWithParams</from-outcome>
+        <to-activity-id id="__7">MyTTFPage</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__8">
+      <from-activity-id id="__9">MyTTFPage</from-activity-id>
+      <control-flow-case id="__11">
+        <from-outcome id="__12">reviewTtf</from-outcome>
+        <to-activity-id id="__10">AddNewTtf</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__17">
+      <from-activity-id id="__18">AddNewTtf</from-activity-id>
+      <control-flow-case id="__21">
+        <from-outcome id="__20">SaveAndStay</from-outcome>
+        <to-activity-id id="__19">AddNewTtf</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

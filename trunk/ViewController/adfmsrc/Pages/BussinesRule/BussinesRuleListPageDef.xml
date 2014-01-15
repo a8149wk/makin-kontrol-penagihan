@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="BussinesRuleListPageDef"
+                Package="Pages.BussinesRule">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="BrMainView1" RangeSize="25"
+              DataControl="BussinesRuleAMDataControl" id="BrMainView1Iterator"/>
+    <searchRegion Criteria="BrMainViewCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="BrMainView1Iterator" id="BrMainViewCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="BrMainView1Iterator" id="BrMainView1">
+      <nodeDefinition DefName="app.mkp.model.view.bussinesrule.BrMainView"
+                      Name="BrMainView10">
+        <AttrNames>
+          <Item Value="BrTipe"/>
+          <Item Value="BrRef"/>
+          <Item Value="BrDescr"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" DataControl="BussinesRuleAMDataControl"
+            RequiresUpdateModel="true" Action="commitTransaction"/>
+  </bindings>
+</pageDefinition>

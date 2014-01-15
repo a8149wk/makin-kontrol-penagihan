@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="LovDocument">
+    <default-activity id="__1">LovDocPage</default-activity>
+    <return-value-definition id="__13">
+      <name id="__12">docId</name>
+      <value>#{pageFlowScope.docId}</value>
+    </return-value-definition>
+    <return-value-definition id="__15">
+      <name id="__14">submitOrCancelFlag</name>
+      <value>#{pageFlowScope.submitOrCancelFlag}</value>
+    </return-value-definition>
+    <managed-bean id="__10">
+      <managed-bean-name id="__11">documentLovBean</managed-bean-name>
+      <managed-bean-class id="__8">app.mkp.backing.lov.DocumentLovBean</managed-bean-class>
+      <managed-bean-scope id="__9">request</managed-bean-scope>
+    </managed-bean>
+    <view id="LovDocPage">
+      <page>/Pages/LovDocument/LovDocPage.jspx</page>
+    </view>
+    <task-flow-return id="return">
+      <outcome id="__2">
+        <name>return</name>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__3">
+      <from-activity-id id="__4">LovDocPage</from-activity-id>
+      <control-flow-case id="__6">
+        <from-outcome id="__7">return</from-outcome>
+        <to-activity-id id="__5">return</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <visibility id="__16">
+      <url-invoke-allowed/>
+    </visibility>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,272 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['app.mkp.view.ViewControllerBundle']}"/>
+  <af:decorativeBox id="db1" inlineStyle="margin:5px;">
+    <f:facet name="center">
+      <af:panelHeader text="#{viewcontrollerBundle.MAIN_HDR_UTILISASI}" id="ph1"
+                      icon="/Images/icon/utilisasi.png">
+        <f:facet name="context"/>
+        <f:facet name="menuBar"/>
+        <f:facet name="toolbar"/>
+        <f:facet name="legend"/>
+        <f:facet name="info"/>
+        <af:panelSplitter id="ps1" orientation="vertical" splitterPosition="90"
+                          inlineStyle="margin:5px;">
+          <f:facet name="first">
+            <af:query id="qryId1" headerText="Search" disclosed="true"
+                      value="#{bindings.UtilizationKontrakViewCriteriaQuery.queryDescriptor}"
+                      model="#{bindings.UtilizationKontrakViewCriteriaQuery.queryModel}"
+                      queryListener="#{bindings.UtilizationKontrakViewCriteriaQuery.processQuery}"
+                      queryOperationListener="#{bindings.UtilizationKontrakViewCriteriaQuery.processQueryOperation}"
+                      resultComponentId="::pc1:resId1" saveQueryMode="hidden"
+                      modeChangeVisible="false"/>
+          </f:facet>
+          <f:facet name="second">
+            <af:panelCollection id="pc1" styleClass="AFStretchWidth">
+              <f:facet name="menus">
+                <af:menu text="Export Data" id="m1">
+                  <af:commandMenuItem text="Export Data ke Excel"
+                                      icon="/Images/icon/page_excel.png">
+                    <af:exportCollectionActionListener exportedId="t1"
+                                                       type="excelHTML"
+                                                       filename="Utilisasi Tanda Terima Faktur.xls"
+                                                       title="Utilisasi Tanda Terima Faktur"/>
+                  </af:commandMenuItem>
+                </af:menu>
+              </f:facet>
+              <f:facet name="toolbar"/>
+              <f:facet name="statusbar"/>
+              <af:table value="#{bindings.UtilizationKontrakView11.collectionModel}"
+                        var="row"
+                        rows="#{bindings.UtilizationKontrakView11.rangeSize}"
+                        emptyText="#{bindings.UtilizationKontrakView11.viewable ? 'No data to display.' : 'Access Denied.'}"
+                        fetchSize="#{bindings.UtilizationKontrakView11.rangeSize}"
+                        rowBandingInterval="0" id="t1"
+                        styleClass="AFStretchWidth" visible="true">
+                <af:column sortProperty="#{bindings.UtilizationKontrakView11.hints.UnitcompanyId.name}"
+                           sortable="false"
+                           headerText="#{bindings.UtilizationKontrakView11.hints.UnitcompanyId.label}"
+                           id="c8">
+                  <af:selectOneChoice value="#{row.bindings.UnitcompanyId.inputValue}"
+                                      label="#{row.bindings.UnitcompanyId.label}"
+                                      required="#{bindings.UtilizationKontrakView11.hints.UnitcompanyId.mandatory}"
+                                      shortDesc="#{bindings.UtilizationKontrakView11.hints.UnitcompanyId.tooltip}"
+                                      id="soc4" readOnly="true">
+                    <f:selectItems value="#{row.bindings.UnitcompanyId.items}"
+                                   id="si4"/>
+                  </af:selectOneChoice>
+                </af:column>
+                <af:column sortProperty="#{bindings.UtilizationKontrakView11.hints.DepartmentId.name}"
+                           sortable="false"
+                           headerText="#{bindings.UtilizationKontrakView11.hints.DepartmentId.label}"
+                           id="c6">
+                  <af:selectOneChoice value="#{row.bindings.DepartmentId.inputValue}"
+                                      label="#{row.bindings.DepartmentId.label}"
+                                      required="#{bindings.UtilizationKontrakView11.hints.DepartmentId.mandatory}"
+                                      shortDesc="#{bindings.UtilizationKontrakView11.hints.DepartmentId.tooltip}"
+                                      id="soc5" readOnly="true">
+                    <f:selectItems value="#{row.bindings.DepartmentId.items}"
+                                   id="si5"/>
+                  </af:selectOneChoice>
+                </af:column>
+                <af:column sortProperty="#{bindings.UtilizationKontrakView11.hints.SupplierId.name}"
+                           sortable="false"
+                           headerText="#{bindings.UtilizationKontrakView11.hints.SupplierId.label}"
+                           id="c9">
+                  <af:selectOneChoice value="#{row.bindings.SupplierId.inputValue}"
+                                      label="#{row.bindings.SupplierId.label}"
+                                      required="#{bindings.UtilizationKontrakView11.hints.SupplierId.mandatory}"
+                                      shortDesc="#{bindings.UtilizationKontrakView11.hints.SupplierId.tooltip}"
+                                      id="soc6" readOnly="true">
+                    <f:selectItems value="#{row.bindings.SupplierId.items}"
+                                   id="si6"/>
+                  </af:selectOneChoice>
+                </af:column>
+                <af:column sortProperty="#{bindings.UtilizationKontrakView11.hints.KontrakNo.name}"
+                           sortable="false"
+                           headerText="#{bindings.UtilizationKontrakView11.hints.KontrakNo.label}"
+                           id="c5">
+                  <af:outputText value="#{row.KontrakNo}" id="ot15"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.UtilizationKontrakView11.hints.PoNo.name}"
+                           sortable="false"
+                           headerText="#{bindings.UtilizationKontrakView11.hints.PoNo.label}"
+                           id="c2">
+                  <af:outputText value="#{row.PoNo}" id="ot9"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.UtilizationKontrakView11.hints.CurrencyId.name}"
+                           sortable="false"
+                           headerText="#{bindings.UtilizationKontrakView11.hints.CurrencyId.label}"
+                           id="c10">
+                  <af:selectOneChoice value="#{row.bindings.CurrencyId.inputValue}"
+                                      label="#{row.bindings.CurrencyId.label}"
+                                      required="#{bindings.UtilizationKontrakView11.hints.CurrencyId.mandatory}"
+                                      shortDesc="#{bindings.UtilizationKontrakView11.hints.CurrencyId.tooltip}"
+                                      id="soc7" readOnly="true">
+                    <f:selectItems value="#{row.bindings.CurrencyId.items}"
+                                   id="si7"/>
+                  </af:selectOneChoice>
+                </af:column>
+                <af:column sortProperty="#{bindings.UtilizationKontrakView11.hints.NilMaxTran.name}"
+                           sortable="false"
+                           headerText="#{bindings.UtilizationKontrakView11.hints.NilMaxTran.label}"
+                           id="c3">
+                  <af:outputText value="#{row.NilMaxTran}" id="ot11">
+                    <af:convertNumber type="currency" minFractionDigits="2"
+                                      maxFractionDigits="2" currencySymbol=""
+                                      locale="id"/>
+                  </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.UtilizationKontrakView11.hints.Util.name}"
+                           sortable="false"
+                           headerText="#{bindings.UtilizationKontrakView11.hints.Util.label}"
+                           id="c4">
+                  <af:outputText value="#{row.Util}" id="ot10">
+                    <af:convertNumber type="currency" minFractionDigits="2"
+                                      maxFractionDigits="2" currencySymbol=""
+                                      locale="id"/>
+                  </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.UtilizationKontrakView11.hints.UtilPercentage.name}"
+                           sortable="false"
+                           headerText="#{bindings.UtilizationKontrakView11.hints.UtilPercentage.label}"
+                           id="c7">
+                  <af:outputText value="#{row.UtilPercentage} %" id="ot6">
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.UtilizationKontrakView11.hints.UtilPercentage.format}"/>
+                  </af:outputText>
+                </af:column>
+              </af:table>
+              <af:table value="#{bindings.UtilizationKontrakView1.collectionModel}"
+                        var="row"
+                        rows="#{bindings.UtilizationKontrakView1.rangeSize}"
+                        emptyText="#{bindings.UtilizationKontrakView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                        fetchSize="#{bindings.UtilizationKontrakView1.rangeSize}"
+                        rowBandingInterval="0"
+                        selectedRowKeys="#{bindings.UtilizationKontrakView1.collectionModel.selectedRow}"
+                        selectionListener="#{bindings.UtilizationKontrakView1.collectionModel.makeCurrent}"
+                        rowSelection="single" id="resId1"
+                        columnStretching="column:resId1c8">
+                <af:column id="c1" headerText="Info PT, Dept., Vendor"
+                           noWrap="false" width="300"
+                           inlineStyle="vertical-align:top;">
+                  <af:panelFormLayout id="pfl1" labelAlignment="top">
+                    <af:selectOneChoice value="#{row.bindings.UnitcompanyId.inputValue}"
+                                        label="#{row.bindings.UnitcompanyId.label}"
+                                        required="#{bindings.UtilizationKontrakView1.hints.UnitcompanyId.mandatory}"
+                                        shortDesc="#{bindings.UtilizationKontrakView1.hints.UnitcompanyId.tooltip}"
+                                        id="soc2" readOnly="true">
+                      <f:selectItems value="#{row.bindings.UnitcompanyId.items}"
+                                     id="si2"/>
+                    </af:selectOneChoice>
+                    <af:selectOneChoice value="#{row.bindings.DepartmentId.inputValue}"
+                                        label="#{row.bindings.DepartmentId.label}"
+                                        required="#{bindings.UtilizationKontrakView1.hints.DepartmentId.mandatory}"
+                                        shortDesc="#{bindings.UtilizationKontrakView1.hints.DepartmentId.tooltip}"
+                                        id="soc1" readOnly="true">
+                      <f:selectItems value="#{row.bindings.DepartmentId.items}"
+                                     id="si1"/>
+                    </af:selectOneChoice>
+                    <af:selectOneChoice value="#{row.bindings.SupplierId.inputValue}"
+                                        label="#{row.bindings.SupplierId.label}"
+                                        required="#{bindings.UtilizationKontrakView1.hints.SupplierId.mandatory}"
+                                        shortDesc="#{bindings.UtilizationKontrakView1.hints.SupplierId.tooltip}"
+                                        id="soc3" readOnly="true">
+                      <f:selectItems value="#{row.bindings.SupplierId.items}"
+                                     id="si3"/>
+                    </af:selectOneChoice>
+                  </af:panelFormLayout>
+                </af:column>
+                <af:column sortProperty="#{bindings.UtilizationKontrakView1.hints.KontrakNo.name}"
+                           sortable="true" headerText="No. Kontrak, No.PO"
+                           id="resId1c4" width="300"
+                           inlineStyle="vertical-align:top;">
+                  <af:panelFormLayout id="pfl2" labelAlignment="top">
+                    <af:panelLabelAndMessage label="#{bindings.UtilizationKontrakView1.hints.KontrakNo.label}"
+                                             id="plam1">
+                      <af:outputText value="#{row.KontrakNo}" id="ot2"/>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.UtilizationKontrakView1.hints.PoNo.label}"
+                                             id="plam2"
+                                             rendered="#{row.PoNo != null}">
+                      <af:outputText value="#{row.PoNo}" id="ot3"/>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.UtilizationKontrakView1.hints.NilMaxTran.label}"
+                                             id="plam3">
+                      <af:outputText value="#{row.CurrencyId}" id="ot7"/>
+                      <af:spacer width="10" height="10" id="s3"/>
+                      <af:outputText value="#{row.NilMaxTran}" id="ot5">
+                        <af:convertNumber type="currency" minFractionDigits="2"
+                                          maxFractionDigits="2"
+                                          currencySymbol="" locale="id"/>
+                      </af:outputText>
+                    </af:panelLabelAndMessage>
+                  </af:panelFormLayout>
+                </af:column>
+                <af:column sortProperty="#{bindings.UtilizationKontrakView1.hints.Util.name}"
+                           sortable="true"
+                           headerText="#{bindings.UtilizationKontrakView1.hints.Util.label}"
+                           id="resId1c8" inlineStyle="vertical-align:top;"
+                           minimumWidth="200" width="200">
+                  <af:panelGroupLayout id="pgl2" layout="horizontal"
+                                       valign="top">
+                    <dvt:gauge id="gauge1" gaugeType="DIAL"
+                               shortDesc="Utilization"
+                               inlineStyle="width:184px; height:132px;"
+                               value="#{row.UtilPercentage}"
+                               animationOnDisplay="auto"
+                               animationUpColor="#008400"
+                               animationDownColor="#e73900"
+                               animationOnDataChange="auto"
+                               animationDuration="100" ledStyle="LS_ARROW">
+                      <dvt:gaugeBackground>
+                        <dvt:specialEffects/>
+                      </dvt:gaugeBackground>
+                      <dvt:thresholdSet>
+                        <dvt:threshold/>
+                        <dvt:threshold/>
+                        <dvt:threshold/>
+                      </dvt:thresholdSet>
+                      <dvt:gaugeFrame/>
+                      <dvt:indicator/>
+                      <dvt:indicatorBase/>
+                      <dvt:gaugePlotArea/>
+                      <dvt:tickLabel/>
+                      <dvt:tickMark/>
+                      <dvt:topLabel/>
+                      <dvt:bottomLabel/>
+                      <dvt:metricLabel position="LP_WITH_BOTTOM_LABEL"/>
+                    </dvt:gauge>
+                    <af:panelFormLayout id="pfl3" labelAlignment="top">
+                      <af:panelLabelAndMessage label="#{bindings.UtilizationKontrakView1.hints.Util.label}"
+                                               id="plam5">
+                        <af:outputText value="#{row.Util}" id="ot1">
+                          <af:convertNumber type="currency"
+                                            minFractionDigits="2"
+                                            maxFractionDigits="2"
+                                            currencySymbol="" locale="id"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.UtilizationKontrakView1.hints.UtilPercentage.label}"
+                                               id="plam6">
+                        <af:outputText value="#{row.UtilPercentage} %" id="ot4">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.UtilizationKontrakView1.hints.UtilPercentage.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                    </af:panelFormLayout>
+                  </af:panelGroupLayout>
+                </af:column>
+              </af:table>
+            </af:panelCollection>
+          </f:facet>
+        </af:panelSplitter>
+      </af:panelHeader>
+    </f:facet>
+  </af:decorativeBox>
+</jsp:root>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="AssignRecipientFormPageDef"
+                Package="Pages.NotifConfig">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="NotifikasiCfgView1" RangeSize="-1"
+              DataControl="NotificationAMDataControl"
+              id="NotifikasiCfgView1Iterator"/>
+    <iterator id="NotifikasiPositionView1Iterator"
+              Binds="NotifikasiPositionView1"
+              DataControl="NotificationAMDataControl" RangeSize="-1"/>
+    <iterator id="PositionAllView1Iterator" Binds="PositionAllView1"
+              DataControl="NotificationAMDataControl" RangeSize="-1"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="NotifikasiCfgView1Iterator"
+                     id="NamaNotifikasi">
+      <AttrNames>
+        <Item Value="NamaNotifikasi"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="NotifikasiCfgView1Iterator" StaticList="false"
+          Uses="LOV_NotificationType" id="NotificationType"
+          DTSupportsMRU="true"/>
+    <attributeValues IterBinding="NotifikasiCfgView1Iterator" id="IdNotifikasi">
+      <AttrNames>
+        <Item Value="IdNotifikasi"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Commit" DataControl="NotificationAMDataControl"
+            RequiresUpdateModel="true" Action="commitTransaction"/>
+  </bindings>
+</pageDefinition>

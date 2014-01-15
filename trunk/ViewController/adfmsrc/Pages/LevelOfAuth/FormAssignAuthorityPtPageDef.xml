@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="FormAssignAuthorityPtPageDef"
+                Package="Pages.LevelOfAuth">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="LoaMainView1" RangeSize="25"
+              DataControl="LevelOfAuthorityAMDataControl"
+              id="LoaMainView1Iterator"/>
+    <iterator Binds="LoaAuthView1" RangeSize="25"
+              DataControl="LevelOfAuthorityAMDataControl"
+              id="LoaAuthView1Iterator"/>
+    <iterator Binds="LoaAprvrView1" RangeSize="-1"
+              DataControl="LevelOfAuthorityAMDataControl"
+              id="LoaAprvrView1Iterator"/>
+    <iterator id="LoaAprvrPtView1Iterator" Binds="LoaAprvrPtView1"
+              DataControl="LevelOfAuthorityAMDataControl" RangeSize="-1"/>
+    <iterator id="ListPtView1Iterator" Binds="ListPtView1"
+              DataControl="LevelOfAuthorityAMDataControl" RangeSize="-1"/>
+    <iterator id="ListVendorView1Iterator" Binds="ListVendorView1"
+              DataControl="LevelOfAuthorityAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="LoaMainView1Iterator" id="Descr">
+      <AttrNames>
+        <Item Value="Descr"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="LoaMainView1Iterator" StaticList="false"
+          Uses="LOV_LoaTipe" id="LoaTipe" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="LoaAuthView1Iterator" id="LoaName">
+      <AttrNames>
+        <Item Value="LoaName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LoaAuthView1Iterator" id="Descr1">
+      <AttrNames>
+        <Item Value="Descr"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LoaAuthView1Iterator" id="Min1">
+      <AttrNames>
+        <Item Value="Min1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LoaAuthView1Iterator" id="Max1">
+      <AttrNames>
+        <Item Value="Max1"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="LoaAuthView1Iterator" StaticList="false" Uses="LOV_Kurs"
+          id="Kurs" DTSupportsMRU="true"/>
+    <action id="Commit" DataControl="LevelOfAuthorityAMDataControl"
+            RequiresUpdateModel="true" Action="commitTransaction"/>
+    <list IterBinding="LoaAprvrView1Iterator" StaticList="false"
+          Uses="LOV_Approver" id="Approver" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="LoaAuthView1Iterator" id="LoaTipe1">
+      <AttrNames>
+        <Item Value="LoaTipe"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="LoaAprvrView1Iterator" StaticList="false"
+          Uses="LOV_PriorityLvl" id="PriorityLvl" DTSupportsMRU="true"/>
+  </bindings>
+</pageDefinition>

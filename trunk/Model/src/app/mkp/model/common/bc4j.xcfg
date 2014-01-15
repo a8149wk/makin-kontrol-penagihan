@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="app.mkp.model.MenuAM">
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="app.mkp.model.Model" name="MenuAMLocal" ApplicationName="app.mkp.model.MenuAM">
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="app.mkp.model.MenuAM"/>
+         <Custom JDBCDataSource="jdbc/MKPConnectionDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="app.mkp.model.Model" name="MenuAMShared" ApplicationName="app.mkp.model.MenuAM">
+         <AM-Pooling jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1" jbo.ampool.resetnontransactionalstate="false"/>
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="app.mkp.model.MenuAM"/>
+         <Custom JDBCDataSource="jdbc/MKPConnectionDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="app.mkp.model.SecurityAM">
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="app.mkp.model.Model" name="SecurityAMLocal" ApplicationName="app.mkp.model.SecurityAM">
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="app.mkp.model.SecurityAM"/>
+         <Custom JDBCDataSource="jdbc/MKPConnectionDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="app.mkp.model.Model" name="SecurityAMShared" ApplicationName="app.mkp.model.SecurityAM">
+         <AM-Pooling jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1" jbo.ampool.resetnontransactionalstate="false"/>
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="app.mkp.model.SecurityAM"/>
+         <Custom JDBCDataSource="jdbc/MKPConnectionDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="app.mkp.model.NotificationAM">
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="app.mkp.model.Model" name="NotificationAMLocal" ApplicationName="app.mkp.model.NotificationAM">
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="app.mkp.model.NotificationAM"/>
+         <Custom JDBCDataSource="jdbc/MKPConnectionDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="app.mkp.model.Model" name="NotificationAMShared" ApplicationName="app.mkp.model.NotificationAM">
+         <AM-Pooling jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1" jbo.ampool.resetnontransactionalstate="false"/>
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="app.mkp.model.NotificationAM"/>
+         <Custom JDBCDataSource="jdbc/MKPConnectionDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="SI" jbo.project="app.mkp.model.Model" name="NotificationAMService" ApplicationName="app.mkp.model.NotificationAM">
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="app.mkp.model.NotificationAM"/>
+         <Custom JDBCDataSource="jdbc/MKPConnectionDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="app.mkp.model.TandaTerimaFakturAM">
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="app.mkp.model.Model" name="TandaTerimaFakturAMLocal" ApplicationName="app.mkp.model.TandaTerimaFakturAM">
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="app.mkp.model.TandaTerimaFakturAM"/>
+         <Custom JDBCDataSource="jdbc/MKPConnectionDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="app.mkp.model.Model" name="TandaTerimaFakturAMShared" ApplicationName="app.mkp.model.TandaTerimaFakturAM">
+         <AM-Pooling jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1" jbo.ampool.resetnontransactionalstate="false"/>
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="app.mkp.model.TandaTerimaFakturAM"/>
+         <Custom JDBCDataSource="jdbc/MKPConnectionDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="app.mkp.model.AdminAM">
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="app.mkp.model.Model" name="AdminAMLocal" ApplicationName="app.mkp.model.AdminAM">
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="app.mkp.model.AdminAM"/>
+         <Custom JDBCDataSource="jdbc/MKPConnectionDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="app.mkp.model.Model" name="AdminAMShared" ApplicationName="app.mkp.model.AdminAM">
+         <AM-Pooling jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1" jbo.ampool.resetnontransactionalstate="false"/>
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="app.mkp.model.AdminAM"/>
+         <Custom JDBCDataSource="jdbc/MKPConnectionDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="app.mkp.model.BussinesRuleAM">
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="app.mkp.model.Model" name="BussinesRuleAMLocal" ApplicationName="app.mkp.model.BussinesRuleAM">
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="app.mkp.model.BussinesRuleAM"/>
+         <Custom JDBCDataSource="jdbc/MKPConnectionDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="app.mkp.model.Model" name="BussinesRuleAMShared" ApplicationName="app.mkp.model.BussinesRuleAM">
+         <AM-Pooling jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1" jbo.ampool.resetnontransactionalstate="false"/>
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="app.mkp.model.BussinesRuleAM"/>
+         <Custom JDBCDataSource="jdbc/MKPConnectionDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="app.mkp.model.LevelOfAuthorityAM">
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="app.mkp.model.Model" name="LevelOfAuthorityAMLocal" ApplicationName="app.mkp.model.LevelOfAuthorityAM">
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="app.mkp.model.LevelOfAuthorityAM"/>
+         <Custom JDBCDataSource="jdbc/MKPConnectionDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="app.mkp.model.Model" name="LevelOfAuthorityAMShared" ApplicationName="app.mkp.model.LevelOfAuthorityAM">
+         <AM-Pooling jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1" jbo.ampool.resetnontransactionalstate="false"/>
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="app.mkp.model.LevelOfAuthorityAM"/>
+         <Custom JDBCDataSource="jdbc/MKPConnectionDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

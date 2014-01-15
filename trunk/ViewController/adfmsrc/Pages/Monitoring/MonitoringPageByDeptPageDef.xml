@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="MonitoringPageByDeptPageDef"
+                Package="Pages.Monitoring">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="TtfMonitoringByDeptView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="TtfMonitoringByDeptView1Iterator"/>
+    <searchRegion Criteria="TtfMonitoringByDeptViewCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="TtfMonitoringByDeptView1Iterator"
+                  id="TtfMonitoringByDeptViewCriteriaQuery"/>
+    <iterator id="TtfMonitoringDetail2Iterator" Binds="TtfMonitoringDetail2"
+              DataControl="TandaTerimaFakturAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="TtfMonitoringByDeptView1Iterator"
+          id="TtfMonitoringByDeptView1">
+      <nodeDefinition DefName="app.mkp.model.view.ttf.monitoring.TtfMonitoringByDeptView"
+                      Name="TtfMonitoringByDeptView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Did"/>
+          <Item Value="UnitcompanyId"/>
+          <Item Value="SupplierId"/>
+          <Item Value="InvoiceDate"/>
+          <Item Value="CreateDate"/>
+          <Item Value="Pstart"/>
+          <Item Value="Pid"/>
+          <Item Value="Presult"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="TtfMonitoringByDeptView1Iterator" StaticList="false"
+          Uses="LOV_UnitcompanyId" id="UnitcompanyId" DTSupportsMRU="true"/>
+    <list IterBinding="TtfMonitoringByDeptView1Iterator" StaticList="false"
+          Uses="LOV_SupplierId" id="SupplierId" DTSupportsMRU="true"/>
+    <tree IterBinding="TtfMonitoringDetail2Iterator" id="TtfMonitoringDetail2">
+      <nodeDefinition DefName="app.mkp.model.view.ttf.monitoring.TtfMonitoringDetail"
+                      Name="TtfMonitoringDetail20">
+        <AttrNames>
+          <Item Value="Aend"/>
+          <Item Value="Aname"/>
+          <Item Value="AssignedTo"/>
+          <Item Value="Astart"/>
+          <Item Value="Astatus"/>
+          <Item Value="CommentText"/>
+          <Item Value="Pend"/>
+          <Item Value="Pstart"/>
+          <Item Value="UpdatedBy"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="TtfMonitoringByDeptView1Iterator"
+                     id="Presult">
+      <AttrNames>
+        <Item Value="Presult"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="TtfMonitoringDetail2Iterator" id="Execute"
+            InstanceName="TandaTerimaFakturAMDataControl.TtfMonitoringDetail2"
+            DataControl="TandaTerimaFakturAMDataControl"
+            RequiresUpdateModel="true" Action="iteratorExecute"/>
+    <attributeValues IterBinding="TtfMonitoringByDeptView1Iterator" id="Id">
+      <AttrNames>
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

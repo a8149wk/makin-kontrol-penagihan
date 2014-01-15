@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+  <af:panelSplitter id="ps1" inlineStyle="margin:5px;"
+                        splitterPosition="200">
+        <f:facet name="first">
+          <af:panelAccordion id="pa1" inlineStyle="margin:1.0px;">
+            <af:showDetailItem text="Notification" id="sdi1"
+                               icon="/Images/icon/bell.png">
+              <af:spacer width="10" height="10" id="s2"/>
+              <af:navigationPane id="np1" hint="list" level="0">
+                <af:commandNavigationItem text="Setting" id="cni1"
+                                          partialSubmit="true"
+                                          icon="/Images/icon/setting_tools.png">
+                  <af:setPropertyListener from="setting"
+                                          to="#{viewScope.notifikasiBackingBean.currentTF}"
+                                          type="action"/>
+                </af:commandNavigationItem>
+              </af:navigationPane>
+            </af:showDetailItem>
+          </af:panelAccordion>
+        </f:facet>
+        <f:facet name="second">
+          <af:region value="#{bindings.dynamicRegion1.regionModel}" id="r1"
+                     partialTriggers="::np1:cni1"/>
+        </f:facet>
+      </af:panelSplitter>
+</jsp:root>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="manage-notification">
+    <default-activity id="__1">NotifConfigPage</default-activity>
+    <managed-bean id="__5">
+      <managed-bean-name id="__2">notifikasiBackingBean</managed-bean-name>
+      <managed-bean-class id="__3">app.mkp.backing.NotifikasiBackingBean</managed-bean-class>
+      <managed-bean-scope id="__4">view</managed-bean-scope>
+    </managed-bean>
+    <view id="NotifConfigPage">
+      <page>/Pages/NotifConfig/NotifConfigPage.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

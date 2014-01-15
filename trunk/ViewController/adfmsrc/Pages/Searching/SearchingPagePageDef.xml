@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.61.92" id="SearchingPagePageDef"
+                Package="Pages.Searching">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MknTtfSearchingView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="MknTtfSearchingView1Iterator"/>
+    <searchRegion Criteria="MknTtfSearchingViewCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="MknTtfSearchingView1Iterator"
+                  id="MknTtfSearchingViewCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="MknTtfSearchingView1Iterator" id="MknTtfSearchingView1">
+      <nodeDefinition DefName="app.mkp.model.view.ttf.report.MknTtfSearchingView"
+                      Name="MknTtfSearchingView10">
+        <AttrNames>
+          <Item Value="UnitcompanyId"/>
+          <Item Value="DepartmentId"/>
+          <Item Value="Amount"/>
+          <Item Value="InvoiceDate"/>
+          <Item Value="InvoiceDuedate"/>
+          <Item Value="InvoiceNo"/>
+          <Item Value="Memotext"/>
+          <Item Value="PoNo"/>
+          <Item Value="SupplierId"/>
+          <Item Value="TipePembelian"/>
+          <Item Value="CurrencyId"/>
+          <Item Value="PembayaranKe"/>
+          <Item Value="TglTerimaDok"/>
+          <Item Value="CostCenter"/>
+          <Item Value="Bolean1"/>
+          <Item Value="TglBuktiBayar"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

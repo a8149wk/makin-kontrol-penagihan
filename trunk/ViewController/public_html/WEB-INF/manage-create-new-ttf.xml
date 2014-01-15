@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="manage-create-new-ttf">
+    <default-activity id="__20">routeByDept</default-activity>
+    <managed-bean id="__13">
+      <managed-bean-name id="__16">checkAndValidationBean</managed-bean-name>
+      <managed-bean-class id="__14">app.mkp.backing.CheckAndValidationBean</managed-bean-class>
+      <managed-bean-scope id="__15">backingBean</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__53">
+      <managed-bean-name id="__51">initialDocPanelQueryBean</managed-bean-name>
+      <managed-bean-class id="__54">app.mkp.backing.InitialDocPanelQueryBean</managed-bean-class>
+      <managed-bean-scope id="__52">backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="InitialDocumentList">
+      <page>/Pages/CreateNewTtf/InitialDocumentList.jsff</page>
+    </view>
+    <task-flow-call id="AddNewTtf">
+      <task-flow-reference>
+        <document>/WEB-INF/AddNewTtf.xml</document>
+        <id>AddNewTtf</id>
+      </task-flow-reference>
+      <input-parameter id="__8">
+        <name>mode</name>
+        <value>#{pageFlowScope.mode}</value>
+      </input-parameter>
+      <input-parameter id="__9">
+        <name>dId</name>
+        <value>#{pageFlowScope.dId}</value>
+      </input-parameter>
+      <return-value id="__24">
+        <name>dId</name>
+        <value>#{pageFlowScope.dId}</value>
+      </return-value>
+      <return-value id="__25">
+        <name>mode</name>
+        <value>#{pageFlowScope.mode}</value>
+      </return-value>
+    </task-flow-call>
+    <router id="routeByDept">
+      <case>
+        <expression>#{UserData.departmentCode == 'FIN'}</expression>
+        <outcome id="__17">deptFin</outcome>
+      </case>
+      <case>
+        <expression>#{UserData.departmentCode == 'ACC'}</expression>
+        <outcome id="__18">deptAcc</outcome>
+      </case>
+      <default-outcome>other</default-outcome>
+    </router>
+    <method-call id="ExecuteWithParams">
+      <method>#{bindings.ExecuteWithParams.execute}</method>
+      <outcome id="__19">
+        <fixed-outcome>ExecuteWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="Execute">
+      <method>#{bindings.Execute.execute}</method>
+      <outcome id="__42">
+        <fixed-outcome>Execute</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__2">
+      <from-activity-id id="__3">InitialDocumentList</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome id="__6">addEditTtf</from-outcome>
+        <to-activity-id id="__5">AddNewTtf</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__1">
+      <from-activity-id id="__7">AddNewTtf</from-activity-id>
+      <control-flow-case id="__11">
+        <from-outcome id="__12">SaveAndStay</from-outcome>
+        <to-activity-id id="__10">AddNewTtf</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__40">
+        <from-outcome id="__39">CancelAndBack</from-outcome>
+        <to-activity-id id="__41">InitialDocumentList</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__43">
+        <from-outcome id="__45">SaveAndBack</from-outcome>
+        <to-activity-id id="__44">Execute</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__21">
+      <from-activity-id id="__22">routeByDept</from-activity-id>
+      <control-flow-case id="__26">
+        <from-outcome id="__27">deptFin</from-outcome>
+        <to-activity-id id="__23">InitialDocumentList</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__29">
+        <from-outcome id="__30">deptAcc</from-outcome>
+        <to-activity-id id="__28">InitialDocumentList</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__31">
+        <from-outcome id="__33">other</from-outcome>
+        <to-activity-id id="__32">ExecuteWithParams</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__34">
+      <from-activity-id id="__35">ExecuteWithParams</from-activity-id>
+      <control-flow-case id="__38">
+        <from-outcome id="__37">ExecuteWithParams</from-outcome>
+        <to-activity-id id="__36">InitialDocumentList</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__46">
+      <from-activity-id id="__47">Execute</from-activity-id>
+      <control-flow-case id="__50">
+        <from-outcome id="__48">Execute</from-outcome>
+        <to-activity-id id="__49">InitialDocumentList</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

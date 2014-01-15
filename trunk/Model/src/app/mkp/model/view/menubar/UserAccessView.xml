@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="UserAccessView"
+  Version="11.1.1.61.92"
+  InheritPersonalization="true"
+  SelectList="UserAccess.ID, 
+       UserAccess.FIRST_NAME, 
+       UserAccess.MIDDLE_NAME, 
+       UserAccess.LAST_NAME, 
+       UserAccess.USER_NAME, 
+       UserAccess.PASSWORD, 
+       UserAccess.DEPARTMENT, 
+       UserAccess.TITLE, 
+       UserAccess.FULL_NAME, 
+       UserAccess.KD_KNTR"
+  FromList="USER_ACCESS UserAccess"
+  Where="UPPER(UserAccess.USER_NAME) = UPPER(:userLogin)
+AND UPPER(UserAccess.PASSWORD) = UPPER(:userPassword)"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|VarAccess"/>
+  </DesignTime>
+  <Variable
+    Name="userLogin"
+    Kind="where"
+    Type="java.lang.String"/>
+  <Variable
+    Name="userPassword"
+    Kind="where"
+    Type="java.lang.String"/>
+  <EntityUsage
+    Name="UserAccess"
+    Entity="app.mkp.model.entity.menubar.UserAccess"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="UserAccess"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="FirstName"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="FirstName"
+    EntityUsage="UserAccess"
+    AliasName="FIRST_NAME"/>
+  <ViewAttribute
+    Name="MiddleName"
+    PrecisionRule="true"
+    EntityAttrName="MiddleName"
+    EntityUsage="UserAccess"
+    AliasName="MIDDLE_NAME"/>
+  <ViewAttribute
+    Name="LastName"
+    PrecisionRule="true"
+    EntityAttrName="LastName"
+    EntityUsage="UserAccess"
+    AliasName="LAST_NAME"/>
+  <ViewAttribute
+    Name="UserName"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="UserName"
+    EntityUsage="UserAccess"
+    AliasName="USER_NAME"/>
+  <ViewAttribute
+    Name="Password"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Password"
+    EntityUsage="UserAccess"
+    AliasName="PASSWORD"/>
+  <ViewAttribute
+    Name="Department"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Department"
+    EntityUsage="UserAccess"
+    AliasName="DEPARTMENT"/>
+  <ViewAttribute
+    Name="Title"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Title"
+    EntityUsage="UserAccess"
+    AliasName="TITLE"/>
+  <ViewAttribute
+    Name="FullName"
+    PrecisionRule="true"
+    EntityAttrName="FullName"
+    EntityUsage="UserAccess"
+    AliasName="FULL_NAME"/>
+  <ViewAttribute
+    Name="KdKntr"
+    PrecisionRule="true"
+    EntityAttrName="KdKntr"
+    EntityUsage="UserAccess"
+    AliasName="KD_KNTR"/>
+</ViewObject>

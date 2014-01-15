@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MknDokLinkView"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  SelectList="MknDokLink.ID, 
+       MknDokLink.LINK_DOK_DID, 
+       MknDokLink.DID, 
+       MknDokLink.NO_PARENT, 
+       MknDokLink.TIPE_DOK, 
+       AppUrl.APP_URL AS APP_URL1, 
+       AppUrl.APP_ID, 
+       MknDmsMeta.DOC_TITLE, 
+       MknDmsMeta.DOC_NAME, 
+       MknDmsMeta.DID AS DID1, 
+       MknDmsMeta.URL, 
+       MknDmsMeta.TIPE_DOKUMEN, 
+       ('/cs/idcplg?IdcService=DOC_INFO' || '&amp;' ||'dID=' || MknDokLink.LINK_DOK_DID || '&amp;' || 'dDocName=' || MknDmsMeta.DOC_NAME) AS META_URL"
+  FromList="MKN_DOK_LINK MknDokLink, MKN_DMS_META MknDmsMeta, APP_URL AppUrl"
+  Where="AppUrl.APP_ID = 'DMS'
+AND MknDmsMeta.DID = MknDokLink.LINK_DOK_DID"
+  ComponentClass="app.mkp.model.view.ttf.linkdoc.MknDokLinkViewImpl"
+  RowClass="app.mkp.model.view.ttf.linkdoc.MknDokLinkViewRowImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Variable
+    Name="dId"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <ViewAccessor
+    Name="LovDmsMeta1"
+    ViewObjectName="app.mkp.model.view.lov.LovDmsMeta"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="LovYesNo1"
+    ViewObjectName="app.mkp.model.view.lov.LovYesNo"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="LovTipeDokumen1"
+    ViewObjectName="app.mkp.model.view.lov.LovTipeDokumen"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_LinkDokDid"
+    ListVOName="LovDmsMeta1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="LinkDokDid"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Did"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="LblUnion"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_NoParent"
+    ListVOName="LovYesNo1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="NoParent"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ID"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="DESCR"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_TipeDok"
+    ListVOName="LovTipeDokumen1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="TipeDok"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Deskripsi"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="MknDokLink"
+    Entity="app.mkp.model.entity.ttf.linkdoc.MknDokLink"/>
+  <EntityUsage
+    Name="MknDmsMeta"
+    Entity="app.mkp.model.entity.exchange.MknDmsMeta"
+    SourceUsage="app.mkp.model.view.ttf.linkdoc.MknDokLinkView.MknDokLink"
+    ReadOnly="true"
+    Reference="true"
+    DeleteParticipant="false"/>
+  <EntityUsage
+    Name="AppUrl"
+    Entity="app.mkp.model.entity.admin.AppUrl"
+    SourceUsage="app.mkp.model.view.ttf.linkdoc.MknDokLinkView.MknDmsMeta"
+    ReadOnly="true"
+    Reference="true"
+    DeleteParticipant="false"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="MknDokLink"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="LinkDokDid"
+    PrecisionRule="true"
+    EntityAttrName="LinkDokDid"
+    EntityUsage="MknDokLink"
+    AliasName="LINK_DOK_DID"
+    LOVName="LOV_LinkDokDid">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="DOKUMEN"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Did"
+    PrecisionRule="true"
+    EntityAttrName="Did"
+    EntityUsage="MknDokLink"
+    AliasName="DID"/>
+  <ViewAttribute
+    Name="NoParent"
+    PrecisionRule="true"
+    EntityAttrName="NoParent"
+    EntityUsage="MknDokLink"
+    AliasName="NO_PARENT"
+    DefaultValue="Y"
+    LOVName="LOV_NoParent">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="LBL_DOK_TERKAIT"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TipeDok"
+    PrecisionRule="true"
+    EntityAttrName="TipeDok"
+    EntityUsage="MknDokLink"
+    AliasName="TIPE_DOK"
+    LOVName="LOV_TipeDok">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="TIPE_DOKUMEN"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AppUrl1"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="AppUrl"
+    EntityUsage="AppUrl"
+    AliasName="APP_URL1"/>
+  <ViewAttribute
+    Name="AppId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="AppId"
+    EntityUsage="AppUrl"
+    AliasName="APP_ID"/>
+  <ViewAttribute
+    Name="DocTitle"
+    PrecisionRule="true"
+    EntityAttrName="DocTitle"
+    EntityUsage="MknDmsMeta"
+    AliasName="DOC_TITLE"/>
+  <ViewAttribute
+    Name="DocName"
+    PrecisionRule="true"
+    EntityAttrName="DocName"
+    EntityUsage="MknDmsMeta"
+    AliasName="DOC_NAME"/>
+  <ViewAttribute
+    Name="Did1"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Did"
+    EntityUsage="MknDmsMeta"
+    AliasName="DID1"/>
+  <ViewAttribute
+    Name="Url"
+    PrecisionRule="true"
+    EntityAttrName="Url"
+    EntityUsage="MknDmsMeta"
+    AliasName="URL"/>
+  <ViewAttribute
+    Name="TipeDokumen"
+    PrecisionRule="true"
+    EntityAttrName="TipeDokumen"
+    EntityUsage="MknDmsMeta"
+    AliasName="TIPE_DOKUMEN"
+    IsUpdateable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="TIPE_DOKUMEN"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MetaUrl"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="META_URL"
+    SQLType="VARCHAR"
+    Precision="255"
+    Expression="'/cs/idcplg?IdcService=DOC_INFO' || '&amp;' ||'dID=' || MknDokLink.LINK_DOK_DID || '&amp;' || 'dDocName=' || MknDmsMeta.DOC_NAME"/>
+  <ViewCriteria
+    Name="MknDokLinkViewCriteria"
+    ViewObjectName="app.mkp.model.view.ttf.linkdoc.MknDokLinkView"
+    Conjunction="AND"
+    Mode="3">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow17"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="Did"
+        ViewAttribute="Did"
+        Operator="="
+        Conjunction="AND"
+        Value=":dId"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="app.mkp.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

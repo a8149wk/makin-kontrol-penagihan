@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="manage_monitoring_manage_monitoring_ExecuteWithParamsPageDef"
+                Package="app.mkp.view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="TtfMonitoringByDeptView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="TtfMonitoringByDeptView1Iterator" Refresh="never"/>
+  </executables>
+  <bindings>
+    <action IterBinding="TtfMonitoringByDeptView1Iterator"
+            id="ExecuteWithParams" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="idTtf" NDType="java.lang.String"/>
+      <NamedData NDName="unitComp" NDType="java.lang.String"/>
+      <NamedData NDName="supplierId" NDType="java.lang.String"/>
+      <NamedData NDName="invStart" NDType="oracle.jbo.domain.Date"/>
+      <NamedData NDName="invEnd" NDType="oracle.jbo.domain.Date"/>
+      <NamedData NDName="pStart" NDType="oracle.jbo.domain.Date"/>
+      <NamedData NDName="pEnd" NDType="oracle.jbo.domain.Date"/>
+      <NamedData NDName="deptCode" NDValue="#{UserData.departmentCode}"
+                 NDType="java.lang.String"/>
+    </action>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+  <af:panelStretchLayout id="psl1">
+    <f:facet name="center">
+      <af:panelSplitter id="ps1" inlineStyle="margin:5px;"
+                        splitterPosition="200">
+        <f:facet name="first">
+          <af:panelAccordion id="pa1" inlineStyle="margin:1.0px;">
+            <af:showDetailItem text="Mail" id="sdi1"
+                               icon="/Images/icon/email.png">
+              <af:spacer width="10" height="10" id="s2"/>
+              <af:navigationPane id="np1" hint="list" level="0">
+                <af:commandNavigationItem text="Body Mail Template" id="cni1"
+                                          partialSubmit="true"
+                                          icon="/Images/icon/mail_yellow.png">
+                  <af:setPropertyListener from="template"
+                                          to="#{viewScope.mailBackingBean.currentTF}"
+                                          type="action"/>
+                </af:commandNavigationItem>
+                <af:commandNavigationItem text="Mail Parameter" id="cni2"
+                                          partialSubmit="true"
+                                          icon="/Images/icon/input_parameter.png">
+                  <af:setPropertyListener from="mailparam"
+                                          to="#{viewScope.mailBackingBean.currentTF}"
+                                          type="action"/>
+                </af:commandNavigationItem>
+              </af:navigationPane>
+            </af:showDetailItem>
+            <af:showDetailItem text="Configuration" id="sdi3"
+                               icon="/Images/icon/wrench_orange.png"
+                               visible="false">
+              <af:spacer width="10" height="10" id="s1"/>
+              <af:navigationPane id="np2" hint="list" level="0">
+                <af:commandNavigationItem text="Server Setting" id="cni3"
+                                          partialSubmit="true"
+                                          icon="/Images/icon/mail_server_setting.png">
+                  <af:setPropertyListener from="config"
+                                          to="#{viewScope.mailBackingBean.currentTF}"
+                                          type="action"/>
+                </af:commandNavigationItem>
+              </af:navigationPane>
+            </af:showDetailItem>
+          </af:panelAccordion>
+        </f:facet>
+        <f:facet name="second">
+          <af:region value="#{bindings.dynamicRegion1.regionModel}" id="r1"/>
+        </f:facet>
+      </af:panelSplitter>
+    </f:facet>
+  </af:panelStretchLayout>
+</jsp:root>
