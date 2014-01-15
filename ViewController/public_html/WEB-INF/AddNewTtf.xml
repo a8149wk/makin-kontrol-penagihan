@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="AddNewTtf">
+    <default-activity id="__1">routeByMode</default-activity>
+    <transaction id="__38">
+      <new-transaction/>
+    </transaction>
+    <task-flow-reentry id="__39">
+      <reentry-outcome-dependent/>
+    </task-flow-reentry>
+    <input-parameter-definition id="__18">
+      <name id="__19">dId</name>
+      <value>#{pageFlowScope.dId}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__21">
+      <name id="__20">mode</name>
+      <value>#{pageFlowScope.mode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__94">
+      <name id="__93">mymode</name>
+      <value>#{pageFlowScope.mymode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <return-value-definition id="__52">
+      <name id="__51">dId</name>
+      <value>#{pageFlowScope.dId}</value>
+      <class>java.lang.String</class>
+    </return-value-definition>
+    <return-value-definition id="__54">
+      <name id="__53">mode</name>
+      <value>#{'Edit'}</value>
+      <class>java.lang.String</class>
+    </return-value-definition>
+    <return-value-definition id="__91">
+      <name id="__92">mymode</name>
+      <value>#{'MyEdit'}</value>
+      <class>java.lang.String</class>
+    </return-value-definition>
+    <managed-bean id="__33">
+      <managed-bean-name id="__42">addedDocTtfBean</managed-bean-name>
+      <managed-bean-class id="__32">app.mkp.backing.AddedDocTtfBean</managed-bean-class>
+      <managed-bean-scope id="__34">request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__77">
+      <managed-bean-name id="__76">browseDocumentBean</managed-bean-name>
+      <managed-bean-class id="__75">app.mkp.backing.lov.BrowseDocumentBean</managed-bean-class>
+      <managed-bean-scope id="__78">request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__83">
+      <managed-bean-name id="__82">oracle$adfinternal$view$rich$dailogInlineDocument</managed-bean-name>
+      <managed-bean-class id="__84">java.util.TreeMap</managed-bean-class>
+      <managed-bean-scope id="__85">application</managed-bean-scope>
+    </managed-bean>
+    <view id="TtfForm">
+      <page>/Pages/CreateNewTtf/TtfForm.jsff</page>
+    </view>
+    <router id="routeByMode">
+      <case>
+        <expression>#{pageFlowScope.mode == 'Add'}</expression>
+        <outcome id="__13">addNew</outcome>
+      </case>
+      <case>
+        <expression>#{pageFlowScope.mode == 'Edit'}</expression>
+        <outcome id="__14">edit</outcome>
+      </case>
+      <default-outcome>addNew</default-outcome>
+    </router>
+    <method-call id="CreateInsert">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome id="__2">
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-return id="SaveAndBack">
+      <outcome id="__30">
+        <name>SaveAndBack</name>
+        <reentry-not-allowed/>
+        <commit/>
+      </outcome>
+    </task-flow-return>
+    <task-flow-return id="CancelAndBack">
+      <outcome id="__31">
+        <name>CancelAndBack</name>
+        <reentry-not-allowed/>
+        <rollback/>
+      </outcome>
+    </task-flow-return>
+    <view id="TtfFormReview">
+      <page>/Pages/CreateNewTtf/TtfFormReview.jsff</page>
+    </view>
+    <method-call id="ExecuteWithParams">
+      <method>#{bindings.ExecuteWithParams.execute}</method>
+      <outcome id="__22">
+        <fixed-outcome>ExecuteWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-return id="SaveAndStay">
+      <outcome id="__40">
+        <name>SaveAndStay</name>
+        <reentry-not-allowed/>
+        <commit/>
+      </outcome>
+    </task-flow-return>
+    <method-call id="ExecuteWithParamsDocRec">
+      <method>#{bindings.ExecuteWithParams.execute}</method>
+      <outcome id="__45">
+        <fixed-outcome>ExecuteWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="generateExistingDoc">
+      <method>#{bindings.generateExistingDoc.execute}</method>
+      <outcome id="__55">
+        <fixed-outcome>generateExistingDoc</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-call id="LovDocument">
+      <task-flow-reference>
+        <document>/WEB-INF/LovDocument.xml</document>
+        <id>LovDocument</id>
+      </task-flow-reference>
+      <return-value id="__80">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </return-value>
+      <return-value id="__81">
+        <name>submitOrCancelFlag</name>
+        <value>#{pageFlowScope.submitOrCancelFlag}</value>
+      </return-value>
+      <run-as-dialog>
+        <display-type id="__79">
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <view id="MyTtfFormReview">
+      <page>/Pages/MyTtf/MyTtfFormReview.jsff</page>
+    </view>
+    <method-call id="ExecuteWithParams1">
+      <method>#{bindings.ExecuteWithParams.execute}</method>
+      <outcome id="__100">
+        <fixed-outcome>ExecuteWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="ExecuteWithParams2">
+      <method>#{bindings.ExecuteWithParams.execute}</method>
+      <outcome id="__66">
+        <fixed-outcome>ExecuteWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <router id="routeByMyTtf">
+      <case>
+        <expression>#{pageFlowScope.mymode == 'MyEdit'}</expression>
+        <outcome id="__95">myTtfEdit</outcome>
+      </case>
+      <default-outcome>edit</default-outcome>
+    </router>
+    <control-flow-rule id="__3">
+      <from-activity-id id="__4">routeByMode</from-activity-id>
+      <control-flow-case id="__6">
+        <from-outcome id="__7">addNew</from-outcome>
+        <to-activity-id id="__5">CreateInsert</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__15">
+        <from-outcome id="__17">edit</from-outcome>
+        <to-activity-id id="__16">routeByMyTtf</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__8">
+      <from-activity-id id="__9">CreateInsert</from-activity-id>
+      <control-flow-case id="__10">
+        <from-outcome id="__11">CreateInsert</from-outcome>
+        <to-activity-id id="__12">generateExistingDoc</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__29">
+      <from-activity-id id="__28">*</from-activity-id>
+      <control-flow-case id="__36">
+        <from-outcome id="__37">cancel</from-outcome>
+        <to-activity-id id="__35">CancelAndBack</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__69">
+        <from-outcome id="__70">save</from-outcome>
+        <to-activity-id id="__68">SaveAndBack</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__43">
+        <from-outcome id="__44">saveStay</from-outcome>
+        <to-activity-id id="__41">SaveAndStay</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__23">
+      <from-activity-id id="__24">ExecuteWithParams</from-activity-id>
+      <control-flow-case id="__26">
+        <from-outcome id="__27">ExecuteWithParams</from-outcome>
+        <to-activity-id id="__25">ExecuteWithParamsDocRec</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__46">
+      <from-activity-id id="__47">ExecuteWithParamsDocRec</from-activity-id>
+      <control-flow-case id="__48">
+        <from-outcome id="__50">ExecuteWithParams</from-outcome>
+        <to-activity-id id="__49">TtfFormReview</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__56">
+      <from-activity-id id="__57">generateExistingDoc</from-activity-id>
+      <control-flow-case id="__58">
+        <from-outcome id="__59">generateExistingDoc</from-outcome>
+        <to-activity-id id="__60">TtfForm</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__61">
+      <from-activity-id id="__62">TtfFormReview</from-activity-id>
+      <control-flow-case id="__64">
+        <from-outcome id="__65">lovDoc</from-outcome>
+        <to-activity-id id="__63">LovDocument</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__71">
+      <from-activity-id id="__72">TtfForm</from-activity-id>
+      <control-flow-case id="__74">
+        <from-outcome id="__86">lovDoc</from-outcome>
+        <to-activity-id id="__73">LovDocument</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__101">
+      <from-activity-id id="__102">ExecuteWithParams1</from-activity-id>
+      <control-flow-case id="__105">
+        <from-outcome id="__103">ExecuteWithParams</from-outcome>
+        <to-activity-id id="__104">ExecuteWithParams2</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__107">
+      <from-activity-id id="__108">MyTtfFormReview</from-activity-id>
+      <control-flow-case id="__110">
+        <from-outcome id="__111">lovDoc</from-outcome>
+        <to-activity-id id="__109">LovDocument</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__67">
+      <from-activity-id id="__87">ExecuteWithParams2</from-activity-id>
+      <control-flow-case id="__89">
+        <from-outcome id="__90">ExecuteWithParams</from-outcome>
+        <to-activity-id id="__88">MyTtfFormReview</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__96">
+      <from-activity-id id="__97">routeByMyTtf</from-activity-id>
+      <control-flow-case id="__98">
+        <from-outcome id="__99">myTtfEdit</from-outcome>
+        <to-activity-id id="__106">ExecuteWithParams1</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__112">
+        <from-outcome id="__114">edit</from-outcome>
+        <to-activity-id id="__113">ExecuteWithParams</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

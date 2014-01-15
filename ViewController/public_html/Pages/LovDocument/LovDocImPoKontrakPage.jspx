@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:panelGroupLayout layout="vertical" id="pgl1"
+                             inlineStyle="background-color:transparent; padding:5px;"
+                             styleClass="AFStretchWidth">
+            <af:query id="qryId1" headerText="Search" disclosed="true"
+                      value="#{bindings.LovDocPoImKontrakCriteriaQuery.queryDescriptor}"
+                      model="#{bindings.LovDocPoImKontrakCriteriaQuery.queryModel}"
+                      queryListener="#{bindings.LovDocPoImKontrakCriteriaQuery.processQuery}"
+                      queryOperationListener="#{bindings.LovDocPoImKontrakCriteriaQuery.processQueryOperation}"
+                      resultComponentId="::pc1:resId1" saveQueryMode="hidden"
+                    modeChangeVisible="false"/>
+          <af:spacer width="10" height="10" id="s1"/>
+          <af:panelCollection id="pc1" styleClass="AFStretchWidth"
+                              featuresOff="detach">
+            <f:facet name="menus"/>
+            <f:facet name="toolbar"/>
+            <f:facet name="statusbar"/>
+            <af:table value="#{bindings.LovDocPoImKontrak1.collectionModel}"
+                      var="row" rows="#{bindings.LovDocPoImKontrak1.rangeSize}"
+                      emptyText="#{bindings.LovDocPoImKontrak1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      fetchSize="#{bindings.LovDocPoImKontrak1.rangeSize}"
+                      rowBandingInterval="0"
+                      selectedRowKeys="#{bindings.LovDocPoImKontrak1.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.LovDocPoImKontrak1.collectionModel.makeCurrent}"
+                      rowSelection="single" id="resId1"
+                      columnStretching="column:resId1c1"
+                      binding="#{docPoImKontrakLovBean.documentTable}">
+              <af:column sortProperty="#{bindings.LovDocPoImKontrak1.hints.TipeDokumen.name}"
+                         sortable="true"
+                         headerText="#{bindings.LovDocPoImKontrak1.hints.TipeDokumen.label}"
+                         id="resId1c1" width="60" noWrap="false"
+                         minimumWidth="15">
+                <af:outputText value="#{row.TipeDokumen}" id="ot1"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.LovDocPoImKontrak1.hints.NoDokumen.name}"
+                         sortable="true"
+                         headerText="#{bindings.LovDocPoImKontrak1.hints.NoDokumen.label}"
+                         id="resId1c3" width="120" noWrap="false">
+                <af:outputText value="#{row.NoDokumen}" id="ot2"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.LovDocPoImKontrak1.hints.DocTitle.name}"
+                         sortable="true"
+                         headerText="#{bindings.LovDocPoImKontrak1.hints.DocTitle.label}"
+                         id="resId1c4" noWrap="false" width="120">
+                <af:outputText value="#{row.DocTitle}" id="ot3"/>
+              </af:column>
+              <af:column headerText="#{bindings.LovDocPoImKontrak1.hints.Pt.label}"
+                         id="c1" noWrap="false" width="120">
+                <af:selectOneChoice value="#{row.bindings.Pt.inputValue}"
+                                    label="#{row.bindings.Pt.label}"
+                                    required="#{bindings.LovDocPoImKontrak1.hints.Pt.mandatory}"
+                                    shortDesc="#{bindings.LovDocPoImKontrak1.hints.Pt.tooltip}"
+                                    id="soc1" readOnly="true">
+                  <f:selectItems value="#{row.bindings.Pt.items}" id="si1"/>
+                </af:selectOneChoice>
+              </af:column>
+              <af:column headerText="#{bindings.LovDocPoImKontrak1.hints.DepartemenTerkait.label}"
+                         id="c2" noWrap="false" width="120">
+                <af:selectOneChoice value="#{row.bindings.DepartemenTerkait.inputValue}"
+                                    label="#{row.bindings.DepartemenTerkait.label}"
+                                    required="#{bindings.LovDocPoImKontrak1.hints.DepartemenTerkait.mandatory}"
+                                    shortDesc="#{bindings.LovDocPoImKontrak1.hints.DepartemenTerkait.tooltip}"
+                                    id="soc2" readOnly="true">
+                  <f:selectItems value="#{row.bindings.DepartemenTerkait.items}"
+                                 id="si2"/>
+                </af:selectOneChoice>
+              </af:column>
+            </af:table>
+          </af:panelCollection>
+          <af:spacer width="10" height="5" id="s2"/>
+          <af:panelGroupLayout id="pgl2" layout="horizontal">
+            <af:commandButton text="Select" id="cb1"
+                              action="#{docPoImKontrakLovBean.onValueSelect}">
+              <af:setPropertyListener from="#{'submit'}"
+                                      to="#{pageFlowScope.submitOrCancelFlag}"
+                                      type="action"/>
+            </af:commandButton>
+            <af:commandButton text="Cancel" id="cb2" action="return">
+              <af:setPropertyListener from="#{'cancel'}"
+                                      to="#{pageFlowScope.submitOrCancelFlag}"
+                                      type="action"/>
+            </af:commandButton>
+          </af:panelGroupLayout>
+        </af:panelGroupLayout>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

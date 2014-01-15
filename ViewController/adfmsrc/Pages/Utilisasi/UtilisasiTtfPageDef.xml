@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="UtilisasiTtfPageDef"
+                Package="Pages.Utilisasi">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="UtilizationKontrakView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="UtilizationKontrakView1Iterator"/>
+    <searchRegion Criteria="UtilizationKontrakViewCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="UtilizationKontrakView1Iterator"
+                  id="UtilizationKontrakViewCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="UtilizationKontrakView1Iterator"
+          id="UtilizationKontrakView1">
+      <nodeDefinition DefName="app.mkp.model.view.ttf.utilisasi.UtilizationKontrakView"
+                      Name="UtilizationKontrakView10">
+        <AttrNames>
+          <Item Value="UnitcompanyId"/>
+          <Item Value="DepartmentId"/>
+          <Item Value="SupplierId"/>
+          <Item Value="KontrakNo"/>
+          <Item Value="PoNo"/>
+          <Item Value="CurrencyId"/>
+          <Item Value="NilMaxTran"/>
+          <Item Value="Util"/>
+          <Item Value="UtilPercentage"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="UtilizationKontrakView1Iterator"
+          id="UtilizationKontrakView11">
+      <nodeDefinition DefName="app.mkp.model.view.ttf.utilisasi.UtilizationKontrakView"
+                      Name="UtilizationKontrakView110">
+        <AttrNames>
+          <Item Value="UnitcompanyId"/>
+          <Item Value="DepartmentId"/>
+          <Item Value="SupplierId"/>
+          <Item Value="KontrakNo"/>
+          <Item Value="PoNo"/>
+          <Item Value="CurrencyId"/>
+          <Item Value="NilMaxTran"/>
+          <Item Value="Util"/>
+          <Item Value="UtilPercentage"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

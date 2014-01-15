@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['app.mkp.view.ViewControllerBundle']}"/>
+  <af:decorativeBox id="db1" inlineStyle="margin:5px;">
+    <f:facet name="center">
+      <af:panelHeader text="#{viewcontrollerBundle.MAIN_HDR_ADD_DOCUMENT_LINK}"
+                      id="ph1" icon="/Images/icon/link_add.png">
+        <f:facet name="context"/>
+        <f:facet name="menuBar"/>
+        <f:facet name="toolbar">
+          <af:toolbar id="t2">
+            <af:commandToolbarButton text="Cancel" id="ctb2"
+                                     icon="/Images/icon/cancel.png"
+                                     action="cancel" immediate="true"/>
+            <af:commandToolbarButton text="#{viewcontrollerBundle.SAVE_PAGE}"
+                                     id="ctb3" action="saveStay" visible="false"
+                                     icon="/Images/icon/save_all.png"/>
+            <af:commandToolbarButton text="Save" id="ctb1"
+                                     icon="/Images/icon/save.png"
+                                     action="save"/>
+          </af:toolbar>
+        </f:facet>
+        <f:facet name="legend"/>
+        <f:facet name="info"/>
+        <af:panelCollection id="pc1" styleClass="AFStretchWidth"
+                            featuresOff="detach"
+                            binding="#{browseDocPoImKontrakBean.addedDocPanColl}"
+                            inlineStyle="margin:5px;">
+          <f:facet name="menus"/>
+          <f:facet name="toolbar">
+            <af:toolbar id="t4">
+              <af:commandToolbarButton text="Tambah Dokumen" id="ctb5"
+                                       icon="/Images/icon/add_dokumen.png"
+                                       partialSubmit="true"
+                                       disabledIcon="/Images/icon/add_dokumen_off.png"
+                                       action="lovDoc" useWindow="true"
+                                       immediate="true"
+                                       windowEmbedStyle="inlineDocument"
+                                       windowHeight="520" windowWidth="600"
+                                       visible="#{pageFlowScope.tipeDok != 'Internal Memo'}"
+                                       returnListener="#{browseDocPoImKontrakBean.onDialogReturn}">
+                <af:setPropertyListener type="action"
+                                        from="#{pageFlowScope.tipeDok}"
+                                        to="#{pageFlowScope.tipeDok}"/>
+              </af:commandToolbarButton>
+            </af:toolbar>
+          </f:facet>
+          <f:facet name="statusbar"/>
+          <af:table value="#{bindings.MknDokLinkView1.collectionModel}"
+                    var="row" rows="#{bindings.MknDokLinkView1.rangeSize}"
+                    emptyText="#{bindings.MknDokLinkView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    fetchSize="#{bindings.MknDokLinkView1.rangeSize}"
+                    rowBandingInterval="0"
+                    selectedRowKeys="#{bindings.MknDokLinkView1.collectionModel.selectedRow}"
+                    selectionListener="#{bindings.MknDokLinkView1.collectionModel.makeCurrent}"
+                    rowSelection="single" id="t1" columnStretching="column:c2"
+                    binding="#{linkDocBackingBean.childTable}"
+                    partialTriggers="confirmDeleteDialogAddedDoc :::ctb3">
+            <af:column id="c3" width="30" minimumWidth="30">
+              <af:panelGroupLayout id="pgl1" layout="horizontal"
+                                   halign="center">
+                <af:commandImageLink id="cil4"
+                                     icon="/Images/icon/delete_dokumen.png"
+                                     disabledIcon="/Images/icon/delete_dokumen_off.png">
+                  <af:showPopupBehavior popupId="confirmDeleteAddedDoc"/>
+                </af:commandImageLink>
+                <af:popup id="confirmDeleteAddedDoc"
+                          contentDelivery="lazyUncached">
+                  <af:dialog closeIconVisible="false" modal="true"
+                             title="Warning" id="confirmDeleteDialogAddedDoc"
+                             dialogListener="#{linkDocBackingBean.confirmDeleteLinkDocDialogListener}">
+                    <af:panelGroupLayout inlineStyle="background-color:Window;"
+                                         layout="vertical" halign="left"
+                                         valign="middle" id="nwtpgl1">
+                      <af:outputText value="#{viewcontrollerBundle.ANDA_YAKIN_AKAN_MENGHAPUS_DOKU}"
+                                     id="nwtot1"/>
+                    </af:panelGroupLayout>
+                  </af:dialog>
+                </af:popup>
+              </af:panelGroupLayout>
+            </af:column>
+            <af:column sortProperty="#{bindings.MknDokLinkView1.hints.LinkDokDid.name}"
+                       sortable="true"
+                       headerText="#{bindings.MknDokLinkView1.hints.LinkDokDid.label}"
+                       id="c2" width="173">
+              <af:selectOneChoice value="#{row.bindings.LinkDokDid.inputValue}"
+                                  label="#{row.bindings.LinkDokDid.label}"
+                                  required="#{bindings.MknDokLinkView1.hints.LinkDokDid.mandatory}"
+                                  shortDesc="#{bindings.MknDokLinkView1.hints.LinkDokDid.tooltip}"
+                                  id="soc1" readOnly="true">
+                <f:selectItems value="#{row.bindings.LinkDokDid.items}"
+                               id="si1"/>
+              </af:selectOneChoice>
+            </af:column>
+          </af:table>
+        </af:panelCollection>
+      </af:panelHeader>
+    </f:facet>
+  </af:decorativeBox>
+</jsp:root>

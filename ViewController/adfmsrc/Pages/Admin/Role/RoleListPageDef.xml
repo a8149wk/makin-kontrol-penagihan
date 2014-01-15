@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.61.92" id="RoleListPageDef"
+                Package="Pages.Admin.Role">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="RolesView1" RangeSize="25" DataControl="AdminAMDataControl"
+              id="RolesView1Iterator"/>
+    <searchRegion Criteria="RolesViewCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="RolesView1Iterator" id="RolesViewCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="RolesView1Iterator" id="RolesView1">
+      <nodeDefinition DefName="app.mkp.model.view.admin.RolesView"
+                      Name="RolesView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Name"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" DataControl="AdminAMDataControl"
+            RequiresUpdateModel="true" Action="commitTransaction"/>
+  </bindings>
+</pageDefinition>

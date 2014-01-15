@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="ListDokumenPageDef"
+                Package="Pages.LinkDocument">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PreInitialDocumentView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="PreInitialDocumentView1Iterator"/>
+    <searchRegion Criteria="PreInitialDocumentViewCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PreInitialDocumentView1Iterator"
+                  id="PreInitialDocumentViewCriteriaQuery"/>
+    <iterator Binds="MknDokLinkView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="MknDokLinkView1Iterator"/>
+    <invokeAction id="RefreshChild" Binds="Execute" Refresh="ifNeeded"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PreInitialDocumentView1Iterator"
+          id="PreInitialDocumentView1">
+      <nodeDefinition DefName="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentView"
+                      Name="PreInitialDocumentView10">
+        <AttrNames>
+          <Item Value="TipeDok"/>
+          <Item Value="IdDokumen"/>
+          <Item Value="PihakTerkait"/>
+          <Item Value="DeptTerkait"/>
+          <Item Value="Tanggal"/>
+          <Item Value="Did"/>
+          <Item Value="NumLink"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="MknDokLinkView1Iterator" id="MknDokLinkView1">
+      <nodeDefinition DefName="app.mkp.model.view.ttf.linkdoc.MknDokLinkView"
+                      Name="MknDokLinkView10">
+        <AttrNames>
+          <Item Value="LinkDokDid"/>
+          <Item Value="Did"/>
+          <Item Value="TipeDok"/>
+          <Item Value="AppUrl1"/>
+          <Item Value="DocTitle"/>
+          <Item Value="MetaUrl"/>
+          <Item Value="Url"/>
+          <Item Value="DocName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="MknDokLinkView1Iterator" id="Execute"
+            InstanceName="TandaTerimaFakturAMDataControl.MknDokLinkView1"
+            DataControl="TandaTerimaFakturAMDataControl"
+            RequiresUpdateModel="true" Action="iteratorExecute"/>
+  </bindings>
+</pageDefinition>

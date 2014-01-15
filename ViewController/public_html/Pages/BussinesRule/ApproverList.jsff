@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['app.mkp.view.ViewControllerBundle']}"/>
+  <af:panelSplitter id="ps1" inlineStyle="margin:5px;" splitterPosition="300">
+    <f:facet name="first">
+      <af:decorativeBox id="db5" styleClass="AFStretchWidth">
+        <f:facet name="center">
+          <af:panelHeader text="#{viewcontrollerBundle.MAIN_HDR_BUSSINES_RULE_APPROVER}"
+                          id="ph5">
+            <f:facet name="context"/>
+            <f:facet name="menuBar"/>
+            <f:facet name="toolbar"/>
+            <f:facet name="legend"/>
+            <f:facet name="info"/>
+            <af:panelSplitter id="ps2" orientation="vertical"
+                              splitterPosition="96" inlineStyle="margin:5px;">
+              <f:facet name="first">
+                <af:panelHeader text="#{viewcontrollerBundle.MAIN_HDR_BUSSINES_RULES}"
+                                id="ph1" icon="/Images/icon/bussines_rule.png">
+                  <f:facet name="context"/>
+                  <f:facet name="menuBar"/>
+                  <f:facet name="toolbar"/>
+                  <f:facet name="legend"/>
+                  <f:facet name="info"/>
+                  <af:panelFormLayout id="pfl1" inlineStyle="margin:5px;">
+                    <af:panelLabelAndMessage label="#{bindings.BrDescr.hints.label}"
+                                             id="plam1">
+                      <af:outputText value="#{bindings.BrDescr.inputValue}"
+                                     id="ot2"/>
+                    </af:panelLabelAndMessage>
+                    <af:selectOneChoice value="#{bindings.BrRef.inputValue}"
+                                        label="#{bindings.BrRef.label}"
+                                        required="#{bindings.BrRef.hints.mandatory}"
+                                        shortDesc="#{bindings.BrRef.hints.tooltip}"
+                                        id="soc1" readOnly="true">
+                      <f:selectItems value="#{bindings.BrRef.items}" id="si1"/>
+                    </af:selectOneChoice>
+                  </af:panelFormLayout>
+                </af:panelHeader>
+              </f:facet>
+              <f:facet name="second">
+                <af:panelHeader text="#{viewcontrollerBundle.PNL_HDR_APPROVER}"
+                                id="ph2" icon="/Images/icon/user.png">
+                  <f:facet name="context"/>
+                  <f:facet name="menuBar"/>
+                  <f:facet name="toolbar"/>
+                  <f:facet name="legend"/>
+                  <f:facet name="info"/>
+                  <af:panelSplitter id="ps3" orientation="vertical"
+                                    splitterPosition="99"
+                                    inlineStyle="margin:5px;">
+                    <f:facet name="first">
+                      <af:query id="qryId1" headerText="Search" disclosed="true"
+                                value="#{bindings.BrAppvrViewCriteriaQuery.queryDescriptor}"
+                                model="#{bindings.BrAppvrViewCriteriaQuery.queryModel}"
+                                queryListener="#{bindings.BrAppvrViewCriteriaQuery.processQuery}"
+                                queryOperationListener="#{bindings.BrAppvrViewCriteriaQuery.processQueryOperation}"
+                                resultComponentId="::resId1"
+                                saveQueryMode="hidden"
+                                modeChangeVisible="false"/>
+                    </f:facet>
+                    <f:facet name="second">
+                      <af:table value="#{bindings.BrAppvrView1.collectionModel}"
+                                var="row" summary="summary"
+                                rows="#{bindings.BrAppvrView1.rangeSize}"
+                                emptyText="#{bindings.BrAppvrView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                fetchSize="#{bindings.BrAppvrView1.rangeSize}"
+                                rowBandingInterval="0"
+                                selectedRowKeys="#{bindings.BrAppvrView1.collectionModel.selectedRow}"
+                                selectionListener="#{bindings.BrAppvrView1.collectionModel.makeCurrent}"
+                                rowSelection="single" id="resId1"
+                                styleClass="AFStretchWidth"
+                                columnStretching="column:resId1c1"
+                                partialTriggers="::ctb1 ::ctb2 ::ctb5 confirmDeleteDialog"
+                                binding="#{backingBeanScope.approverBackingBean.childTableBrAppvr}">
+                        <af:column id="c8"
+                                   headerText="#{viewcontrollerBundle.COL_HDR_ACTIONS}"
+                                   width="40" minimumWidth="50">
+                          <af:panelGroupLayout id="pgl2" layout="horizontal"
+                                               halign="center">
+                            <af:commandImageLink id="cil3"
+                                                 icon="/Images/icon/delete.png">
+                              <af:showPopupBehavior popupId="confirmDeletePopupApprover"/>
+                            </af:commandImageLink>
+                            <af:popup id="confirmDeletePopupApprover"
+                                      contentDelivery="lazyUncached">
+                              <af:dialog closeIconVisible="false" modal="true"
+                                         title="Warning"
+                                         id="confirmDeleteDialog"
+                                         dialogListener="#{backingBeanScope.approverBackingBean.confirmDeleteBrApproverDialogListener}">
+                                <af:panelGroupLayout inlineStyle="background-color:Window;"
+                                                     layout="vertical"
+                                                     halign="left"
+                                                     valign="middle"
+                                                     id="nwtpgl1">
+                                  <af:outputText value="#{viewcontrollerBundle.DEL_MSG_BR_APPROVER}"
+                                                 id="nwtot1"/>
+                                </af:panelGroupLayout>
+                              </af:dialog>
+                            </af:popup>
+                          </af:panelGroupLayout>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.BrAppvrView1.hints.Approver.name}"
+                                   sortable="true"
+                                   headerText="#{bindings.BrAppvrView1.hints.Approver.label}"
+                                   id="resId1c1">
+                          <af:selectOneChoice value="#{row.bindings.Approver.inputValue}"
+                                              label="#{row.bindings.Approver.label}"
+                                              required="#{bindings.BrAppvrView1.hints.Approver.mandatory}"
+                                              shortDesc="#{bindings.BrAppvrView1.hints.Approver.tooltip}"
+                                              id="soc5" readOnly="true">
+                            <f:selectItems value="#{row.bindings.Approver.items}"
+                                           id="si5"/>
+                          </af:selectOneChoice>
+                        </af:column>
+                        <af:column headerText="#{bindings.BrAppvrView1.hints.PriorityLvl.label}"
+                                   id="c2" align="center" width="60">
+                          <af:outputText value="#{row.PriorityLvl}" id="ot1">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.BrAppvrView1.hints.PriorityLvl.format}"/>
+                          </af:outputText>
+                        </af:column>
+                      </af:table>
+                    </f:facet>
+                  </af:panelSplitter>
+                </af:panelHeader>
+              </f:facet>
+            </af:panelSplitter>
+          </af:panelHeader>
+        </f:facet>
+      </af:decorativeBox>
+    </f:facet>
+    <f:facet name="second">
+      <af:decorativeBox id="db2" styleClass="AFStretchWidth">
+        <f:facet name="center">
+          <af:panelHeader text="#{viewcontrollerBundle.MAIN_HDR_DETIL_INFORMASI}"
+                          id="ph6" icon="/Images/icon/document_info.png">
+            <f:facet name="context"/>
+            <f:facet name="menuBar"/>
+            <f:facet name="toolbar">
+              <af:toolbar id="t1">
+                <af:commandToolbarButton text="#{viewcontrollerBundle.BUT_TXT_SAVE}"
+                                         id="ctb5"
+                                         actionListener="#{bindings.Commit.execute}"
+                                         icon="/Images/icon/save.png"/>
+                <af:commandToolbarButton text="#{viewcontrollerBundle.BUT_TXT_SAVE_ALL}"
+                                         id="ctb1"
+                                         icon="/Images/icon/save_all.png"
+                                         action="save"/>
+                <af:commandToolbarButton text="#{viewcontrollerBundle.BUT_TEXT_BACK}"
+                                         id="ctb4" action="cancel"
+                                         icon="/Images/icon/cancel.png"/>
+              </af:toolbar>
+            </f:facet>
+            <f:facet name="legend"/>
+            <f:facet name="info"/>
+            <af:panelSplitter id="ps4" orientation="vertical"
+                              inlineStyle="margin:5px;" splitterPosition="107">
+              <f:facet name="first">
+                <af:panelHeader text="#{viewcontrollerBundle.PNL_HDR_APPROVER_INFO}"
+                                id="ph3" icon="/Images/icon/information.png">
+                  <f:facet name="context"/>
+                  <f:facet name="menuBar"/>
+                  <f:facet name="toolbar">
+                    <af:toolbar id="t2">
+                      <af:commandToolbarButton text="#{viewcontrollerBundle.ADD_APPROVER}"
+                                               id="ctb2"
+                                               icon="/Images/icon/user_add.png"
+                                               disabled="#{!bindings.CreateInsert.enabled}"
+                                               actionListener="#{bindings.CreateInsert.execute}"/>
+                    </af:toolbar>
+                  </f:facet>
+                  <f:facet name="legend"/>
+                  <f:facet name="info"/>
+                  <af:panelFormLayout id="pfl2"
+                                      partialTriggers="ctb2 resId1 qryId1"
+                                      inlineStyle="margin:5px;">
+                    <af:selectOneChoice value="#{bindings.Approver.inputValue}"
+                                        label="#{bindings.Approver.label}"
+                                        required="#{bindings.Approver.hints.mandatory}"
+                                        shortDesc="#{bindings.Approver.hints.tooltip}"
+                                        id="soc3">
+                      <f:selectItems value="#{bindings.Approver.items}"
+                                     id="si3"/>
+                    </af:selectOneChoice>
+                    <af:selectOneChoice value="#{bindings.PriorityLvl.inputValue}"
+                                        label="#{bindings.PriorityLvl.label}"
+                                        required="#{bindings.PriorityLvl.hints.mandatory}"
+                                        shortDesc="#{bindings.PriorityLvl.hints.tooltip}"
+                                        id="soc4">
+                      <f:selectItems value="#{bindings.PriorityLvl.items}"
+                                     id="si4"/>
+                    </af:selectOneChoice>
+                  </af:panelFormLayout>
+                </af:panelHeader>
+              </f:facet>
+              <f:facet name="second">
+                <af:panelHeader text="#{viewcontrollerBundle.PNL_HDR_APPROVER_REFERENCE}"
+                                id="ph4" icon="/Images/icon/reference.png"
+                                styleClass="AFStretchWidth">
+                  <f:facet name="context"/>
+                  <f:facet name="menuBar"/>
+                  <f:facet name="toolbar">
+                    <af:toolbar id="t3">
+                      <af:commandToolbarButton text="#{viewcontrollerBundle.BUT_TEXT_ASSIGN_REFERENCE}"
+                                               id="ctb3"
+                                               icon="/Images/icon/link_add.png"
+                                               action="assignPt">
+                        <af:setPropertyListener from="#{row.rowKeyStr}"
+                                                to="#{pageFlowScope.editKey}"
+                                                type="action"/>
+                        <af:setPropertyListener from="#{pageFlowScope.brRef}"
+                                                to="#{pageFlowScope.brRefApvr}"
+                                                type="action"/>
+                      </af:commandToolbarButton>
+                    </af:toolbar>
+                  </f:facet>
+                  <f:facet name="legend"/>
+                  <f:facet name="info"/>
+                  <af:table value="#{bindings.BrAppvrRefView1.collectionModel}"
+                            var="row"
+                            rows="#{bindings.BrAppvrRefView1.rangeSize}"
+                            emptyText="#{bindings.BrAppvrRefView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                            fetchSize="#{bindings.BrAppvrRefView1.rangeSize}"
+                            rowBandingInterval="0" id="t4"
+                            styleClass="AFStretchWidth"
+                            columnStretching="column:c1"
+                            partialTriggers="::qryId1 ::resId1 d1" rowSelection="single"
+                            binding="#{backingBeanScope.approverBackingBean.childTableBrReference}"
+                            inlineStyle="margin:5px;">
+                    <af:column id="c3"
+                               headerText="#{viewcontrollerBundle.COL_HDR_ACTIONS}"
+                               width="40" minimumWidth="50">
+                      <af:panelGroupLayout id="pgl5" layout="horizontal"
+                                           halign="center">
+                        <af:commandImageLink id="cil1"
+                                             icon="/Images/icon/delete.png">
+                          <af:showPopupBehavior popupId="confirmDeletePopupReference"/>
+                        </af:commandImageLink>
+                        <af:popup id="confirmDeletePopupReference"
+                                  contentDelivery="lazyUncached">
+                          <af:dialog closeIconVisible="false" modal="true"
+                                     title="Warning" id="d1"
+                                     dialogListener="#{backingBeanScope.approverBackingBean.confirmDeleteBrReferenceDialogListener}">
+                            <af:panelGroupLayout inlineStyle="background-color:Window;"
+                                                 layout="vertical" halign="left"
+                                                 valign="middle" id="pgl7">
+                              <af:outputText value="#{viewcontrollerBundle.DEL_MSG_APP_REF}"
+                                             id="ot3"/>
+                            </af:panelGroupLayout>
+                          </af:dialog>
+                        </af:popup>
+                      </af:panelGroupLayout>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.BrAppvrRefView1.hints.BrRefId.name}"
+                               sortable="false"
+                               headerText="#{bindings.BrAppvrRefView1.hints.BrRefId.label}"
+                               id="c1">
+                      <af:selectOneChoice value="#{row.bindings.BrRefId.inputValue}"
+                                          label="#{row.bindings.BrRefId.label}"
+                                          required="#{bindings.BrAppvrRefView1.hints.BrRefId.mandatory}"
+                                          shortDesc="#{bindings.BrAppvrRefView1.hints.BrRefId.tooltip}"
+                                          id="soc2" readOnly="true">
+                        <f:selectItems value="#{row.bindings.BrRefId.items}"
+                                       id="si2"/>
+                      </af:selectOneChoice>
+                    </af:column>
+                  </af:table>
+                </af:panelHeader>
+              </f:facet>
+            </af:panelSplitter>
+          </af:panelHeader>
+        </f:facet>
+      </af:decorativeBox>
+    </f:facet>
+  </af:panelSplitter>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:approverBackingBean-->
+</jsp:root>

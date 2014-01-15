@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['app.mkp.view.ViewControllerBundle']}"/>
+  <af:decorativeBox id="db1" inlineStyle="margin:5px;">
+    <f:facet name="center">
+      <af:panelHeader text="#{viewcontrollerBundle.MAIN_HDR_USER_ROLE} - Add / Edit" id="ph1"
+                      icon="/Images/icon/role.png">
+        <f:facet name="context"/>
+        <f:facet name="menuBar"/>
+        <f:facet name="toolbar">
+          <af:toolbar id="t2">
+            <af:commandToolbarButton text="Cancel" id="ctb2"
+                                     icon="/Images/icon/cancel.png"
+                                     action="cancel" immediate="true"/>
+            <af:commandToolbarButton text="Save" id="ctb1"
+                                     icon="/Images/icon/save.png"
+                                     action="save"/>
+          </af:toolbar>
+        </f:facet>
+        <f:facet name="legend"/>
+        <f:facet name="info"/>
+        <af:panelFormLayout id="pfl1" inlineStyle="margin:5px;">
+          <af:inputText value="#{bindings.Name.inputValue}"
+                        label="#{bindings.Name.hints.label}"
+                        required="#{bindings.Name.hints.mandatory}"
+                        columns="#{bindings.Name.hints.displayWidth}"
+                        maximumLength="#{bindings.Name.hints.precision}"
+                        shortDesc="#{bindings.Name.hints.tooltip}" id="it1">
+            <f:validator binding="#{bindings.Name.validator}"/>
+          </af:inputText>
+        </af:panelFormLayout>
+      </af:panelHeader>
+    </f:facet>
+  </af:decorativeBox>
+</jsp:root>

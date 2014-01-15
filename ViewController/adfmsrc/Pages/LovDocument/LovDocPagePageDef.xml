@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="LovDocPagePageDef"
+                Package="Pages.LovDocument">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="LovDocument1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="LovDocument1Iterator"/>
+    <searchRegion Criteria="LovDocumentCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="LovDocument1Iterator" id="LovDocumentCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="LovDocument1Iterator" id="LovDocument1">
+      <nodeDefinition DefName="app.mkp.model.view.lov.LovDocument"
+                      Name="LovDocument10">
+        <AttrNames>
+          <Item Value="Did"/>
+          <Item Value="TipeDokumen"/>
+          <Item Value="TipeDokumenPendukung"/>
+          <Item Value="DocTitle"/>
+          <Item Value="OriginalName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

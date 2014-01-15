@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="AddEditBussinesRule">
+    <default-activity id="__1">RouteByMode</default-activity>
+    <transaction id="__39">
+      <new-transaction/>
+    </transaction>
+    <task-flow-reentry id="__38">
+      <reentry-outcome-dependent/>
+    </task-flow-reentry>
+    <input-parameter-definition id="__2">
+      <name id="__3">mode</name>
+      <value>#{pageFlowScope.mode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name id="__4">editKey</name>
+      <value>#{pageFlowScope.editKey}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <router id="RouteByMode">
+      <case>
+        <expression>#{pageFlowScope.mode=='Add'}</expression>
+        <outcome id="__6">addNew</outcome>
+      </case>
+      <case>
+        <expression>#{pageFlowScope.mode=='Edit'}</expression>
+        <outcome id="__7">editKey</outcome>
+      </case>
+      <default-outcome>addNew</default-outcome>
+    </router>
+    <view id="FormBussinesRule">
+      <page>/Pages/BussinesRule/FormBussinesRule.jsff</page>
+    </view>
+    <method-call id="SetCurrentRowWithKey">
+      <method>#{bindings.setCurrentRowWithKey.execute}</method>
+      <outcome id="__8">
+        <fixed-outcome>setCurrentRowWithKey</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="CreateInsert">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome id="__9">
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-return id="SaveAndBack">
+      <outcome id="__30">
+        <name>SaveAndBack</name>
+        <reentry-not-allowed/>
+        <commit/>
+      </outcome>
+    </task-flow-return>
+    <task-flow-return id="CancelAndBack">
+      <outcome id="__31">
+        <name>CancelAndBack</name>
+        <reentry-not-allowed/>
+        <rollback/>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__10">
+      <from-activity-id id="__11">RouteByMode</from-activity-id>
+      <control-flow-case id="__13">
+        <from-outcome id="__14">addNew</from-outcome>
+        <to-activity-id id="__12">CreateInsert</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__15">
+        <from-outcome id="__17">editKey</from-outcome>
+        <to-activity-id id="__16">SetCurrentRowWithKey</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__18">
+      <from-activity-id id="__19">CreateInsert</from-activity-id>
+      <control-flow-case id="__22">
+        <from-outcome id="__20">CreateInsert</from-outcome>
+        <to-activity-id id="__21">FormBussinesRule</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__23">
+      <from-activity-id id="__24">SetCurrentRowWithKey</from-activity-id>
+      <control-flow-case id="__25">
+        <from-outcome id="__27">setCurrentRowWithKey</from-outcome>
+        <to-activity-id id="__26">FormBussinesRule</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__28">
+      <from-activity-id id="__29">*</from-activity-id>
+      <control-flow-case id="__32">
+        <from-outcome id="__34">save</from-outcome>
+        <to-activity-id id="__33">SaveAndBack</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__35">
+        <from-outcome id="__37">cancel</from-outcome>
+        <to-activity-id id="__36">CancelAndBack</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

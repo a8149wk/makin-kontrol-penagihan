@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="MailParamFormPageDef"
+                Package="Pages.MailConfig">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="InputParamView1" RangeSize="25"
+              DataControl="NotificationAMDataControl"
+              id="InputParamView1Iterator"/>
+    <searchRegion Criteria="InputParamViewCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="InputParamView1Iterator"
+                  id="InputParamViewCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="InputParamView1Iterator" id="InputParamView1">
+      <nodeDefinition DefName="app.mkp.model.view.notification.mail.InputParamView"
+                      Name="InputParamView10">
+        <AttrNames>
+          <Item Value="ParamNm"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="InputParamView1Iterator" id="ParamNm">
+      <AttrNames>
+        <Item Value="ParamNm"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="InputParamView1Iterator" id="ParamGrp">
+      <AttrNames>
+        <Item Value="ParamGrp"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="InputParamView1Iterator" id="Descr">
+      <AttrNames>
+        <Item Value="Descr"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="InputParamView1Iterator" StaticList="false"
+          Uses="LOV_FlgActive" id="FlgActive" DTSupportsMRU="true"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="NotificationAMDataControl"/>
+    <attributeValues IterBinding="InputParamView1Iterator" id="ParamId">
+      <AttrNames>
+        <Item Value="ParamId"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="InputParamView1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="InputParamView1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction"
+            DataControl="NotificationAMDataControl"/>
+  </bindings>
+</pageDefinition>

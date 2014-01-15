@@ -1,0 +1,51 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">RoleList</property>
+      <property
+         name="page">/Pages/Admin/Role/RoleList.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>RoleList&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">202.29883</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">251.0</property>
+   </View>
+   <TaskFlowCall
+      id="TaskFlowCall3">
+      <property
+         name="taskFlowId">add-edit-role</property>
+      <property
+         name="activityId">add-edit-role</property>
+      <property
+         name="documentReference">/WEB-INF/add-edit-role.xml</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>add-edit-role&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">200.28711</property>
+      <property
+         name="x">525.0</property>
+   </TaskFlowCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View2"
+      to="TaskFlowCall3">
+      <property
+         name="fromOutcome">addEditRole</property>
+      <property
+         name="sdm:polyPoints">R50,292.0,201.94824,484.0,199.93652,L50</property>
+   </ControlFlowCase>
+</SDM>

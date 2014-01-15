@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="manage-bussines-rule">
+    <default-activity id="__1">BussinesRuleList</default-activity>
+    <input-parameter-definition id="__17">
+      <name id="__18">brRef</name>
+      <value>#{pageFlowScope.brRef}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__5">
+      <managed-bean-name id="__2">bussinesRuleBackingBean</managed-bean-name>
+      <managed-bean-class id="__3">app.mkp.backing.BussinesRuleBackingBean</managed-bean-class>
+      <managed-bean-scope id="__4">backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="BussinesRuleList">
+      <page>/Pages/BussinesRule/BussinesRuleList.jsff</page>
+    </view>
+    <task-flow-call id="AddEditBussinesRule">
+      <task-flow-reference>
+        <document>/WEB-INF/AddEditBussinesRule.xml</document>
+        <id>AddEditBussinesRule</id>
+      </task-flow-reference>
+      <input-parameter id="__11">
+        <name>mode</name>
+        <value>#{pageFlowScope.mode}</value>
+      </input-parameter>
+      <input-parameter id="__12">
+        <name>editKey</name>
+        <value>#{pageFlowScope.editKey}</value>
+      </input-parameter>
+    </task-flow-call>
+    <task-flow-call id="AssignApproverTask">
+      <task-flow-reference>
+        <document>/WEB-INF/AssignApproverTask.xml</document>
+        <id>AssignApproverTask</id>
+      </task-flow-reference>
+      <input-parameter id="__16">
+        <name>editKey</name>
+        <value>#{pageFlowScope.editKey}</value>
+      </input-parameter>
+      <input-parameter id="__19">
+        <name>brRef</name>
+        <value>#{pageFlowScope.brRef}</value>
+      </input-parameter>
+    </task-flow-call>
+    <control-flow-rule id="__6">
+      <from-activity-id id="__7">BussinesRuleList</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome id="__10">addEditBussinesRule</from-outcome>
+        <to-activity-id id="__8">AddEditBussinesRule</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__14">
+        <from-outcome id="__15">assignApprover</from-outcome>
+        <to-activity-id id="__13">AssignApproverTask</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

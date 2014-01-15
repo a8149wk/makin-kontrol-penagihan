@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="MailTemplateFormPageDef"
+                Package="Pages.MailConfig">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MailTemplateView1" RangeSize="25"
+              DataControl="NotificationAMDataControl"
+              id="MailTemplateView1Iterator"/>
+    <iterator Binds="MailInputParamView1" RangeSize="25"
+              DataControl="NotificationAMDataControl"
+              id="MailInputParamView1Iterator"/>
+    <iterator Binds="MailTemplateBulkView1" RangeSize="25"
+              DataControl="NotificationAMDataControl"
+              id="MailTemplateBulkView1Iterator"/>
+    <searchRegion Criteria="__ImplicitViewCriteria__"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="MailTemplateBulkView1Iterator"
+                  id="ImplicitViewCriteriaQuery"/>
+    <searchRegion Criteria="__ImplicitViewCriteria__"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="MailTemplateView1Iterator"
+                  id="ImplicitViewCriteriaQuery1"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="MailTemplateView1Iterator" id="MailTemplateView1">
+      <nodeDefinition DefName="app.mkp.model.view.notification.mail.MailTemplateView"
+                      Name="MailTemplateView10">
+        <AttrNames>
+          <Item Value="MailNm"/>
+          <Item Value="MailSubject"/>
+          <Item Value="MailDescr"/>
+          <Item Value="MailType"/>
+          <Item Value="MailSql"/>
+          <Item Value="MailBody"/>
+          <Item Value="MailId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="MailTemplateView1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <attributeValues IterBinding="MailTemplateView1Iterator" id="MailNm">
+      <AttrNames>
+        <Item Value="MailNm"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MailTemplateView1Iterator" id="MailDescr">
+      <AttrNames>
+        <Item Value="MailDescr"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MailTemplateView1Iterator" id="MailSubject">
+      <AttrNames>
+        <Item Value="MailSubject"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MailTemplateView1Iterator" id="MailBody">
+      <AttrNames>
+        <Item Value="MailBody"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="MailInputParamView1Iterator" id="CreateInsert1"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <tree IterBinding="MailInputParamView1Iterator" id="MailInputParamView1">
+      <nodeDefinition DefName="app.mkp.model.view.notification.mail.MailInputParamView"
+                      Name="MailInputParamView10">
+        <AttrNames>
+          <Item Value="InputNm"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="MailTemplateBulkView1Iterator"
+          id="MailTemplateBulkView1">
+      <nodeDefinition DefName="app.mkp.model.view.notification.mail.MailTemplateBulkView"
+                      Name="MailTemplateBulkView10">
+        <AttrNames>
+          <Item Value="MailNm"/>
+          <Item Value="MailSubject"/>
+          <Item Value="MailDescr"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="MailTemplateBulkView1Iterator" id="MailSql">
+      <AttrNames>
+        <Item Value="MailSql"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="MailTemplateBulkView1Iterator" id="CreateInsert2"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <attributeValues IterBinding="MailTemplateBulkView1Iterator" id="MailNm1">
+      <AttrNames>
+        <Item Value="MailNm"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MailTemplateBulkView1Iterator"
+                     id="MailDescr1">
+      <AttrNames>
+        <Item Value="MailDescr"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MailTemplateBulkView1Iterator"
+                     id="MailSubject1">
+      <AttrNames>
+        <Item Value="MailSubject"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MailTemplateBulkView1Iterator" id="MailBody1">
+      <AttrNames>
+        <Item Value="MailBody"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="MailTemplateView1Iterator" id="Delete1"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action IterBinding="MailTemplateBulkView1Iterator" id="Delete2"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="NotificationAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction"
+            DataControl="NotificationAMDataControl"/>
+  </bindings>
+</pageDefinition>

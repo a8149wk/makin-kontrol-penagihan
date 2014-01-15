@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PreInitialDocumentView"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  OrderBy='"TANGGAL" DESC'
+  RowClass="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentViewRowImpl"
+  ComponentClass="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentViewImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentView_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="pihakTerkait"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="tipeDok"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="startDate"
+    Kind="viewcriteria"
+    Type="oracle.jbo.domain.Date"/>
+  <Variable
+    Name="endDate"
+    Kind="viewcriteria"
+    Type="oracle.jbo.domain.Date"/>
+  <Variable
+    Name="idDok"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <ViewAccessor
+    Name="LovDepartment1"
+    ViewObjectName="app.mkp.model.view.lov.LovDepartment"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="LovSupplierVendor1"
+    ViewObjectName="app.mkp.model.view.lov.LovSupplierVendor"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="LovTipeDokPoImKontrak1"
+    ViewObjectName="app.mkp.model.view.lov.LovTipeDokPoImKontrak"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_DeptTerkait"
+    ListVOName="LovDepartment1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DeptTerkait"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PihakTerkait"
+    ListVOName="LovSupplierVendor1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PihakTerkait"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_TipeDok"
+    ListVOName="LovTipeDokPoImKontrak1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="TipeDok"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Deskripsi"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT MK.DID, MK.ID_KONTRAK AS ID_DOKUMEN, MK.TIPE_DOKUMEN AS TIPE_DOK, MK.PIHAK_TERKAIT, MK.DEPT_TERKAIT, MK.TANGGAL_BERLAKU AS TANGGAL,
+(SELECT COUNT(*) FROM MKN_DOK_LINK WHERE DID = MK.DID) AS NUM_LINK
+FROM MKN_KONTRAK MK
+GROUP BY MK.DID, MK.ID_KONTRAK, MK.TIPE_DOKUMEN, MK.PIHAK_TERKAIT, MK.DEPT_TERKAIT, MK.TANGGAL_BERLAKU
+UNION
+SELECT MP.DID, MP.ID_PO_OS AS ID_DOKUMEN, MP.TIPE_DOKUMEN AS TIPE_DOK, MP.PIHAK_TERKAIT, MP.DEPT_TERKAIT, MP.TANGGAL_PO AS TANGGAL,
+(SELECT COUNT(*) FROM MKN_DOK_LINK WHERE DID = MP.DID) AS NUM_LINK 
+FROM MKN_PO_OS MP
+WHERE DID NOT IN (SELECT LINK_DOK_DID FROM MKN_DOK_LINK WHERE LINK_DOK_DID IS NOT NULL AND DID <> LINK_DOK_DID)
+AND (SELECT DISTINCT(NO_PO_OS) FROM MKN_INVOICE WHERE NO_PO_OS = MP.ID_PO_OS ) IS NOT NULL
+GROUP BY MP.DID, MP.ID_PO_OS, MP.TIPE_DOKUMEN, MP.PIHAK_TERKAIT, MP.DEPT_TERKAIT, MP.TANGGAL_PO
+UNION
+SELECT MI.DID, MI.ID_IM AS ID_DOKUMEN, MI.TIPE_DOKUMEN AS TIPE_DOK, '' AS PIHAK_TERKAIT, MI.DEPT_TERKAIT_DARI AS DEPT_TERKAIT, MI.TANGGAL_IM AS TANGGAL,
+(SELECT COUNT(*) FROM MKN_DOK_LINK WHERE DID = MI.DID) AS NUM_LINK 
+FROM MKN_IM MI
+WHERE MI.DID NOT IN (SELECT LINK_DOK_DID FROM MKN_DOK_LINK WHERE LINK_DOK_DID IS NOT NULL AND DID <> LINK_DOK_DID)
+AND (SELECT DISTINCT(NO_IM) FROM MKN_INVOICE WHERE NO_IM = MI.ID_IM ) IS NOT NULL
+GROUP BY MI.DID, MI.ID_IM, MI.TIPE_DOKUMEN, MI.DEPT_TERKAIT_DARI, MI.TANGGAL_IM]]>
+  </SQLQuery>
+  <ViewAttribute
+    Name="Did"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="38"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    AliasName="DID"
+    Expression="DID"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="IdDokumen"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ID_DOKUMEN"
+    Expression="ID_DOKUMEN"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentView.IdDokumen_LABEL"/>
+        <TOOLTIP
+          ResId="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentView.IdDokumen_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TipeDok"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="7"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TIPE_DOK"
+    Expression="TIPE_DOK"
+    SQLType="VARCHAR"
+    LOVName="LOV_TipeDok">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentView.TipeDok_LABEL"/>
+        <TOOLTIP
+          ResId="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentView.TipeDok_TOOLTIP"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PihakTerkait"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="120"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PIHAK_TERKAIT"
+    Expression="PIHAK_TERKAIT"
+    SQLType="VARCHAR"
+    LOVName="LOV_PihakTerkait">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="120"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentView.PihakTerkait_LABEL"/>
+        <TOOLTIP
+          ResId="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentView.PihakTerkait_TOOLTIP"/>
+        <DISPLAYWIDTH
+          Value="40"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DeptTerkait"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DEPT_TERKAIT"
+    Expression="DEPT_TERKAIT"
+    SQLType="VARCHAR"
+    LOVName="LOV_DeptTerkait">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentView.DeptTerkait_LABEL"/>
+        <TOOLTIP
+          ResId="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentView.DeptTerkait_TOOLTIP"/>
+        <DISPLAYWIDTH
+          Value="40"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Tanggal"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    AliasName="TANGGAL"
+    Expression="TANGGAL"
+    SQLType="DATE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER
+          ResId="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentView.Tanggal_FMT_FORMATTER"/>
+        <FMT_FORMAT
+          ResId="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentView.Tanggal_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NumLink"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    AliasName="NUM_LINK"
+    Expression="NUM_LINK"
+    SQLType="FLOAT">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="PreInitialDocumentViewCriteria"
+    ViewObjectName="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentView"
+    Conjunction="AND"
+    Mode="3">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="false"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow10"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="IdDokumen"
+        ViewAttribute="IdDokumen"
+        Operator="CONTAINS"
+        Conjunction="AND"
+        Value=":idDok"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="TipeDok"
+        ViewAttribute="TipeDok"
+        Operator="="
+        Conjunction="AND"
+        Value=":tipeDok"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="PihakTerkait"
+        ViewAttribute="PihakTerkait"
+        Operator="="
+        Conjunction="AND"
+        Value=":pihakTerkait"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="Tanggal"
+        ViewAttribute="Tanggal"
+        Operator="BETWEEN"
+        Conjunction="AND"
+        Required="Optional">
+        <ViewCriteriaItemValue
+          Name="PreInitialDocumentViewCriteria_vcrow10_Tanggal_vcval0"
+          Value=":startDate"
+          IsBindVarValue="true"/>
+        <ViewCriteriaItemValue
+          Name="PreInitialDocumentViewCriteria_vcrow10_Tanggal_vcval1"
+          Value=":endDate"
+          IsBindVarValue="true"/>
+      </ViewCriteriaItem>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="Did"/>
+    <Item Value="IdDokumen"/>
+  </AttrArray>
+  <ViewLinkAccessor
+    Name="MknDokRelView"
+    ViewLink="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentMknDokRelViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="MknDokLinkView"
+    ViewLink="app.mkp.model.view.ttf.linkdoc.PreInitialDocumentMknDokLinkViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="app.mkp.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+      <af:decorativeBox id="db1" inlineStyle="margin:5px;">
+        <f:facet name="center">
+          <af:panelHeader text="Posisi / Jabatan Penerima Notifikasi" id="ph1"
+                          icon="/Images/icon/posisi_penerima.png">
+            <f:facet name="context"/>
+            <f:facet name="menuBar"/>
+            <f:facet name="toolbar">
+              <af:toolbar id="t1">
+                <af:commandToolbarButton text="Save All"
+                                         id="ctb1"
+                                         icon="/Images/icon/save.png"
+                                         action="save"/>
+                <af:commandToolbarButton text="Cancel"
+                                         id="ctb2"
+                                         icon="/Images/icon/cancel.png"
+                                         action="cancel" immediate="true"/>
+              </af:toolbar>
+            </f:facet>
+            <f:facet name="legend"/>
+            <f:facet name="info"/>
+            <af:spacer width="10" height="10" id="s1"/>
+            <af:panelFormLayout id="pfl1">
+              <af:panelLabelAndMessage label="#{bindings.NamaNotifikasi.hints.label}"
+                                       id="plam1">
+                <af:outputText value="#{bindings.NamaNotifikasi.inputValue}"
+                               id="ot1"/>
+              </af:panelLabelAndMessage>
+              <af:selectOneChoice value="#{bindings.NotificationType.inputValue}"
+                                  label="#{bindings.NotificationType.label}"
+                                  required="#{bindings.NotificationType.hints.mandatory}"
+                                  shortDesc="#{bindings.NotificationType.hints.tooltip}"
+                                  id="soc1" readOnly="true">
+                <f:selectItems value="#{bindings.NotificationType.items}"
+                               id="si1"/>
+              </af:selectOneChoice>
+            </af:panelFormLayout>
+            <af:spacer width="10" height="30" id="s2"/>  
+            <!-- Start of Shuttle Standard -->
+              <af:selectManyShuttle label="Label 1" id="sms1"
+                                    leadingHeader="Daftar Posisi / Jabatan"
+                                    trailingHeader="Posisi / Jabatan Penerima Notifikasi"
+                                    simple="true"
+                                    value="#{backingBeanScope.notifikasiBackingBean.selectedPosition}">
+                <f:selectItems value="#{backingBeanScope.notifikasiBackingBean.allPosition}" id="si2"/>
+              </af:selectManyShuttle>
+              <af:spacer width="10" height="10" id="s11"/>
+              <af:commandButton text="Apply" id="cb1"
+                                action="#{backingBeanScope.notifikasiBackingBean.processShuttle}"
+                                partialSubmit="true"
+                                icon="/Images/icon/apply.png"/>
+            
+            <!-- End of Shuttle Standard -->
+            
+            <!-- Start of Shuttle with filter -->
+            <!--
+            <af:selectManyShuttle label="Label 1" id="sms1"
+                                    leadingHeader="Daftar Posisi / Jabatan"
+                                    trailingHeader="Posisi / Jabatan Penerima Notifikasi"
+                                    simple="true"
+                                    value="#{backingBeanScope.notifikasiBackingBean.selectedPosition}">
+                <f:selectItems value="#{backingBeanScope.notifikasiBackingBean.allPosition}" id="si2"/>
+              </af:selectManyShuttle>
+              -->
+            <!-- End of Shuttle with filter -->
+          </af:panelHeader>
+        </f:facet>
+      </af:decorativeBox>
+</jsp:root>

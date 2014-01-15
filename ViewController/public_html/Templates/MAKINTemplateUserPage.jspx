@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <af:pageTemplateDef var="attrs">
+    <af:xmlContent>
+      <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+        <display-name>MAKINTemplateUserPage</display-name>
+        <facet>
+          <description>Main Facet</description>
+          <facet-name>Main</facet-name>
+        </facet>
+        <facet>
+          <description>Footer Facet</description>
+          <facet-name>Footer</facet-name>
+        </facet>
+      </component>
+    </af:xmlContent>
+    <af:panelStretchLayout id="pt_psl1" topHeight="103px">
+      <f:facet name="top">
+        <af:panelStretchLayout id="pt_psl3" endWidth="314px" startWidth="526px"
+                               bottomHeight="30px">
+          <f:facet name="bottom">
+            <af:panelGroupLayout id="pt_pgl3" layout="vertical"
+                                 inlineStyle='background-image:url("../Images/background/MenuBarBkgd.png"); height:30px;'>
+              <af:spacer width="10" height="5" id="pt_s3"/>
+              <af:menuBar id="menu" binding="#{Menu.initMenu}"/>
+            </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="start">
+            <af:panelGroupLayout id="pt_pgl12" layout="vertical">
+              <af:spacer width="10" height="16" id="pt_s8"/>
+              <af:panelGroupLayout id="pt_pgl4" layout="horizontal"
+                                   valign="top">
+                <af:spacer width="12" height="10" id="pt_s1"/>
+                <af:panelGroupLayout id="pt_pgl8" layout="vertical">
+                  <af:image source="/Images/logo/logo.png" id="pt_i1"/>
+                </af:panelGroupLayout>
+                <af:spacer width="10" height="10" id="pt_s4"/>
+                <af:panelGroupLayout id="pt_pgl9" layout="vertical"
+                                     inlineStyle="padding:3px;">
+                  <af:outputFormatted value="Kontrol Penagihan" id="pt_of1"
+                                      inlineStyle="font-size:medium; font-weight:bold;"/>
+                  <af:panelGroupLayout id="pgl0" layout="horizontal">
+                    <af:outputFormatted value="#{UserData.namaKantor}" id="pt_of2"/>
+                    <af:spacer width="4" height="10" id="pt_s16"/>
+                    <af:outputFormatted value="-" id="pt_of10"/>
+                    <af:spacer width="4" height="10" id="pt_s17"/>
+                    <af:outputFormatted value="Makin Group" id="pt_of5"/>
+                  </af:panelGroupLayout>
+                  <af:spacer width="10" height="10" id="pt_s2"/>
+                </af:panelGroupLayout>
+              </af:panelGroupLayout>
+            </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="end">
+            <af:panelGroupLayout id="pt_pgl5" layout="vertical" halign="end">
+              <af:spacer width="10" height="10" id="pt_s9"/>
+              <af:panelGroupLayout id="pt_pgl6" layout="horizontal" halign="end"
+                                   valign="top">
+                <af:navigationPane id="pt_np1" hint="bar">
+                  <af:commandNavigationItem text="Home" id="pt_cni1"
+                                            icon="/Images/icon/home.png"/>
+                  <!--af:commandNavigationItem text="Logout"
+                                            id="pt_cni3"
+                                            actionListener="#{Logout.logoutUser}"
+                                            icon="/Images/icon/logout.png"/-->
+                <af:commandNavigationItem text="Logout" id="pt_gil1"
+                           destination="#{securityContext.authenticated ? '/faces/adfAuthentication?logout=true&amp;end_url=/faces/Login.jspx' :  '/adfAuthentication?success_url=/faces/MainUserDashboard.jspx'}"
+                                icon="/Images/icon/logout.png"/>
+                </af:navigationPane>
+                <!--af:goImageLink text="Logout" id="pt_gil1"
+                           destination="#{securityContext.authenticated ? 'adfAuthentication?logout=true&amp;end_url=/faces/Home.jspx' :  '/adfAuthentication?success_url=/faces/Home.jspx'}"
+                                icon="/Images/icon/logout.png"
+                                iconPosition="leading"/-->
+                <af:spacer width="15" height="10" id="pt_s5"/>
+                <af:statusIndicator id="pt_si1"/>
+                <af:spacer width="12" height="10" id="pt_s10"/>
+              </af:panelGroupLayout>
+              <af:panelGroupLayout id="pt_pgl7" layout="vertical" halign="end"
+                                   inlineStyle="padding:2px;">
+                <af:panelGroupLayout id="pt_pgl10" layout="horizontal">
+                  <af:outputFormatted value="Welcome," id="pt_of7"/>
+                  <af:spacer width="4" height="10" id="pt_s11"/>
+                  <af:outputFormatted value="#{UserData.userNameLogin}"
+                                      id="pt_of3" rendered="false"
+                                      inlineStyle="font-weight:bold;"/>
+                  <!--af:outputFormatted value="#{securityContext.userName}"
+                                      id="pt_of6"
+                                      inlineStyle="font-weight:bold;"/-->
+                  <af:outputFormatted value="#{UserData.firstName}"
+                                      id="pt_of6"
+                                      inlineStyle="font-weight:bold;"/>
+                  <af:spacer width="10" height="10" id="pt_s6"/>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="pt_pgl11" layout="horizontal">
+                  <af:outputFormatted value="Anda login sebagai" id="pt_of8"/>
+                  <af:spacer width="4" height="10" id="pt_s15"/>
+                  <af:outputFormatted value="#{UserData.titleName}"
+                                      id="pt_of4"
+                                      inlineStyle="font-weight:bold;"/>
+                  <af:spacer width="10" height="10" id="pt_s7"/>
+                </af:panelGroupLayout>
+              </af:panelGroupLayout>
+            </af:panelGroupLayout>
+          </f:facet>
+        </af:panelStretchLayout>
+      </f:facet>
+      <f:facet name="center">
+        <af:panelStretchLayout id="pt_psl2"
+                               inlineStyle='background-image:url("../Images/background/MainAppBg.png");'>
+          <f:facet name="center">
+            <af:facetRef facetName="Main"/>
+          </f:facet>
+        </af:panelStretchLayout>
+        <!-- id="af_one_column_header_footer_stretched"   -->
+      </f:facet>
+      <f:facet name="bottom">
+        <af:panelGroupLayout id="pt_pgl13" valign="middle" layout="vertical"
+                             inlineStyle='background-image:url("../Images/background/FooterBkgd.png");'
+                             halign="end">
+          <af:panelGroupLayout id="pt_pgl1" layout="vertical">
+            <af:spacer width="10" height="10" id="pt_s12"/>
+            <af:panelGroupLayout id="pt_pgl2" layout="horizontal">
+              <af:outputFormatted value="Copyright &amp;copy; 2013, PT. Matahari Kahuripan Group"
+                                  id="pt_of11"/>
+              <af:spacer width="10" height="10" id="pt_s14"/>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pt_pgl14" layout="horizontal">
+              <af:outputFormatted value="All Rights Reserved" id="pt_of9"/>
+              <af:spacer width="10" height="10" id="pt_s13"/>
+            </af:panelGroupLayout>
+            <af:spacer width="10" height="10" id="pt_s92"/>
+          </af:panelGroupLayout>
+        </af:panelGroupLayout>
+      </f:facet>
+    </af:panelStretchLayout>
+  </af:pageTemplateDef>
+</jsp:root>

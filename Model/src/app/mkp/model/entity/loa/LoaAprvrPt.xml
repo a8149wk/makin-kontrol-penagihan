@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="LoaAprvrPt"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName="LOA_APRVR_PT"
+  AliasName="LoaAprvrPt"
+  BindingStyle="OracleName"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <AttrArray Name="_publishEvents"/>
+  </DesignTime>
+  <Attribute
+    Name="LoaAprvrId"
+    IsNotNull="true"
+    Precision="38"
+    Scale="0"
+    ColumnName="LOA_APRVR_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="LOA_APRVR_PT"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="KodePt"
+    IsNotNull="true"
+    Precision="32"
+    ColumnName="KODE_PT"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="LOA_APRVR_PT"
+    PrimaryKey="true"
+    RetrievedOnUpdate="true"
+    RetrievedOnInsert="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </Attribute>
+  <AccessorAttribute
+    Name="LoaAprvr"
+    Association="app.mkp.model.entity.loa.LoaAprvrLoaAprvrPtFkAssoc"
+    AssociationEnd="app.mkp.model.entity.loa.LoaAprvrLoaAprvrPtFkAssoc.LoaAprvr"
+    AssociationOtherEnd="app.mkp.model.entity.loa.LoaAprvrLoaAprvrPtFkAssoc.LoaAprvrPt"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="LoaAprvrPtPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="LOA_APRVR_PT_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.loa.LoaAprvrPt.LoaAprvrId"/>
+      <Item Value="app.mkp.model.entity.loa.LoaAprvrPt.KodePt"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0015747">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0015747"/>
+      <Attr Name="_checkCondition" Value='"LOA_APRVR_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.loa.LoaAprvrPt.LoaAprvrId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0015748">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0015748"/>
+      <Attr Name="_checkCondition" Value='"KODE_PT" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.loa.LoaAprvrPt.KodePt"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="fk_LoaAprvrPt">
+    <DesignTime>
+      <Attr Name="_isCascadeDelete" Value="true"/>
+      <Attr Name="_referencedKey" Value="SYS_C0015744"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="FK_LOA_APRVR_PT"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.loa.LoaAprvrPt.LoaAprvrId"/>
+    </AttrArray>
+  </Key>
+</Entity>

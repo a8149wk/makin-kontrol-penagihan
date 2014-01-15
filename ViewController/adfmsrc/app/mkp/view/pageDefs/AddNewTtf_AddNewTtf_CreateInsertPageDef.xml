@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.61.92"
+                id="AddNewTtf_AddNewTtf_CreateInsertPageDef"
+                Package="app.mkp.view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="MknTtfView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="MknTtfView1Iterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="MknTtfView1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+  </bindings>
+</pageDefinition>

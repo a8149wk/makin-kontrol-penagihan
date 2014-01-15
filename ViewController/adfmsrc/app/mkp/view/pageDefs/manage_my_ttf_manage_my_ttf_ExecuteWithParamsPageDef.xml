@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="manage_my_ttf_manage_my_ttf_ExecuteWithParamsPageDef"
+                Package="app.mkp.view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="MknMyTtfView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="MknMyTtfView1Iterator" Refresh="never"/>
+  </executables>
+  <bindings>
+    <action IterBinding="MknMyTtfView1Iterator" id="ExecuteWithParams"
+            RequiresUpdateModel="true" Action="executeWithParams">
+      <NamedData NDName="createdBy" NDValue="#{UserData.userNameLogin}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="unitComp" NDType="java.lang.String"/>
+      <NamedData NDName="supId" NDType="java.lang.String"/>
+      <NamedData NDName="invStart" NDType="oracle.jbo.domain.Date"/>
+      <NamedData NDName="invEnd" NDType="oracle.jbo.domain.Date"/>
+      <NamedData NDName="ttfDueStart" NDType="oracle.jbo.domain.Date"/>
+      <NamedData NDName="ttfDueEnd" NDType="oracle.jbo.domain.Date"/>
+    </action>
+  </bindings>
+</pageDefinition>

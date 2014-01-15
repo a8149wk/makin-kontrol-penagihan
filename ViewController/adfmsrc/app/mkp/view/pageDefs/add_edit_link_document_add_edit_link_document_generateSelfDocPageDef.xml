@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="add_edit_link_document_add_edit_link_document_generateSelfDocPageDef"
+                Package="app.mkp.view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="generateSelfDoc" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="generateSelfDoc"
+                  IsViewObjectMethod="false"
+                  DataControl="TandaTerimaFakturAMDataControl"
+                  InstanceName="TandaTerimaFakturAMDataControl.dataProvider">
+      <NamedData NDName="dId" NDValue="#{pageFlowScope.dId}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="tipeDok" NDValue="#{pageFlowScope.tipeDok}"
+                 NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

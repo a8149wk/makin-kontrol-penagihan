@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="LovBrRefCd"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  SelectList="BrRefCode.BR_REF_ID, 
+       BrRefCode.BR_REF_KD, 
+       BrRefCode.LABEL"
+  FromList="BR_REF_CODE BrRefCode"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="app.mkp.model.view.lov.LovBrRefCd_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <EntityUsage
+    Name="BrRefCode"
+    Entity="app.mkp.model.entity.param.BrRefCode"
+    ReadOnly="true"
+    DeleteParticipant="false"/>
+  <ViewAttribute
+    Name="BrRefId"
+    IsUpdateable="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="BrRefId"
+    EntityUsage="BrRefCode"
+    AliasName="BR_REF_ID"/>
+  <ViewAttribute
+    Name="BrRefKd"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="BrRefKd"
+    EntityUsage="BrRefCode"
+    AliasName="BR_REF_KD"/>
+  <ViewAttribute
+    Name="Label"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Label"
+    EntityUsage="BrRefCode"
+    AliasName="LABEL"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="app.mkp.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="add_edit_link_document_add_edit_link_document_ExecuteWithParamsPageDef"
+                Package="app.mkp.view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="MknDokLinkView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="MknDokLinkView1Iterator" Refresh="never"/>
+  </executables>
+  <bindings>
+    <action IterBinding="MknDokLinkView1Iterator" id="ExecuteWithParams"
+            RequiresUpdateModel="true" Action="executeWithParams">
+      <NamedData NDName="dId" NDValue="#{pageFlowScope.dId}"
+                 NDType="java.lang.String"/>
+    </action>
+  </bindings>
+</pageDefinition>

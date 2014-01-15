@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1" title="MAKIN Kontrol Penagihan">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:panelGroupLayout layout="vertical" id="pgl1"
+                             inlineStyle="background-color:transparent; padding:5px;">
+          <af:query id="qryId1" headerText="Search" disclosed="true"
+                    value="#{bindings.LovDocumentCriteriaQuery.queryDescriptor}"
+                    model="#{bindings.LovDocumentCriteriaQuery.queryModel}"
+                    queryListener="#{bindings.LovDocumentCriteriaQuery.processQuery}"
+                    queryOperationListener="#{bindings.LovDocumentCriteriaQuery.processQueryOperation}"
+                    resultComponentId="::pc1:resId1" saveQueryMode="hidden"
+                    modeChangeVisible="false"/>
+          <af:spacer width="10" height="10" id="s1"/>
+          <af:panelCollection id="pc1" styleClass="AFStretchWidth"
+                              featuresOff="detach">
+            <f:facet name="menus"/>
+            <f:facet name="toolbar"/>
+            <f:facet name="statusbar"/>
+            <af:table value="#{bindings.LovDocument1.collectionModel}" var="row"
+                      rows="#{bindings.LovDocument1.rangeSize}"
+                      emptyText="#{bindings.LovDocument1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      fetchSize="#{bindings.LovDocument1.rangeSize}"
+                      rowBandingInterval="0"
+                      selectedRowKeys="#{bindings.LovDocument1.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.LovDocument1.collectionModel.makeCurrent}"
+                      rowSelection="single" id="resId1"
+                      binding="#{documentLovBean.documentTable}"
+                      columnStretching="column:resId1c5">
+              <af:column sortProperty="#{bindings.LovDocument1.hints.TipeDokumen.name}"
+                         sortable="true"
+                         headerText="#{bindings.LovDocument1.hints.TipeDokumen.label}"
+                         id="resId1c2" width="90" noWrap="false">
+                <af:outputText value="#{row.TipeDokumen}" id="ot4"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.LovDocument1.hints.TipeDokumenPendukung.name}"
+                         sortable="true"
+                         headerText="#{bindings.LovDocument1.hints.TipeDokumenPendukung.label}"
+                         id="resId1c3" width="130" noWrap="false">
+                <af:outputText value="#{row.TipeDokumenPendukung}" id="ot3"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.LovDocument1.hints.DocTitle.name}"
+                         sortable="true"
+                         headerText="#{bindings.LovDocument1.hints.DocTitle.label}"
+                         id="resId1c4" width="150" noWrap="false">
+                <af:outputText value="#{row.DocTitle}" id="ot2"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.LovDocument1.hints.OriginalName.name}"
+                         sortable="true"
+                         headerText="#{bindings.LovDocument1.hints.OriginalName.label}"
+                         id="resId1c5" noWrap="false">
+                <af:outputText value="#{row.OriginalName}" id="ot1"/>
+              </af:column>
+            </af:table>
+          </af:panelCollection>
+          <af:spacer width="10" height="5" id="s2"/>
+          <af:panelGroupLayout id="pgl2" layout="horizontal">
+            <af:commandButton text="Select" id="cb1"
+                              action="#{documentLovBean.onValueSelect}">
+              <af:setPropertyListener from="#{'submit'}"
+                                      to="#{pageFlowScope.submitOrCancelFlag}"
+                                      type="action"/>
+            </af:commandButton>
+            <af:commandButton text="Cancel" id="cb2" action="return">
+              <af:setPropertyListener from="#{'cancel'}"
+                                      to="#{pageFlowScope.submitOrCancelFlag}"
+                                      type="action"/>
+            </af:commandButton>
+          </af:panelGroupLayout>
+        </af:panelGroupLayout>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

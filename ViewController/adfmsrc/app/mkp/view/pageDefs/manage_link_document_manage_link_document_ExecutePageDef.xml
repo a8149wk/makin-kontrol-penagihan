@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="manage_link_document_manage_link_document_ExecutePageDef"
+                Package="app.mkp.view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="PreInitialDocumentView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="PreInitialDocumentView1Iterator" Refresh="never"/>
+  </executables>
+  <bindings>
+    <action IterBinding="PreInitialDocumentView1Iterator" id="Execute"
+            RequiresUpdateModel="true" Action="iteratorExecute"/>
+  </bindings>
+</pageDefinition>

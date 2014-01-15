@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="add-edit-link-document">
+    <default-activity id="__2">RouteByMode2</default-activity>
+    <transaction id="__28">
+      <new-transaction/>
+    </transaction>
+    <task-flow-reentry id="__27">
+      <reentry-outcome-dependent/>
+    </task-flow-reentry>
+    <input-parameter-definition id="__1">
+      <name id="__3">editKey</name>
+      <value>#{pageFlowScope.editKey}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name id="__4">mode</name>
+      <value>#{pageFlowScope.mode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__30">
+      <name id="__31">tipeDok</name>
+      <value>#{pageFlowScope.tipeDok}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__83">
+      <name id="__82">dId</name>
+      <value>#{pageFlowScope.dId}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__46">
+      <managed-bean-name id="__45">browseDocPoImKontrakBean</managed-bean-name>
+      <managed-bean-class id="__44">app.mkp.backing.lov.BrowseDocPoImKontrakBean</managed-bean-class>
+      <managed-bean-scope id="__43">request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__61">
+      <managed-bean-name id="__60">oracle$adfinternal$view$rich$dailogInlineDocument</managed-bean-name>
+      <managed-bean-class id="__59">java.util.TreeMap</managed-bean-class>
+      <managed-bean-scope id="__47">request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__65">
+      <managed-bean-name id="__64">linkDocBackingBean</managed-bean-name>
+      <managed-bean-class id="__62">app.mkp.backing.LinkDocBackingBean</managed-bean-class>
+      <managed-bean-scope id="__63">request</managed-bean-scope>
+    </managed-bean>
+    <task-flow-return id="SaveAndBack">
+      <outcome id="__19">
+        <name>SaveAndBack</name>
+        <reentry-not-allowed/>
+        <commit/>
+      </outcome>
+    </task-flow-return>
+    <task-flow-return id="CancelAndBack">
+      <outcome id="__20">
+        <name>CancelAndBack</name>
+        <reentry-not-allowed/>
+        <rollback/>
+      </outcome>
+    </task-flow-return>
+    <view id="FormAddLinkDok">
+      <page>/Pages/LinkDocument/FormAddLinkDok.jsff</page>
+    </view>
+    <task-flow-call id="LovDocPoImKontrak">
+      <task-flow-reference>
+        <document>/WEB-INF/LovDocPoImKontrak.xml</document>
+        <id>LovDocPoImKontrak</id>
+      </task-flow-reference>
+      <input-parameter id="__84">
+        <name>tipeDok</name>
+        <value>#{pageFlowScope.tipeDok}</value>
+      </input-parameter>
+      <return-value id="__66">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </return-value>
+      <return-value id="__67">
+        <name>submitOrCancelFlag</name>
+        <value>#{pageFlowScope.submitOrCancelFlag}</value>
+      </return-value>
+      <run-as-dialog>
+        <display-type id="__53">
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-return id="SaveAndStay">
+      <outcome id="__68">
+        <name>SaveAndStay</name>
+        <reentry-not-allowed/>
+        <commit/>
+      </outcome>
+    </task-flow-return>
+    <method-call id="generateSelfDoc">
+      <method>#{bindings.generateSelfDoc.execute}</method>
+      <outcome id="__42">
+        <fixed-outcome>generateSelfDoc</fixed-outcome>
+      </outcome>
+    </method-call>
+    <router id="RouteByMode2">
+      <case>
+        <expression>#{pageFlowScope.mode == 'Add'}</expression>
+        <outcome id="__80">addNew</outcome>
+      </case>
+      <case>
+        <expression>#{pageFlowScope.mode == 'Edit'}</expression>
+        <outcome id="__81">editKey</outcome>
+      </case>
+      <default-outcome>addNew</default-outcome>
+    </router>
+    <method-call id="ExecuteWithParams">
+      <method>#{bindings.ExecuteWithParams.execute}</method>
+      <outcome id="__102">
+        <fixed-outcome>ExecuteWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__18">
+      <from-activity-id id="__17">*</from-activity-id>
+      <control-flow-case id="__22">
+        <from-outcome id="__23">save</from-outcome>
+        <to-activity-id id="__21">SaveAndBack</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__24">
+        <from-outcome id="__26">cancel</from-outcome>
+        <to-activity-id id="__25">CancelAndBack</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__70">
+        <from-outcome id="__71">saveStay</from-outcome>
+        <to-activity-id id="__69">SaveAndStay</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__54">
+      <from-activity-id id="__55">FormAddLinkDok</from-activity-id>
+      <control-flow-case id="__57">
+        <from-outcome id="__58">lovDoc</from-outcome>
+        <to-activity-id id="__56">LovDocPoImKontrak</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__48">
+      <from-activity-id id="__49">generateSelfDoc</from-activity-id>
+      <control-flow-case id="__50">
+        <from-outcome id="__51">generateSelfDoc</from-outcome>
+        <to-activity-id id="__52">FormAddLinkDok</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__72">
+      <from-activity-id id="__73">RouteByMode2</from-activity-id>
+      <control-flow-case id="__74">
+        <from-outcome id="__76">addNew</from-outcome>
+        <to-activity-id id="__75">generateSelfDoc</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__78">
+        <from-outcome id="__79">editKey</from-outcome>
+        <to-activity-id id="__77">ExecuteWithParams</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__103">
+      <from-activity-id id="__104">ExecuteWithParams</from-activity-id>
+      <control-flow-case id="__107">
+        <from-outcome id="__105">ExecuteWithParams</from-outcome>
+        <to-activity-id id="__106">FormAddLinkDok</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

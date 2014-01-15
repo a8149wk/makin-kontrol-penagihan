@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <af:pageTemplateDef var="attrs">
+    <af:xmlContent>
+      <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+        <display-name>MAKINTemplateLoginPage</display-name>
+        <facet>
+          <description>Main region</description>
+          <facet-name>Main</facet-name>
+        </facet>
+        <facet>
+          <description>Footer region</description>
+          <facet-name>Footer</facet-name>
+        </facet>
+      </component>
+    </af:xmlContent>
+    <af:panelStretchLayout id="pt_psl1"
+                           inlineStyle='background-image:url("../Images/background/MainAppBg.png");'>
+      <f:facet name="center">
+        <af:panelStretchLayout id="pt_psl2">
+          <f:facet name="center">
+            <af:facetRef facetName="Main"/>
+          </f:facet>
+        </af:panelStretchLayout>
+        <!-- id="af_one_column_footer_stretched"  -->
+      </f:facet>
+      <f:facet name="bottom">      
+        <af:panelGroupLayout id="pt_pgl5" valign="middle"
+                         layout="vertical"
+                         inlineStyle="background-image:url(&quot;../Images/background/FooterBkgd.png&quot;);"
+                         halign="end">
+          <af:panelGroupLayout id="pt_pgl1" layout="vertical">
+            <af:spacer width="10" height="10" id="pt_s6"/>
+            <af:panelGroupLayout id="pt_pgl2" layout="horizontal">
+              <af:outputFormatted value="Copyright &amp;copy; 2013, PT. Matahari Kahuripan Group"
+                                  id="pt_of3"/>
+              <af:spacer width="10" height="10" id="pt_s1"/>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pt_pgl3" layout="horizontal">
+              <af:outputFormatted value="All Rights Reserved" id="pt_of4"/>
+              <af:spacer width="10" height="10" id="pt_s2"/>
+            </af:panelGroupLayout>
+            <af:spacer width="10" height="10" id="pt_s5"/>
+            </af:panelGroupLayout>
+        </af:panelGroupLayout>
+      </f:facet>
+    </af:panelStretchLayout>
+  </af:pageTemplateDef>
+</jsp:root>

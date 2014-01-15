@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="manage-link-document">
+    <default-activity id="__1">ListDokumen</default-activity>
+    <managed-bean id="__10">
+      <managed-bean-name id="__11">linkDocBackingBean</managed-bean-name>
+      <managed-bean-class id="__13">app.mkp.backing.LinkDocBackingBean</managed-bean-class>
+      <managed-bean-scope id="__12">backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="ListDokumen">
+      <page>/Pages/LinkDocument/ListDokumen.jsff</page>
+    </view>
+    <task-flow-call id="add-edit-link-document">
+      <task-flow-reference>
+        <document>/WEB-INF/add-edit-link-document.xml</document>
+        <id>add-edit-link-document</id>
+      </task-flow-reference>
+      <input-parameter id="__7">
+        <name>editKey</name>
+        <value>#{pageFlowScope.editKey}</value>
+      </input-parameter>
+      <input-parameter id="__8">
+        <name>mode</name>
+        <value>#{pageFlowScope.mode}</value>
+      </input-parameter>
+      <input-parameter id="__9">
+        <name>tipeDok</name>
+        <value>#{pageFlowScope.tipeDok}</value>
+      </input-parameter>
+      <input-parameter id="__19">
+        <name>dId</name>
+        <value>#{pageFlowScope.dId}</value>
+      </input-parameter>
+    </task-flow-call>
+    <method-call id="Execute">
+      <method>#{bindings.Execute.execute}</method>
+      <outcome id="__20">
+        <fixed-outcome>Execute</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__2">
+      <from-activity-id id="__3">ListDokumen</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome id="__6">addEditLinkDoc</from-outcome>
+        <to-activity-id id="__5">add-edit-link-document</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__14">
+      <from-activity-id id="__15">add-edit-link-document</from-activity-id>
+      <control-flow-case id="__18">
+        <from-outcome id="__17">SaveAndStay</from-outcome>
+        <to-activity-id id="__16">add-edit-link-document</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__22">
+        <from-outcome id="__23">SaveAndBack</from-outcome>
+        <to-activity-id id="__21">Execute</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__31">
+        <from-outcome id="__30">CancelAndBack</from-outcome>
+        <to-activity-id id="__29">ListDokumen</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__24">
+      <from-activity-id id="__25">Execute</from-activity-id>
+      <control-flow-case id="__28">
+        <from-outcome id="__27">Execute</from-outcome>
+        <to-activity-id id="__26">ListDokumen</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

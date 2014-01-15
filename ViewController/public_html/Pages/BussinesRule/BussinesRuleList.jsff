@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['app.mkp.view.ViewControllerBundle']}"/>
+  <af:decorativeBox id="db1" inlineStyle="margin:5px;">
+    <f:facet name="center">
+      <af:panelHeader text="#{viewcontrollerBundle.MAIN_HDR_BUSSINES_RULES}" id="ph1"
+                      icon="/Images/icon/bussines_rule.png">
+        <f:facet name="context"/>
+        <f:facet name="menuBar"/>
+        <f:facet name="toolbar"/>
+        <f:facet name="legend"/>
+        <f:facet name="info"/>
+        <af:panelSplitter id="ps2" orientation="vertical"
+                          inlineStyle="margin:5px;" splitterPosition="142">
+          <f:facet name="first">
+            <af:query id="qryId1" headerText="Search" disclosed="true"
+                      value="#{bindings.BrMainViewCriteriaQuery.queryDescriptor}"
+                      model="#{bindings.BrMainViewCriteriaQuery.queryModel}"
+                      queryListener="#{bindings.BrMainViewCriteriaQuery.processQuery}"
+                      queryOperationListener="#{bindings.BrMainViewCriteriaQuery.processQueryOperation}"
+                      resultComponentId="::pc1:resId1" saveQueryMode="hidden"
+                      modeChangeVisible="false" styleClass="AFStretchWidth"/>
+          </f:facet>
+          <f:facet name="second">
+            <af:panelCollection id="pc1" featuresOff="detach"
+                                styleClass="AFStretchWidth">
+              <f:facet name="menus"/>
+              <f:facet name="toolbar">
+                <af:toolbar id="t1">
+                  <af:commandToolbarButton text="#{viewcontrollerBundle.BUT_TXT_ADD_BUSSINES_RULE}"
+                                           id="ctb1" icon="/Images/icon/add.png"
+                                           action="addEditBussinesRule">
+                    <af:setPropertyListener type="action" from="#{'Add'}"
+                                            to="#{pageFlowScope.mode}"/>
+                  </af:commandToolbarButton>
+                </af:toolbar>
+              </f:facet>
+              <f:facet name="statusbar"/>
+              <af:table value="#{bindings.BrMainView1.collectionModel}"
+                        var="row" rows="#{bindings.BrMainView1.rangeSize}"
+                        emptyText="#{bindings.BrMainView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                        fetchSize="#{bindings.BrMainView1.rangeSize}"
+                        rowBandingInterval="0"
+                        selectedRowKeys="#{bindings.BrMainView1.collectionModel.selectedRow}"
+                        selectionListener="#{bindings.BrMainView1.collectionModel.makeCurrent}"
+                        rowSelection="single" id="resId1"
+                        columnStretching="column:resId1c3"
+                        binding="#{backingBeanScope.bussinesRuleBackingBean.childTable}"
+                        partialTriggers="confirmDeleteDialog">
+                <af:column id="c1" headerText="Actions" width="88">
+                  <af:panelGroupLayout id="pgl4" layout="horizontal"
+                                       halign="center">
+                    <af:commandImageLink id="cil1"
+                                         icon="/Images/icon/user_add.png"
+                                         action="assignApprover">
+                      <af:setPropertyListener from="#{row.rowKeyStr}"
+                                              to="#{pageFlowScope.editKey}"
+                                              type="action"/>
+                      <af:setPropertyListener type="action" from="#{row.BrRef}"
+                                              to="#{pageFlowScope.brRef}"/>
+                    </af:commandImageLink>
+                    <af:spacer width="10" height="10" id="s3"/>
+                    <af:commandImageLink id="cil2" icon="/Images/icon/edit.png"
+                                         action="addEditBussinesRule">
+                      <af:setPropertyListener type="action" from="#{'Edit'}"
+                                              to="#{pageFlowScope.mode}"/>
+                      <af:setPropertyListener from="#{row.rowKeyStr}"
+                                              to="#{pageFlowScope.editKey}"
+                                              type="action"/>
+                    </af:commandImageLink>
+                    <af:spacer width="10" height="10" id="s9"/>
+                    <af:commandImageLink id="cil3"
+                                         icon="/Images/icon/delete.png">
+                      <af:showPopupBehavior popupId="confirmDeletePopup"/>
+                    </af:commandImageLink>
+                    <af:popup id="confirmDeletePopup"
+                              contentDelivery="lazyUncached">
+                      <af:dialog closeIconVisible="false" modal="true"
+                                 title="Warning" id="confirmDeleteDialog"
+                                 dialogListener="#{backingBeanScope.bussinesRuleBackingBean.confirmDeleteBussinesRuleDialogListener}">
+                        <af:panelGroupLayout inlineStyle="background-color:Window;"
+                                             layout="vertical" halign="left"
+                                             valign="middle" id="nwtpgl1">
+                          <af:outputText value="#{viewcontrollerBundle.DEL_MSG_BUS_RULE}"
+                                         id="nwtot1"/>
+                        </af:panelGroupLayout>
+                      </af:dialog>
+                    </af:popup>
+                  </af:panelGroupLayout>
+                </af:column>
+                <af:column sortProperty="#{bindings.BrMainView1.hints.BrTipe.name}"
+                           sortable="true"
+                           headerText="#{bindings.BrMainView1.hints.BrTipe.label}"
+                           id="resId1c1" width="202">
+                  <af:selectOneChoice value="#{row.bindings.BrTipe.inputValue}"
+                                      label="#{row.bindings.BrTipe.label}"
+                                      required="#{bindings.BrMainView1.hints.BrTipe.mandatory}"
+                                      shortDesc="#{bindings.BrMainView1.hints.BrTipe.tooltip}"
+                                      id="soc1" readOnly="true">
+                    <f:selectItems value="#{row.bindings.BrTipe.items}"
+                                   id="si1"/>
+                  </af:selectOneChoice>
+                </af:column>
+                <af:column sortProperty="#{bindings.BrMainView1.hints.BrRef.name}"
+                           sortable="true"
+                           headerText="#{bindings.BrMainView1.hints.BrRef.label}"
+                           id="resId1c2" width="205">
+                  <af:selectOneChoice value="#{row.bindings.BrRef.inputValue}"
+                                      label="#{row.bindings.BrRef.label}"
+                                      required="#{bindings.BrMainView1.hints.BrRef.mandatory}"
+                                      shortDesc="#{bindings.BrMainView1.hints.BrRef.tooltip}"
+                                      id="soc2" readOnly="true">
+                    <f:selectItems value="#{row.bindings.BrRef.items}"
+                                   id="si2"/>
+                  </af:selectOneChoice>
+                </af:column>
+                <af:column sortProperty="#{bindings.BrMainView1.hints.BrDescr.name}"
+                           sortable="true"
+                           headerText="#{bindings.BrMainView1.hints.BrDescr.label}"
+                           id="resId1c3" width="255">
+                  <af:outputText value="#{row.BrDescr}" id="ot1"/>
+                </af:column>
+              </af:table>
+            </af:panelCollection>
+          </f:facet>
+        </af:panelSplitter>
+      </af:panelHeader>
+    </f:facet>
+  </af:decorativeBox>
+</jsp:root>

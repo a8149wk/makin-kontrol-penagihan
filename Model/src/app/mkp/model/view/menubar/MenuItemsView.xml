@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MenuItemsView"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  SelectList="MenuItems.ID, 
+       MenuItems.NAME, 
+       MenuItems.SHORTCUT, 
+       MenuItems.DISPLAY_SEQUENCE, 
+       MenuItems.ACTION, 
+       MenuItems.MEN_ID, 
+       MenuItems.ICON, 
+       MenuItems.LABEL, 
+       Menu.DISPLAY_SEQUENCE AS DISPLAY_SEQUENCE1, 
+       Menu.ID AS ID1, 
+       Menu.ICON AS ICON1, 
+       Menu.LABEL AS LABEL1, 
+       Menu.NAME AS NAME1, 
+       Menu.SHORTCUT AS SHORTCUT1, 
+       Roles.ID AS ID2, 
+       Roles.NAME AS NAME2, 
+       RoleMenuItems.MIT_ID, 
+       RoleMenuItems.ROL_ID AS ROL_ID1"
+  FromList="MENU_ITEMS MenuItems, MENU Menu, ROLES Roles, ROLE_MENU_ITEMS RoleMenuItems"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  Where="(MenuItems.MEN_ID = Menu.ID) AND (MenuItems.ID = RoleMenuItems.MIT_ID) AND RoleMenuItems.ROL_ID = Roles.ID"
+  RowClass="app.mkp.model.view.menubar.MenuItemsViewRowImpl"
+  ComponentClass="app.mkp.model.view.menubar.MenuItemsViewImpl"
+  OrderBy="Menu.DISPLAY_SEQUENCE,MenuItems.DISPLAY_SEQUENCE">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <EntityUsage
+    Name="MenuItems"
+    Entity="app.mkp.model.entity.menubar.MenuItems"/>
+  <EntityUsage
+    Name="Menu"
+    Entity="app.mkp.model.entity.menubar.Menu"
+    SourceUsage="app.mkp.model.view.menubar.MenuItemsView.MenuItems"
+    ReadOnly="true"
+    Reference="true"
+    DeleteParticipant="false"
+    Association="app.mkp.model.entity.menubar.MitMenFkAssoc"
+    AssociationEnd="app.mkp.model.entity.menubar.MitMenFkAssoc.Menu"
+    JoinType="INNER JOIN">
+    <DesignTime>
+      <AttrArray Name="_srcAttributes">
+        <Item Value="app.mkp.model.entity.menubar.MenuItems.MenId"/>
+      </AttrArray>
+      <AttrArray Name="_dstAttributes">
+        <Item Value="app.mkp.model.entity.menubar.Menu.Id"/>
+      </AttrArray>
+    </DesignTime>
+  </EntityUsage>
+  <EntityUsage
+    Name="Roles"
+    Entity="app.mkp.model.entity.menubar.Roles"
+    SourceUsage="app.mkp.model.view.menubar.MenuItemsView.Menu"
+    ReadOnly="true"
+    Reference="true"
+    DeleteParticipant="false">
+    <DesignTime>
+      <Attr Name="_customjoin" Value="true"/>
+    </DesignTime>
+  </EntityUsage>
+  <EntityUsage
+    Name="RoleMenuItems"
+    Entity="app.mkp.model.entity.menubar.RoleMenuItems"
+    Association="app.mkp.model.entity.menubar.RmiMitFkAssoc"
+    AssociationEnd="app.mkp.model.entity.menubar.RmiMitFkAssoc.RoleMenuItems"
+    SourceUsage="app.mkp.model.view.menubar.MenuItemsView.MenuItems"
+    ReadOnly="true"
+    Reference="true"
+    DeleteParticipant="false"
+    JoinType="INNER JOIN">
+    <DesignTime>
+      <AttrArray Name="_srcAttributes">
+        <Item Value="app.mkp.model.entity.menubar.MenuItems.Id"/>
+      </AttrArray>
+      <AttrArray Name="_dstAttributes">
+        <Item Value="app.mkp.model.entity.menubar.RoleMenuItems.MitId"/>
+      </AttrArray>
+    </DesignTime>
+  </EntityUsage>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="MenuItems"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="Name"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Name"
+    EntityUsage="MenuItems"
+    AliasName="NAME"/>
+  <ViewAttribute
+    Name="Shortcut"
+    PrecisionRule="true"
+    EntityAttrName="Shortcut"
+    EntityUsage="MenuItems"
+    AliasName="SHORTCUT"/>
+  <ViewAttribute
+    Name="DisplaySequence"
+    PrecisionRule="true"
+    EntityAttrName="DisplaySequence"
+    EntityUsage="MenuItems"
+    AliasName="DISPLAY_SEQUENCE"/>
+  <ViewAttribute
+    Name="Action"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Action"
+    EntityUsage="MenuItems"
+    AliasName="ACTION"/>
+  <ViewAttribute
+    Name="MenId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="MenId"
+    EntityUsage="MenuItems"
+    AliasName="MEN_ID"/>
+  <ViewAttribute
+    Name="Icon"
+    PrecisionRule="true"
+    EntityAttrName="Icon"
+    EntityUsage="MenuItems"
+    AliasName="ICON"/>
+  <ViewAttribute
+    Name="Label"
+    PrecisionRule="true"
+    EntityAttrName="Label"
+    EntityUsage="MenuItems"
+    AliasName="LABEL"/>
+  <ViewAttribute
+    Name="MenuDisplaySequence"
+    PrecisionRule="true"
+    EntityAttrName="DisplaySequence"
+    EntityUsage="Menu"
+    AliasName="DISPLAY_SEQUENCE1"/>
+  <ViewAttribute
+    Name="MenuId"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="Menu"
+    AliasName="ID1"/>
+  <ViewAttribute
+    Name="MenuIcon"
+    PrecisionRule="true"
+    EntityAttrName="Icon"
+    EntityUsage="Menu"
+    AliasName="ICON1"/>
+  <ViewAttribute
+    Name="MenuLabel"
+    PrecisionRule="true"
+    EntityAttrName="Label"
+    EntityUsage="Menu"
+    AliasName="LABEL1"/>
+  <ViewAttribute
+    Name="MenuName"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Name"
+    EntityUsage="Menu"
+    AliasName="NAME1"/>
+  <ViewAttribute
+    Name="MenuShortcut"
+    PrecisionRule="true"
+    EntityAttrName="Shortcut"
+    EntityUsage="Menu"
+    AliasName="SHORTCUT1"/>
+  <ViewAttribute
+    Name="RolesId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="Roles"
+    AliasName="ID2"/>
+  <ViewAttribute
+    Name="RolesName"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Name"
+    EntityUsage="Roles"
+    AliasName="NAME2"/>
+  <ViewAttribute
+    Name="RoleMenuItemsRoleId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="MitId"
+    EntityUsage="RoleMenuItems"
+    AliasName="MIT_ID"/>
+  <ViewAttribute
+    Name="RoleMenuItemsMenuItemId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="RolId"
+    EntityUsage="RoleMenuItems"
+    AliasName="ROL_ID1"/>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="Id"/>
+    <Item Value="RolesId"/>
+  </AttrArray>
+</ViewObject>

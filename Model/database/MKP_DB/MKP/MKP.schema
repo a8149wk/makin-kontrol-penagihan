@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<schema xmlns="http://xmlns.oracle.com/jdeveloper/1111/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">1c613e79-f2af-4228-9a8a-f15570aab0ff</identifier>
+  </ID>
+  <name>MKP</name>
+</schema>

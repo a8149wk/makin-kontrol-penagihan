@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['app.mkp.view.ViewControllerBundle']}"/>
+  <af:decorativeBox id="db1" inlineStyle="margin:5px;">
+    <f:facet name="center">
+      <af:panelHeader text="#{viewcontrollerBundle.MAIN_HDR_BUSSINES_RULE_CONFIGURATION}" id="ph1"
+                      icon="/Images/icon/bussines_rule.png">
+        <f:facet name="context"/>
+        <f:facet name="menuBar"/>
+        <f:facet name="toolbar">
+          <af:toolbar id="t2">
+            <af:commandToolbarButton text="Cancel" id="ctb2"
+                                     icon="/Images/icon/cancel.png"
+                                     action="cancel" immediate="true"/>
+            <af:commandToolbarButton text="Save" id="ctb1"
+                                     icon="/Images/icon/save.png"
+                                     action="save"/>
+          </af:toolbar>
+        </f:facet>
+        <f:facet name="legend"/>
+        <f:facet name="info"/>
+        <af:panelFormLayout id="pfl1" inlineStyle="margin:5px;">
+          <af:selectOneChoice value="#{bindings.BrTipe.inputValue}"
+                              label="#{bindings.BrTipe.label}"
+                              required="#{bindings.BrTipe.hints.mandatory}"
+                              shortDesc="#{bindings.BrTipe.hints.tooltip}"
+                              id="soc1">
+            <f:selectItems value="#{bindings.BrTipe.items}" id="si1"/>
+          </af:selectOneChoice>
+          <af:selectOneChoice value="#{bindings.BrRef.inputValue}"
+                              label="#{bindings.BrRef.label}"
+                              required="#{bindings.BrRef.hints.mandatory}"
+                              shortDesc="#{bindings.BrRef.hints.tooltip}"
+                              id="soc2">
+            <f:selectItems value="#{bindings.BrRef.items}" id="si2"/>
+          </af:selectOneChoice>
+          <af:inputText value="#{bindings.BrName.inputValue}"
+                        label="#{bindings.BrName.hints.label}"
+                        required="#{bindings.BrName.hints.mandatory}"
+                        columns="#{bindings.BrName.hints.displayWidth}"
+                        maximumLength="#{bindings.BrName.hints.precision}"
+                        shortDesc="#{bindings.BrName.hints.tooltip}" id="it2">
+            <f:validator binding="#{bindings.BrName.validator}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.BrDescr.inputValue}"
+                        label="#{bindings.BrDescr.hints.label}"
+                        required="#{bindings.BrDescr.hints.mandatory}"
+                        columns="#{bindings.BrDescr.hints.displayWidth}"
+                        maximumLength="#{bindings.BrDescr.hints.precision}"
+                        shortDesc="#{bindings.BrDescr.hints.tooltip}" id="it1"
+                        rows="2">
+            <f:validator binding="#{bindings.BrDescr.validator}"/>
+          </af:inputText>
+        </af:panelFormLayout>
+      </af:panelHeader>
+    </f:facet>
+  </af:decorativeBox>
+</jsp:root>

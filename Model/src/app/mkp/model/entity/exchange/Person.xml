@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Person"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName="PERSON"
+  AliasName="Person"
+  BindingStyle="OracleName"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <AttrArray Name="_publishEvents"/>
+  </DesignTime>
+  <Attribute
+    Name="Emplid"
+    IsNotNull="true"
+    Precision="11"
+    ColumnName="EMPLID"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    TableName="PERSON"
+    PrimaryKey="true"
+    RetrievedOnUpdate="true"
+    RetrievedOnInsert="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="11"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Username"
+    IsNotNull="true"
+    Precision="30"
+    ColumnName="USERNAME"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    TableName="PERSON"
+    RetrievedOnUpdate="true"
+    RetrievedOnInsert="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Firstname"
+    IsNotNull="true"
+    Precision="30"
+    ColumnName="FIRSTNAME"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    TableName="PERSON"
+    RetrievedOnUpdate="true"
+    RetrievedOnInsert="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Middlename"
+    Precision="30"
+    ColumnName="MIDDLENAME"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    TableName="PERSON"
+    RetrievedOnUpdate="true"
+    RetrievedOnInsert="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Lastname"
+    Precision="30"
+    ColumnName="LASTNAME"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    TableName="PERSON"
+    RetrievedOnUpdate="true"
+    RetrievedOnInsert="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Displayname"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="DISPLAYNAME"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    TableName="PERSON"
+    RetrievedOnUpdate="true"
+    RetrievedOnInsert="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Title"
+    IsNotNull="true"
+    Precision="30"
+    ColumnName="TITLE"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    TableName="PERSON"
+    RetrievedOnUpdate="true"
+    RetrievedOnInsert="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Email"
+    IsNotNull="true"
+    Precision="70"
+    ColumnName="EMAIL"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    TableName="PERSON"
+    RetrievedOnUpdate="true"
+    RetrievedOnInsert="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="70"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Phone"
+    IsNotNull="true"
+    Precision="24"
+    ColumnName="PHONE"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    TableName="PERSON"
+    RetrievedOnUpdate="true"
+    RetrievedOnInsert="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="24"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Uuidperson"
+    Precision="32"
+    ColumnName="UUIDPERSON"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    TableName="PERSON"
+    RetrievedOnUpdate="true"
+    RetrievedOnInsert="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="32"/>
+    </DesignTime>
+  </Attribute>
+  <AccessorAttribute
+    Name="Position"
+    Association="app.mkp.model.entity.exchange.PositionPersonFkAssoc"
+    AssociationEnd="app.mkp.model.entity.exchange.PositionPersonFkAssoc.Position"
+    AssociationOtherEnd="app.mkp.model.entity.exchange.PositionPersonFkAssoc.Person"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <Key
+    Name="PersonPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="PERSON_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.exchange.Person.Emplid"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013443">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013443"/>
+      <Attr Name="_checkCondition" Value='"EMPLID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.exchange.Person.Emplid"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013444">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013444"/>
+      <Attr Name="_checkCondition" Value='"USERNAME" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.exchange.Person.Username"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013445">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013445"/>
+      <Attr Name="_checkCondition" Value='"FIRSTNAME" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.exchange.Person.Firstname"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013446">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013446"/>
+      <Attr Name="_checkCondition" Value='"DISPLAYNAME" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.exchange.Person.Displayname"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013447">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013447"/>
+      <Attr Name="_checkCondition" Value='"TITLE" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.exchange.Person.Title"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013448">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013448"/>
+      <Attr Name="_checkCondition" Value='"EMAIL" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.exchange.Person.Email"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0013449">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0013449"/>
+      <Attr Name="_checkCondition" Value='"PHONE" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="app.mkp.model.entity.exchange.Person.Phone"/>
+    </AttrArray>
+  </Key>
+</Entity>

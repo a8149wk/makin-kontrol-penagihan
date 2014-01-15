@@ -1,0 +1,392 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['app.mkp.view.ViewControllerBundle']}"/>
+  <af:decorativeBox id="db5">
+    <f:facet name="center">
+      <af:panelHeader text="Body Mail Template"
+                      icon="/Images/icon/mail_yellow.png" id="ph3">
+        <f:facet name="context"/>
+        <f:facet name="menuBar"/>
+        <f:facet name="toolbar"/>
+        <f:facet name="legend"/>
+        <f:facet name="info"/>
+        <af:panelTabbed id="pt1" styleClass="AFStretchWidth">
+          <af:showDetailItem text="#{viewcontrollerBundle.SINGLE_CONTENT_BY_EVENT}"
+                             id="sdi1" icon="/Images/icon/template_single.png">
+            <af:panelSplitter id="ps1" orientation="vertical"
+                              styleClass="AFStretchWidth" splitterPosition="160"
+                              dimensionsFrom="auto">
+              <f:facet name="first">
+                <af:panelCollection id="pc1"
+                                    inlineStyle="background-color:InactiveCaption;"
+                                    featuresOff="detach"
+                                    styleClass="AFStretchWidth">
+                  <f:facet name="toolbar">
+                    <af:toolbar id="t2">
+                      <af:commandToolbarButton text="Tambah Template" id="ctb1"
+                                               actionListener="#{bindings.CreateInsert.execute}"
+                                               disabled="#{!bindings.CreateInsert.enabled}"
+                                               icon="/Images/icon/template_single_add.png"/>
+                      <af:commandToolbarButton actionListener="#{bindings.Delete1.execute}"
+                                               text="Hapus Template"
+                                               disabled="#{!bindings.Delete1.enabled}"
+                                               id="ctb9"
+                                               icon="/Images/icon/template_single_delete.png"/>
+                      <af:panelGroupLayout id="pgl7" layout="horizontal">
+                        <af:spacer width="20" height="10" id="s4"/>
+                        <af:quickQuery label="Search" id="qryId1"
+                                       value="#{bindings.ImplicitViewCriteriaQuery1.quickQueryDescriptor}"
+                                       model="#{bindings.ImplicitViewCriteriaQuery1.queryModel}"
+                                       queryListener="#{bindings.ImplicitViewCriteriaQuery1.processQuery}">
+                          <f:facet name="end">
+                            <af:commandLink text="Advanced" rendered="false"
+                                            id="cl1"/>
+                          </f:facet>
+                        </af:quickQuery>
+                      </af:panelGroupLayout>
+                    </af:toolbar>
+                  </f:facet>
+                  <af:table value="#{bindings.MailTemplateView1.collectionModel}"
+                            var="row" summary=" "
+                            rows="#{bindings.MailTemplateView1.rangeSize}"
+                            emptyText="#{bindings.MailTemplateView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                            fetchSize="#{bindings.MailTemplateView1.rangeSize}"
+                            rowBandingInterval="0"
+                            selectedRowKeys="#{bindings.MailTemplateView1.collectionModel.selectedRow}"
+                            selectionListener="#{bindings.MailTemplateView1.collectionModel.makeCurrent}"
+                            rowSelection="single" id="t1"
+                            columnStretching="column:c2"
+                            partialTriggers="::ctb1 ::ctb9 ::qryId1 ::ctb2 ::ctb3">
+                    <af:column id="c4" width="10" rowHeader="true"/>
+                    <af:column sortProperty="#{bindings.MailTemplateView1.hints.MailNm.name}"
+                               sortable="true"
+                               headerText="#{bindings.MailTemplateView1.hints.MailNm.label}"
+                               id="c1" width="150" noWrap="false">
+                      <af:outputText value="#{row.MailNm}" id="ot3"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.MailTemplateView1.hints.MailSubject.name}"
+                               sortable="true"
+                               headerText="#{bindings.MailTemplateView1.hints.MailSubject.label}"
+                               id="c3" width="256" noWrap="false">
+                      <af:outputText value="#{row.MailSubject}" id="ot2"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.MailTemplateView1.hints.MailDescr.name}"
+                               sortable="true"
+                               headerText="#{bindings.MailTemplateView1.hints.MailDescr.label}"
+                               id="c2" noWrap="false">
+                      <af:outputText value="#{row.MailDescr}" id="ot1"/>
+                    </af:column>
+                  </af:table>
+                </af:panelCollection>
+              </f:facet>
+              <f:facet name="second">
+                <af:panelSplitter id="ps2" styleClass="AFStretchWidth"
+                                  splitterPosition="315"
+                                  visible="#{bindings.MailTemplateView1.estimatedRowCount > 0}"
+                                  partialTriggers="pc1:t1"
+                                  positionedFromEnd="true">
+                  <f:facet name="first">
+                    <af:panelHeader text="#{viewcontrollerBundle.BODY_MAIL_EDIT}"
+                                    id="ph1" icon="/Images/icon/email_edit.png">
+                      <f:facet name="context"/>
+                      <f:facet name="menuBar"/>
+                      <f:facet name="toolbar">
+                        <af:toolbar id="t6">
+                          <af:commandToolbarButton text="Save" id="ctb2"
+                                                   actionListener="#{bindings.Commit.execute}"
+                                                   icon="/Images/icon/save.png"/>
+                          <af:commandToolbarButton text="Cancel" id="ctb3"
+                                                   actionListener="#{bindings.Rollback.execute}"
+                                                   immediate="true"
+                                                   icon="/Images/icon/cancel.png"
+                                                   partialTriggers="pfl2 it4 it1 it3 it2 pc1:t1 pc1:ctb1 pc1:ctb9">
+                            <af:resetActionListener/>
+                          </af:commandToolbarButton>
+                        </af:toolbar>
+                      </f:facet>
+                      <f:facet name="legend"/>
+                      <f:facet name="info"/>
+                      <af:panelFormLayout id="pfl2" labelAlignment="start"
+                                          labelWidth="100"
+                                          partialTriggers="pc1:t1">
+                        <af:inputText value="#{bindings.MailNm.inputValue}"
+                                      label="#{bindings.MailNm.hints.label}"
+                                      required="#{bindings.MailNm.hints.mandatory}"
+                                      columns="#{bindings.MailNm.hints.displayWidth}"
+                                      maximumLength="#{bindings.MailNm.hints.precision}"
+                                      shortDesc="#{bindings.MailNm.hints.tooltip}"
+                                      id="it4">
+                          <f:validator binding="#{bindings.MailNm.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.MailDescr.inputValue}"
+                                      label="#{bindings.MailDescr.hints.label}"
+                                      required="#{bindings.MailDescr.hints.mandatory}"
+                                      columns="#{bindings.MailDescr.hints.displayWidth}"
+                                      maximumLength="#{bindings.MailDescr.hints.precision}"
+                                      shortDesc="#{bindings.MailDescr.hints.tooltip}"
+                                      id="it1">
+                          <f:validator binding="#{bindings.MailDescr.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.MailSubject.inputValue}"
+                                      label="#{bindings.MailSubject.hints.label}"
+                                      required="#{bindings.MailSubject.hints.mandatory}"
+                                      columns="#{bindings.MailSubject.hints.displayWidth}"
+                                      maximumLength="#{bindings.MailSubject.hints.precision}"
+                                      shortDesc="#{bindings.MailSubject.hints.tooltip}"
+                                      id="it3">
+                          <f:validator binding="#{bindings.MailSubject.validator}"/>
+                        </af:inputText>
+                        <af:spacer width="10" height="3" id="s2"/>
+                        <af:richTextEditor value="#{bindings.MailBody.inputValue}"
+                                           label="#{bindings.MailBody.hints.label}"
+                                           required="#{bindings.MailBody.hints.mandatory}"
+                                           columns="#{bindings.MailBody.hints.displayWidth}"
+                                           shortDesc="#{bindings.MailBody.hints.tooltip}"
+                                           id="it2"
+                                           styleClass="AFStretchWidth"/>
+                      </af:panelFormLayout>
+                    </af:panelHeader>
+                  </f:facet>
+                  <f:facet name="second">
+                    <af:panelGroupLayout layout="scroll"
+                                         xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                                         id="pgl3">
+                      <af:panelCollection id="pc2" featuresOff="detach"
+                                          inlineStyle="background-color:InactiveCaption;"
+                                          styleClass="AFStretchWidth">
+                        <f:facet name="toolbar">
+                          <af:toolbar id="t5">
+                            <af:commandToolbarButton text="Tambah Parameter"
+                                                     id="ctb4"
+                                                     actionListener="#{bindings.CreateInsert1.execute}"
+                                                     disabled="#{!bindings.CreateInsert1.enabled}"
+                                                     icon="/Images/icon/input_parameter_add.png"/>
+                          </af:toolbar>
+                        </f:facet>
+                        <af:table value="#{bindings.MailInputParamView1.collectionModel}"
+                                  var="row"
+                                  rows="#{bindings.MailInputParamView1.rangeSize}"
+                                  emptyText="#{bindings.MailInputParamView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                  fetchSize="#{bindings.MailInputParamView1.rangeSize}"
+                                  rowBandingInterval="0"
+                                  selectedRowKeys="#{bindings.MailInputParamView1.collectionModel.selectedRow}"
+                                  selectionListener="#{bindings.MailInputParamView1.collectionModel.makeCurrent}"
+                                  rowSelection="single" id="t4"
+                                  partialTriggers=":::pc1:t1 ::ctb4 confirmDeleteDialog"
+                                  columnStretching="column:c5"
+                                  binding="#{backingBeanScope.mailTemplateBackingBean.childTable}"
+                                  varStatus="vs">
+                          <af:column id="c10" width="15" rowHeader="true"
+                                     align="center">
+                            <af:outputText value="#{vs.index+1}" id="ot7"/>
+                          </af:column>
+                          <af:column sortProperty="#{bindings.MailInputParamView1.hints.InputNm.name}"
+                                     sortable="false"
+                                     headerText="#{bindings.MailInputParamView1.hints.InputNm.label}"
+                                     id="c5">
+                            <af:selectOneChoice value="#{row.bindings.InputNm.inputValue}"
+                                                label="#{row.bindings.InputNm.label}"
+                                                required="#{bindings.MailInputParamView1.hints.InputNm.mandatory}"
+                                                shortDesc="#{bindings.MailInputParamView1.hints.InputNm.tooltip}"
+                                                id="soc1">
+                              <f:selectItems value="#{row.bindings.InputNm.items}"
+                                             id="si1"/>
+                            </af:selectOneChoice>
+                          </af:column>
+                          <af:column id="c11" width="40" headerText="Delete"
+                                     align="center">
+                            <af:commandImageLink id="cil3"
+                                                 icon="/Images/icon/delete.png">
+                              <af:showPopupBehavior popupId="confirmDeletePopup"/>
+                            </af:commandImageLink>
+                            <af:popup id="confirmDeletePopup"
+                                      contentDelivery="lazyUncached">
+                              <af:dialog closeIconVisible="false" modal="true"
+                                         title="Warning"
+                                         id="confirmDeleteDialog"
+                                         dialogListener="#{backingBeanScope.mailTemplateBackingBean.confirmDeleteInputParamDialogListener}">
+                                <af:panelGroupLayout inlineStyle="background-color:Window;"
+                                                     layout="vertical"
+                                                     halign="left"
+                                                     valign="middle"
+                                                     id="nwtpgl1">
+                                  <af:outputText value="#{viewcontrollerBundle.DEL_MSG_INPUT_PARAM}"
+                                                 id="nwtot1"/>
+                                </af:panelGroupLayout>
+                              </af:dialog>
+                            </af:popup>
+                          </af:column>
+                        </af:table>
+                      </af:panelCollection>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                </af:panelSplitter>
+              </f:facet>
+            </af:panelSplitter>
+          </af:showDetailItem>
+          <af:showDetailItem text="#{viewcontrollerBundle.BULK_BY_SCHEDULED_DATE}"
+                             id="sdi2" icon="/Images/icon/template_bulk.png">
+            <af:panelSplitter id="ps3" orientation="vertical"
+                              styleClass="AFStretchWidth" splitterPosition="160"
+                              dimensionsFrom="children">
+              <f:facet name="first">
+                <af:panelCollection id="pc3" styleClass="AFStretchWidth"
+                                    featuresOff="detach"
+                                    inlineStyle="background-color:InactiveCaption;">
+                  <f:facet name="toolbar">
+                    <af:toolbar id="t8">
+                      <af:commandToolbarButton actionListener="#{bindings.CreateInsert2.execute}"
+                                               text="Tambah Template" id="ctb8"
+                                               icon="/Images/icon/template_bulk_add.png"/>
+                      <af:commandToolbarButton actionListener="#{bindings.Delete2.execute}"
+                                               text="Hapus Template" id="ctb10"
+                                               icon="/Images/icon/template_bulk_delete.png"
+                                               disabled="#{!bindings.Delete2.enabled}"/>
+                      <af:panelGroupLayout layout="horizontal" id="pgl9">
+                        <af:spacer width="20" height="10" id="s5"/>
+                        <af:quickQuery label="Search" id="qryId2"
+                                       value="#{bindings.ImplicitViewCriteriaQuery.quickQueryDescriptor}"
+                                       model="#{bindings.ImplicitViewCriteriaQuery.queryModel}"
+                                       queryListener="#{bindings.ImplicitViewCriteriaQuery.processQuery}">
+                          <f:facet name="end">
+                            <af:commandLink text="Advanced" rendered="false"
+                                            id="cl2"/>
+                          </f:facet>
+                        </af:quickQuery>
+                      </af:panelGroupLayout>
+                    </af:toolbar>
+                  </f:facet>
+                  <af:table value="#{bindings.MailTemplateBulkView1.collectionModel}"
+                            var="row"
+                            rows="#{bindings.MailTemplateBulkView1.rangeSize}"
+                            emptyText="#{bindings.MailTemplateBulkView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                            fetchSize="#{bindings.MailTemplateBulkView1.rangeSize}"
+                            rowBandingInterval="0"
+                            selectedRowKeys="#{bindings.MailTemplateBulkView1.collectionModel.selectedRow}"
+                            selectionListener="#{bindings.MailTemplateBulkView1.collectionModel.makeCurrent}"
+                            rowSelection="single" id="t7"
+                            columnStretching="column:c6"
+                            partialTriggers="::ctb8 ::ctb10 ::qryId2 :::ctb7 :::ctb6">
+                    <af:column id="c9" width="10" rowHeader="true"/>
+                    <af:column sortProperty="#{bindings.MailTemplateBulkView1.hints.MailNm.name}"
+                               sortable="true"
+                               headerText="#{bindings.MailTemplateBulkView1.hints.MailNm.label}"
+                               id="c8" width="150">
+                      <af:outputText value="#{row.MailNm}" id="ot5"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.MailTemplateBulkView1.hints.MailSubject.name}"
+                               sortable="true"
+                               headerText="#{bindings.MailTemplateBulkView1.hints.MailSubject.label}"
+                               id="c7" width="256">
+                      <af:outputText value="#{row.MailSubject}" id="ot4"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.MailTemplateBulkView1.hints.MailDescr.name}"
+                               sortable="true"
+                               headerText="#{bindings.MailTemplateBulkView1.hints.MailDescr.label}"
+                               id="c6">
+                      <af:outputText value="#{row.MailDescr}" id="ot6"/>
+                    </af:column>
+                  </af:table>
+                </af:panelCollection>
+              </f:facet>
+              <f:facet name="second">
+                <af:panelSplitter id="ps4" styleClass="AFStretchWidth"
+                                  splitterPosition="400"
+                                  positionedFromEnd="true"
+                                  visible="#{bindings.MailTemplateBulkView1.estimatedRowCount > 0}"
+                                  inlineStyle="margin:1px;"
+                                  partialTriggers="pc3:t7"
+                                  dimensionsFrom="auto">
+                  <f:facet name="first">
+                    <af:panelHeader text="#{viewcontrollerBundle.BODY_MAIL_EDIT}"
+                                    id="ph2" icon="/Images/icon/email_edit.png">
+                      <f:facet name="context"/>
+                      <f:facet name="menuBar"/>
+                      <f:facet name="toolbar">
+                        <af:toolbar id="t3">
+                          <af:commandToolbarButton text="Save" id="ctb7"
+                                                   actionListener="#{bindings.Commit.execute}"
+                                                   icon="/Images/icon/save.png"/>
+                          <af:commandToolbarButton text="Cancel" id="ctb6"
+                                                   actionListener="#{bindings.Rollback.execute}"
+                                                   immediate="true"
+                                                   icon="/Images/icon/cancel.png"
+                                                   partialTriggers="pfl3 it9 it7 it8 it6 pc3:ctb8 pc3:ctb10 pc3:t7">
+                            <af:resetActionListener/>
+                          </af:commandToolbarButton>
+                        </af:toolbar>
+                      </f:facet>
+                      <f:facet name="legend"/>
+                      <f:facet name="info"/>
+                      <af:panelFormLayout id="pfl3" partialTriggers="pc3:t7">
+                        <af:inputText value="#{bindings.MailNm1.inputValue}"
+                                      label="#{bindings.MailNm1.hints.label}"
+                                      required="#{bindings.MailNm1.hints.mandatory}"
+                                      columns="#{bindings.MailNm1.hints.displayWidth}"
+                                      maximumLength="#{bindings.MailNm1.hints.precision}"
+                                      shortDesc="#{bindings.MailNm1.hints.tooltip}"
+                                      id="it9">
+                          <f:validator binding="#{bindings.MailNm1.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.MailDescr1.inputValue}"
+                                      label="#{bindings.MailDescr1.hints.label}"
+                                      required="#{bindings.MailDescr1.hints.mandatory}"
+                                      columns="#{bindings.MailDescr1.hints.displayWidth}"
+                                      maximumLength="#{bindings.MailDescr1.hints.precision}"
+                                      shortDesc="#{bindings.MailDescr1.hints.tooltip}"
+                                      id="it7">
+                          <f:validator binding="#{bindings.MailDescr1.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.MailSubject1.inputValue}"
+                                      label="#{bindings.MailSubject1.hints.label}"
+                                      required="#{bindings.MailSubject1.hints.mandatory}"
+                                      columns="#{bindings.MailSubject1.hints.displayWidth}"
+                                      maximumLength="#{bindings.MailSubject1.hints.precision}"
+                                      shortDesc="#{bindings.MailSubject1.hints.tooltip}"
+                                      id="it8">
+                          <f:validator binding="#{bindings.MailSubject1.validator}"/>
+                        </af:inputText>
+                        <af:richTextEditor value="#{bindings.MailBody1.inputValue}"
+                                           label="#{bindings.MailBody1.hints.label}"
+                                           required="#{bindings.MailBody1.hints.mandatory}"
+                                           columns="#{bindings.MailBody1.hints.displayWidth}"
+                                           shortDesc="#{bindings.MailBody1.hints.tooltip}"
+                                           id="it6"
+                                           styleClass="AFStretchWidth"/>
+                      </af:panelFormLayout>
+                    </af:panelHeader>
+                  </f:facet>
+                  <f:facet name="second">
+                    <af:panelGroupLayout layout="scroll"
+                                         xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                                         id="pgl6">
+                      <af:panelFormLayout id="pfl1" labelAlignment="top"
+                                          partialTriggers="pc3:t7"
+                                          inlineStyle="border-style:solid; border-color:Gray; border-width:1px;">
+                        <af:inputText value="#{bindings.MailSql.inputValue}"
+                                      label="#{bindings.MailSql.hints.label}"
+                                      required="#{bindings.MailSql.hints.mandatory}"
+                                      columns="#{bindings.MailSql.hints.displayWidth}"
+                                      maximumLength="#{bindings.MailSql.hints.precision}"
+                                      shortDesc="#{bindings.MailSql.hints.tooltip}"
+                                      id="it5" rows="14"
+                                      inlineStyle="border-color:Gray; "
+                                      styleClass="AFStretchWidth">
+                          <f:validator binding="#{bindings.MailSql.validator}"/>
+                        </af:inputText>
+                      </af:panelFormLayout>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                </af:panelSplitter>
+              </f:facet>
+            </af:panelSplitter>
+          </af:showDetailItem>
+        </af:panelTabbed>
+      </af:panelHeader>
+    </f:facet>
+  </af:decorativeBox>
+</jsp:root>

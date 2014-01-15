@@ -1,0 +1,6 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<ProviderSettings xmlns="http://xmlns.oracle.com/ide/hash">
+   <value n="id" v="a4ec318f-013d-1000-8004-c0a881018ba1"/>
+   <value n="name" v="MKP_DB"/>
+   <value n="offlineDBSchema" v="MKP"/>
+</ProviderSettings>

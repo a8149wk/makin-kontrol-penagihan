@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="manage_create_new_ttf_manage_create_new_ttf_ExecutePageDef"
+                Package="app.mkp.view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="InvoiceView1" RangeSize="25"
+              DataControl="TandaTerimaFakturAMDataControl"
+              id="InvoiceView1Iterator" Refresh="never"/>
+  </executables>
+  <bindings>
+    <action IterBinding="InvoiceView1Iterator" id="Execute"
+            RequiresUpdateModel="true" Action="iteratorExecute"/>
+  </bindings>
+</pageDefinition>

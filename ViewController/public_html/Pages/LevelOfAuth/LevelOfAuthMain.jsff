@@ -1,0 +1,402 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['app.mkp.view.ViewControllerBundle']}"/>
+  <af:panelStretchLayout id="psl1">
+    <f:facet name="center">
+      <af:panelSplitter id="ps1" inlineStyle="margin:5px;"
+                        splitterPosition="300">
+        <f:facet name="first">
+          <af:decorativeBox id="db1">
+            <f:facet name="center">
+              <af:panelHeader text="#{viewcontrollerBundle.MAIN_HDR_LEVEL_OF_AUTHORITY}"
+                              id="ph1" icon="/Images/icon/loa_config.png">
+                <af:panelSplitter id="ps2" orientation="vertical"
+                                  styleClass="AFStretchWidth"
+                                  splitterPosition="120">
+                  <f:facet name="first">
+                    <af:query id="qryId1" headerText="Search" disclosed="true"
+                              value="#{bindings.LoaMainViewCriteriaQuery.queryDescriptor}"
+                              model="#{bindings.LoaMainViewCriteriaQuery.queryModel}"
+                              queryListener="#{bindings.LoaMainViewCriteriaQuery.processQuery}"
+                              queryOperationListener="#{bindings.LoaMainViewCriteriaQuery.processQueryOperation}"
+                              resultComponentId="::pc1:resId1"
+                              saveQueryMode="hidden" modeChangeVisible="false"/>
+                  </f:facet>
+                  <f:facet name="second">
+                    <af:panelCollection id="pc1" styleClass="AFStretchWidth"
+                                        featuresOff="detach">
+                      <f:facet name="toolbar">
+                        <af:toolbar id="t1">
+                          <af:commandToolbarButton actionListener="#{bindings.CreateInsert.execute}"
+                                                   text="#{viewcontrollerBundle.BUT_TXT_NEW_LOA}"
+                                                   disabled="#{!bindings.CreateInsert.enabled}"
+                                                   id="ctb1"
+                                                   icon="/Images/icon/add.png"/>
+                        </af:toolbar>
+                      </f:facet>
+                      <af:table value="#{bindings.LoaMainView1.collectionModel}"
+                                var="row" summary="LOA Tabel"
+                                rows="#{bindings.LoaMainView1.rangeSize}"
+                                emptyText="#{bindings.LoaMainView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                fetchSize="#{bindings.LoaMainView1.rangeSize}"
+                                rowBandingInterval="0"
+                                selectedRowKeys="#{bindings.LoaMainView1.collectionModel.selectedRow}"
+                                selectionListener="#{bindings.LoaMainView1.collectionModel.makeCurrent}"
+                                rowSelection="single" id="resId1"
+                                columnStretching="column:resId1c2"
+                                partialTriggers="::ctb1 :::ctb3 :::ctb2 d1"
+                                binding="#{backingBeanScope.levelOfAuthorityBackingBean.childTableLoa}">
+                        <af:column id="c6" width="10" rowHeader="true"/>
+                        <af:column id="c3"
+                                     headerText="#{viewcontrollerBundle.COL_HDR_ACTIONS}"
+                                     width="40" minimumWidth="50">
+                            <af:panelGroupLayout id="pgl5" layout="horizontal"
+                                                 halign="center">
+                              <af:commandImageLink id="cil1"
+                                                     icon="/Images/icon/delete.png">
+                                  <af:showPopupBehavior popupId="confirmDeletePopupLoa"/>
+                                </af:commandImageLink>
+                                <af:popup id="confirmDeletePopupLoa"
+                                          contentDelivery="lazyUncached">
+                                  <af:dialog closeIconVisible="false"
+                                             modal="true" title="Warning"
+                                             id="d1"
+                                             dialogListener="#{backingBeanScope.levelOfAuthorityBackingBean.confirmDeleteLoaDialogListener}">
+                                    <af:panelGroupLayout inlineStyle="background-color:Window;"
+                                                         layout="vertical"
+                                                         halign="left"
+                                                         valign="middle"
+                                                         id="pgl7">
+                                      <af:outputText value="#{viewcontrollerBundle.DEL_MSG_LOA}"
+                                                     id="ot3"/>
+                                    </af:panelGroupLayout>
+                                  </af:dialog>
+                                </af:popup>
+                            </af:panelGroupLayout>
+                          </af:column>
+                        <af:column sortProperty="#{bindings.LoaMainView1.hints.LoaTipe.name}"
+                                   sortable="true"
+                                   headerText="#{bindings.LoaMainView1.hints.LoaTipe.label}"
+                                   id="resId1c1" noWrap="false">
+                          <af:selectOneChoice value="#{row.bindings.LoaTipe.inputValue}"
+                                              label="#{row.bindings.LoaTipe.label}"
+                                              required="#{bindings.LoaMainView1.hints.LoaTipe.mandatory}"
+                                              shortDesc="#{bindings.LoaMainView1.hints.LoaTipe.tooltip}"
+                                              id="soc2" readOnly="true">
+                            <f:selectItems value="#{row.bindings.LoaTipe.items}"
+                                           id="si2"/>
+                          </af:selectOneChoice>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.LoaMainView1.hints.Descr.name}"
+                                   sortable="true"
+                                   headerText="#{bindings.LoaMainView1.hints.Descr.label}"
+                                   id="resId1c2" noWrap="false">
+                          <af:outputText value="#{row.Descr}" id="ot2"/>
+                        </af:column>
+                      </af:table>
+                    </af:panelCollection>
+                  </f:facet>
+                </af:panelSplitter>
+              </af:panelHeader>
+            </f:facet>
+          </af:decorativeBox>
+        </f:facet>
+        <f:facet name="second">
+          <af:decorativeBox id="db2">
+            <f:facet name="center">
+                <af:panelHeader text=" Informasi LOA" id="ph2"
+                                icon="/Images/icon/information.png">
+                  <af:panelSplitter id="ps3" orientation="vertical"
+                                    styleClass="AFStretchWidth"
+                                    splitterPosition="120">
+                    <f:facet name="first">
+                      <af:panelHeader text="#{viewcontrollerBundle.TIPE_LOA}" id="ph3">
+                        <f:facet name="context"/>
+                        <f:facet name="menuBar"/>
+                        <f:facet name="toolbar">
+                          <af:toolbar id="t3">
+                            <af:commandToolbarButton actionListener="#{bindings.Commit.execute}"
+                                                     text="#{viewcontrollerBundle.BUT_TXT_SAVE}"
+                                                     id="ctb3"
+                                                     icon="/Images/icon/save.png"/>
+                            <af:commandToolbarButton actionListener="#{bindings.Rollback.execute}"
+                                                     text="#{viewcontrollerBundle.BUT_TXT_CANCEL}"
+                                                     immediate="true" id="ctb2"
+                                                     icon="/Images/icon/cancel.png">
+                              <af:resetActionListener/>
+                            </af:commandToolbarButton>
+                          </af:toolbar>
+                        </f:facet>
+                        <f:facet name="legend"/>
+                        <f:facet name="info"/>
+                        <af:panelFormLayout id="pfl1"
+                                            partialTriggers="pc1:resId1 qryId1"
+                                            styleClass="AFStretchWidth">
+                          <af:selectOneChoice value="#{bindings.LoaTipe.inputValue}"
+                                              label="#{bindings.LoaTipe.label}"
+                                              required="#{bindings.LoaTipe.hints.mandatory}"
+                                              shortDesc="#{bindings.LoaTipe.hints.tooltip}"
+                                              id="soc1">
+                            <f:selectItems value="#{bindings.LoaTipe.items}"
+                                           id="si1"/>
+                          </af:selectOneChoice>
+                          <af:inputText value="#{bindings.Descr.inputValue}"
+                                        label="#{bindings.Descr.hints.label}"
+                                        required="#{bindings.Descr.hints.mandatory}"
+                                        columns="#{bindings.Descr.hints.displayWidth}"
+                                        maximumLength="#{bindings.Descr.hints.precision}"
+                                        shortDesc="#{bindings.Descr.hints.tooltip}"
+                                        id="it1" rows="2">
+                            <f:validator binding="#{bindings.Descr.validator}"/>
+                          </af:inputText>
+                        </af:panelFormLayout>
+                      </af:panelHeader>
+                  </f:facet>
+                    <f:facet name="second">
+                      <af:panelSplitter id="ps4" styleClass="AFStretchWidth"
+                                        splitterPosition="250"
+                                        positionedFromEnd="true">
+                        <f:facet name="first">
+                          <af:panelHeader text="Authority Level" id="ph4"
+                                          icon="/Images/icon/ttf_list.png">
+                            <f:facet name="context"/>
+                            <f:facet name="menuBar"/>
+                            <f:facet name="toolbar"/>
+                            <f:facet name="legend"/>
+                            <f:facet name="info"/>
+                            <af:panelCollection id="pc2"
+                                                styleClass="AFStretchWidth"
+                                                featuresOff="detach">
+                              <f:facet name="toolbar">
+                                <af:toolbar id="t4">
+                                  <af:commandToolbarButton actionListener="#{bindings.CreateInsert1.execute}"
+                                                           text="#{viewcontrollerBundle.BUT_TXT_NEW_AUTHORITY}"
+                                                           disabled="#{!bindings.CreateInsert1.enabled}"
+                                                           id="ctb4"
+                                                           icon="/Images/icon/add.png"/>
+                                </af:toolbar>
+                              </f:facet>
+                              <af:table value="#{bindings.LoaAuthView1.collectionModel}"
+                                        var="row" summary="LOA Authority Table"
+                                        rows="#{bindings.LoaAuthView1.rangeSize}"
+                                        emptyText="#{bindings.LoaAuthView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                        fetchSize="#{bindings.LoaAuthView1.rangeSize}"
+                                        rowBandingInterval="0"
+                                        selectedRowKeys="#{bindings.LoaAuthView1.collectionModel.selectedRow}"
+                                        selectionListener="#{bindings.LoaAuthView1.collectionModel.makeCurrent}"
+                                        rowSelection="single" id="t2"
+                                        partialTriggers=":::qryId1 :::pc1:resId1 ::ctb4 d2"
+                                        columnStretching="column:c3"
+                                        styleClass="AFStretchWidth"
+                                        binding="#{backingBeanScope.levelOfAuthorityBackingBean.childTableAuthLvl}">
+                                <af:column id="c7" width="10" rowHeader="true"
+                                           minimumWidth="10"/>
+                                <af:column id="c8"
+                                           headerText="#{viewcontrollerBundle.COL_HDR_ACTIONS}"
+                                           width="40" minimumWidth="50">
+                                  <af:panelGroupLayout id="pgl4"
+                                                       layout="horizontal"
+                                                       halign="center">
+                                    <af:commandImageLink id="cil2"
+                                                         icon="/Images/icon/delete.png">
+                                      <af:showPopupBehavior popupId="confirmDeletePopupAuthLvl"/>
+                                    </af:commandImageLink>
+                                    <af:popup id="confirmDeletePopupAuthLvl"
+                                              contentDelivery="lazyUncached">
+                                      <af:dialog closeIconVisible="false"
+                                                 modal="true" title="Warning"
+                                                 id="d2"
+                                                 dialogListener="#{backingBeanScope.levelOfAuthorityBackingBean.confirmDeleteAuthLvlDialogListener}">
+                                        <af:panelGroupLayout inlineStyle="background-color:Window;"
+                                                             layout="vertical"
+                                                             halign="left"
+                                                             valign="middle"
+                                                             id="pgl2">
+                                          <af:outputText value="#{viewcontrollerBundle.DEL_MSG_LOA_AUTH_LVL}"
+                                                         id="ot1"/>
+                                        </af:panelGroupLayout>
+                                      </af:dialog>
+                                    </af:popup>
+                                  </af:panelGroupLayout>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.LoaAuthView1.hints.LoaName.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.LoaAuthView1.hints.LoaName.label}"
+                                           id="c1" width="150"
+                                           minimumWidth="100" noWrap="false">
+                                  <af:inputText value="#{row.bindings.LoaName.inputValue}"
+                                                label="#{bindings.LoaAuthView1.hints.LoaName.label}"
+                                                required="#{bindings.LoaAuthView1.hints.LoaName.mandatory}"
+                                                columns="#{bindings.LoaAuthView1.hints.LoaName.displayWidth}"
+                                                maximumLength="#{bindings.LoaAuthView1.hints.LoaName.precision}"
+                                                shortDesc="#{bindings.LoaAuthView1.hints.LoaName.tooltip}"
+                                                id="it6" rows="2">
+                                    <f:validator binding="#{row.bindings.LoaName.validator}"/>
+                                  </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.LoaAuthView1.hints.Descr.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.LoaAuthView1.hints.Descr.label}"
+                                           id="c12" width="150"
+                                           minimumWidth="100" noWrap="false">
+                                  <af:inputText value="#{row.bindings.Descr.inputValue}"
+                                                label="#{bindings.LoaAuthView1.hints.Descr.label}"
+                                                required="#{bindings.LoaAuthView1.hints.Descr.mandatory}"
+                                                columns="#{bindings.LoaAuthView1.hints.Descr.displayWidth}"
+                                                maximumLength="#{bindings.LoaAuthView1.hints.Descr.precision}"
+                                                shortDesc="#{bindings.LoaAuthView1.hints.Descr.tooltip}"
+                                                id="it4" rows="2">
+                                    <f:validator binding="#{row.bindings.Descr.validator}"/>
+                                  </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.LoaAuthView1.hints.Min1.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.LoaAuthView1.hints.Min1.label}"
+                                           id="c5" width="100"
+                                           minimumWidth="100">
+                                  <af:inputText value="#{row.bindings.Min1.inputValue}"
+                                                label="#{bindings.LoaAuthView1.hints.Min1.label}"
+                                                required="#{bindings.LoaAuthView1.hints.Min1.mandatory}"
+                                                columns="#{bindings.LoaAuthView1.hints.Min1.displayWidth}"
+                                                maximumLength="#{bindings.LoaAuthView1.hints.Min1.precision}"
+                                                shortDesc="#{bindings.LoaAuthView1.hints.Min1.tooltip}"
+                                                id="it5">
+                                    <f:validator binding="#{row.bindings.Min1.validator}"/>
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.LoaAuthView1.hints.Min1.format}"/>
+                                  </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.LoaAuthView1.hints.Max1.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.LoaAuthView1.hints.Max1.label}"
+                                           id="c4" width="100"
+                                           minimumWidth="100">
+                                  <af:inputText value="#{row.bindings.Max1.inputValue}"
+                                                label="#{bindings.LoaAuthView1.hints.Max1.label}"
+                                                required="#{bindings.LoaAuthView1.hints.Max1.mandatory}"
+                                                columns="#{bindings.LoaAuthView1.hints.Max1.displayWidth}"
+                                                maximumLength="#{bindings.LoaAuthView1.hints.Max1.precision}"
+                                                shortDesc="#{bindings.LoaAuthView1.hints.Max1.tooltip}"
+                                                id="it3">
+                                    <f:validator binding="#{row.bindings.Max1.validator}"/>
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.LoaAuthView1.hints.Max1.format}"/>
+                                  </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.LoaAuthView1.hints.Kurs.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.LoaAuthView1.hints.Kurs.label}"
+                                           id="c2" width="80" minimumWidth="80">
+                                  <af:selectOneChoice value="#{row.bindings.Kurs.inputValue}"
+                                                      label="#{row.bindings.Kurs.label}"
+                                                      required="#{bindings.LoaAuthView1.hints.Kurs.mandatory}"
+                                                      shortDesc="#{bindings.LoaAuthView1.hints.Kurs.tooltip}"
+                                                      id="soc3">
+                                    <f:selectItems value="#{row.bindings.Kurs.items}"
+                                                   id="si3"/>
+                                  </af:selectOneChoice>
+                                </af:column>
+                              </af:table>
+                            </af:panelCollection>
+                          </af:panelHeader>
+                      </f:facet>
+                        <f:facet name="second">
+                          <af:panelHeader text="Authority Approver" id="ph5"
+                                          icon="/Images/icon/user.png">
+                            <f:facet name="context"/>
+                            <f:facet name="menuBar"/>
+                            <f:facet name="toolbar"/>
+                            <f:facet name="legend"/>
+                            <f:facet name="info"/>
+                            <af:panelCollection id="pc3" featuresOff="detach">
+                              <f:facet name="toolbar">
+                                <af:toolbar id="t6">
+                                  <af:commandToolbarButton text="#{viewcontrollerBundle.ADD_APPROVER}"
+                                                           id="ctb5"
+                                                           actionListener="#{bindings.CreateInsert2.execute}"
+                                                           icon="/Images/icon/user_add.png"/>
+                                </af:toolbar>
+                              </f:facet>
+                              <af:table value="#{bindings.LoaAprvrView1.collectionModel}"
+                                        var="row" summary="LOA Approver Tabel"
+                                        rows="#{bindings.LoaAprvrView1.rangeSize}"
+                                        emptyText="#{bindings.LoaAprvrView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                        fetchSize="#{bindings.LoaAprvrView1.rangeSize}"
+                                        rowBandingInterval="0"
+                                        selectedRowKeys="#{bindings.LoaAprvrView1.collectionModel.selectedRow}"
+                                        selectionListener="#{bindings.LoaAprvrView1.collectionModel.makeCurrent}"
+                                        rowSelection="single" id="t5"
+                                        columnStretching="column:c9"
+                                        styleClass="AFStretchWidth"
+                                        partialTriggers=":::pc2:t2 ::ctb5 d3 :::qryId1 :::pc1:resId1"
+                                        binding="#{backingBeanScope.levelOfAuthorityBackingBean.childTableLoaAppvr}">
+                                <af:column id="c11" width="10"
+                                           rowHeader="true"/>
+                                <af:column id="c10" width="60"
+                                           headerText="#{viewcontrollerBundle.COL_HDR_ACTIONS}">
+                                  <af:panelGroupLayout id="pgl1"
+                                                       layout="horizontal"
+                                                       halign="center">
+                                    <af:commandImageLink id="cil4"
+                                                         shortDesc="Penugasan PT / Vendor"
+                                                         icon="/Images/icon/assign_pt.png"
+                                                         action="assignAuthPt">
+                                      <af:setPropertyListener from="#{row.rowKeyStr}"
+                                                              to="#{pageFlowScope.keyApproverTbl}"
+                                                              type="action"/>
+                                    </af:commandImageLink>
+                                    <af:spacer width="10" height="10" id="s1"/>
+                                    <af:commandImageLink id="cil3"
+                                                         icon="/Images/icon/delete.png">
+                                      <af:showPopupBehavior popupId="confirmDeletePopupLoaAppvr"/>
+                                    </af:commandImageLink>
+                                    <af:popup id="confirmDeletePopupLoaAppvr"
+                                              contentDelivery="lazyUncached">
+                                      <af:dialog closeIconVisible="false"
+                                                 modal="true" title="Warning"
+                                                 id="d3"
+                                                 dialogListener="#{backingBeanScope.levelOfAuthorityBackingBean.confirmDeleteLoaAppvrDialogListener}">
+                                        <af:panelGroupLayout inlineStyle="background-color:Window;"
+                                                             layout="vertical"
+                                                             halign="left"
+                                                             valign="middle"
+                                                             id="pgl3">
+                                          <af:outputText value="#{viewcontrollerBundle.DEL_MSG_LOA_APPROVER}"
+                                                         id="ot4"/>
+                                        </af:panelGroupLayout>
+                                      </af:dialog>
+                                    </af:popup>
+                                  </af:panelGroupLayout>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.LoaAprvrView1.hints.Approver.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.LoaAprvrView1.hints.Approver.label}"
+                                           id="c9" width="118">
+                                  <af:selectOneChoice value="#{row.bindings.Approver.inputValue}"
+                                                      label="#{row.bindings.Approver.label}"
+                                                      required="#{bindings.LoaAprvrView1.hints.Approver.mandatory}"
+                                                      shortDesc="#{bindings.LoaAprvrView1.hints.Approver.tooltip}"
+                                                      id="soc4">
+                                    <f:selectItems value="#{row.bindings.Approver.items}"
+                                                   id="si4"/>
+                                  </af:selectOneChoice>
+                                </af:column>
+                              </af:table>
+                            </af:panelCollection>
+                          </af:panelHeader>
+                      </f:facet>
+                      </af:panelSplitter>
+                    </f:facet>
+                  </af:panelSplitter>
+                </af:panelHeader>
+            </f:facet>
+          </af:decorativeBox>
+        </f:facet>
+      </af:panelSplitter>
+    </f:facet>
+  </af:panelStretchLayout>
+</jsp:root>

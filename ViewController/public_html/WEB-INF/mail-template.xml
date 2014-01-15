@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="mail-template">
+    <default-activity id="__1">MailTemplateForm</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name id="__2">mailTemplateBackingBean</managed-bean-name>
+      <managed-bean-class id="__5">app.mkp.backing.MailTemplateBackingBean</managed-bean-class>
+      <managed-bean-scope id="__4">backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="MailTemplateForm">
+      <page>/Pages/MailConfig/MailTemplateForm.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>
