@@ -185,7 +185,7 @@ public class SendQueueEventMail implements Serializable, TimerListener,
             deleteNotifQue.executeUpdate();
             deleteNotifQue.close();
         } catch (SQLException sqle) {
-            sqle.printStackTrace();
+            //sqle.printStackTrace();
         }
         ;
     }
