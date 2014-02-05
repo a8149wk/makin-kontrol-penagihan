@@ -218,29 +218,16 @@
                     <dvt:gauge id="gauge1" gaugeType="DIAL"
                                shortDesc="Utilization"
                                inlineStyle="width:184px; height:132px;"
-                               value="#{row.UtilPercentage}"
-                               animationOnDisplay="auto"
-                               animationUpColor="#008400"
-                               animationDownColor="#e73900"
-                               animationOnDataChange="auto"
-                               animationDuration="100" ledStyle="LS_ARROW">
-                      <dvt:gaugeBackground>
-                        <dvt:specialEffects/>
-                      </dvt:gaugeBackground>
+                               value="#{row.UtilPercentage}" minValue="0"
+                               maxValue="100">
                       <dvt:thresholdSet>
-                        <dvt:threshold/>
-                        <dvt:threshold/>
+                        <dvt:threshold thresholdMaxValue="30"/>
+                        <dvt:threshold thresholdMaxValue="60"/>
                         <dvt:threshold/>
                       </dvt:thresholdSet>
-                      <dvt:gaugeFrame/>
-                      <dvt:indicator/>
-                      <dvt:indicatorBase/>
-                      <dvt:gaugePlotArea/>
-                      <dvt:tickLabel/>
-                      <dvt:tickMark/>
-                      <dvt:topLabel/>
-                      <dvt:bottomLabel/>
-                      <dvt:metricLabel position="LP_WITH_BOTTOM_LABEL"/>
+                      <dvt:metricLabel>
+                        <af:convertNumber type="number"/>
+                      </dvt:metricLabel>
                     </dvt:gauge>
                     <af:panelFormLayout id="pfl3" labelAlignment="top">
                       <af:panelLabelAndMessage label="#{bindings.UtilizationKontrakView1.hints.Util.label}"

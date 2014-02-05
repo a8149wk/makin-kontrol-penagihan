@@ -483,7 +483,7 @@ GROUP BY Z.DID, Z.KODE_MU, Z.PT, Z.NO_KONTRAK, Z.VENDOR, Z.DEPARTMENT, Z.MATA_UA
           Value="InAdvancedMode"/>
         <Property
           Name="autoExecute"
-          Value="true"/>
+          Value="false"/>
         <Property
           Name="showInList"
           Value="false"/>
